@@ -6,10 +6,11 @@ public class CarController : MonoBehaviour
     [SerializeField] Rigidbody carRB;
     [SerializeField] Rigidbody sphereRB;
 
-    private float startSpeed;
-    [SerializeField] float speed;
+    [HideInInspector]
+    public float startSpeed;
+    [SerializeField] public float speed;
    
-    [SerializeField] float nitroSpeed;
+    [SerializeField] public float nitroSpeed;
 
     //[SerializeField] float revSpeed;
     [SerializeField] float turnSpeed;

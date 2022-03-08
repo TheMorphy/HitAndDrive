@@ -5,7 +5,7 @@ using UnityEngine;
 public class pivot : MonoBehaviour
 {
     [SerializeField]
-    GameObject standardCarModel, truckModel, bigTruckModel;
+    GameObject standardCarModel, truckModel, bigTruckModel, feverModel;
     [SerializeField]
     AudioSource motor;
     [SerializeField]
@@ -13,6 +13,8 @@ public class pivot : MonoBehaviour
     Vector3 savedCanvasPos;
     [SerializeField]
     Transform canvas;
+    [SerializeField]
+    
     // Start is called before the first frame update
     public void CanvasToPos()
     {
@@ -34,6 +36,29 @@ public class pivot : MonoBehaviour
     {
         savedCanvasPos = canvas.localPosition;
        // StartCoroutine(stayatpos());
+    }
+    
+    public void changeToFever()
+    {
+        feverModel.SetActive(true);
+        truckModel.SetActive(false);
+        bigTruckModel.SetActive(false);
+    }
+
+    public void ChangeToModel(int index)
+    {
+        foreach(CarChange c in TrackManager.instance.carChanges)
+        {
+            if(c.index == index)
+                c.newCarModel.SetActive(true);
+            else
+                c.newCarModel.SetActive(false);
+        }
+    }
+
+    public void changeFromFever()
+    {
+
     }
 
     IEnumerator stayatpos()

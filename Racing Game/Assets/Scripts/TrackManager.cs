@@ -18,7 +18,7 @@ public class TrackManager : MonoBehaviour
     [SerializeField] float levelLongness = 5;
     [SerializeField] float decreaseMultiplicator;
     public float killValue;
-    bool fever;
+    public bool fever;
     float feverBurnTime;
     public float carCrashPower = 5;
     [Header("Level stuff")]
@@ -45,12 +45,19 @@ public class TrackManager : MonoBehaviour
     List<GameObject> usedCarModels = new List<GameObject>();
     [SerializeField]
     Animator carCollider;
+    Animator carAnim;
+    string currentLevelupAnim = "LevelUp";
+    [Header("Fever Mode")]
+    [SerializeField]
+    GameObject feverCar;
+    [SerializeField]
+    string transformationAnimation;
+    
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
     // Start is called before the first frame update
     void Awake()
-    {
-        
+    {      
         currentCarSize = car.localScale.y;
         lvltxtwrldrot = carLevelText.transform.rotation;
         currentlevel = startLevel;
@@ -60,6 +67,8 @@ public class TrackManager : MonoBehaviour
             return;
         }
         instance = this;
+        carAnim = car.GetComponent<Animator>();
+        currentLevelupAnim = "LevelUp";
     }
     private void Start()
     {
@@ -69,10 +78,12 @@ public class TrackManager : MonoBehaviour
     }
     public void addLevel(int lvl)
     {
-        currentCarSize += carSizePlus;
-        car.localScale = Vector3.one * currentCarSize; 
+        //currentCarSize += carSizePlus;
+        //car.localScale = Vector3.one * currentCarSize; 
         currentlevel += lvl;
-        if(updateTxtCoroutine == null)
+        if(!fever)
+        {
+            if(updateTxtCoroutine == null)
         {
             updateTxtCoroutine = StartCoroutine(updateLevelTxt());
         }
@@ -84,14 +95,19 @@ public class TrackManager : MonoBehaviour
         
         currentPlus += lvl;
         showaddedLevelCountdown = showLevelTime;
-        TextMeshPro tmp = Instantiate(carLevelText, car).GetComponent<TextMeshPro>();
-        tmp.text = prefix + lvl.ToString();
-        tmp.sortingOrder = currentlevel;
-        StartCoroutine(holdRotation(tmp.transform));
-        Destroy(tmp, 5);
+        if (!fever)
+        {
+            TextMeshPro tmp = Instantiate(carLevelText, car).GetComponent<TextMeshPro>();
+            tmp.text = prefix + lvl.ToString();
+            tmp.sortingOrder = currentlevel;
+            StartCoroutine(holdRotation(tmp.transform));
+            Destroy(tmp, 5);
+        }
+            
 
         if (showupLevel == null)
         {
+            
             showupLevel = StartCoroutine(ShowUpText());
         }
         bool carChanged = false;
@@ -102,48 +118,33 @@ public class TrackManager : MonoBehaviour
                 //changeCarModel(c.newCarModel);
                 c.changed = true;
                 carChanged = true;
+                carAnim.Play(c.animationName);
+                currentLevelupAnim = c.levelupAnim;
+                if(c.CoroutineName != "")
+                {
+                    StartCoroutine(c.CoroutineName);
+                }
+                carAnim.SetFloat("Car", c.index);
             }
         }
-        Animator carAnim = car.GetComponent<Animator>();
-        if(carChanged)
+        
+        if(!carChanged)        
         {
-            if (currentlevel >= 30)
-            {
-                carCollider.SetFloat("car", 2);
-                carAnim.SetFloat("Car", 2);
-                carAnim.Play("ChangeToBigTruck");
-                StartCoroutine(SmoothCamOutForTruck());
-            }
-            else
-            carAnim.Play("LevelUpCar");
+            carAnim.Play(currentLevelupAnim);
+            
+        }
         }
         else
         {
-            if(currentlevel >= 30)
-            {
-                carCollider.SetFloat("car", 2);
-                carAnim.SetFloat("Car", 2);
-                carAnim.Play("bigtrucklvlupanim");
-            }
-            else if(currentlevel >= 10)
-            {
-                carCollider.SetFloat("car", 1);
-                carAnim.SetFloat("Car", 1);
-                carAnim.Play("LevelUpTruck");
-            }
-            else
-            {
-                carCollider.SetFloat("car", 0   );
-                carAnim.SetFloat("Car", 0);
-                carAnim.Play("LevelUp");
-            }
-            
+            carAnim.Play(transformationAnimation);
         }
+        
 
     }
 
     IEnumerator SmoothCamOutForTruck()
     {
+        
         while(false == false)
         {
             yield return null;
@@ -261,9 +262,12 @@ public class TrackManager : MonoBehaviour
         {
             feverBurnTime = killValue;
             fever = true;
+            
         }
         if(fever)
         {
+            lvlText.transform.parent.gameObject.SetActive(false);
+            car.parent.GetComponent<CarController>().speed = car.parent.GetComponent<CarController>().nitroSpeed;
             feverBurnTime -= Time.deltaTime * decreaseMultiplicator;
             fever = feverBurnTime > 0;
             killBar.fillAmount = feverBurnTime / levelLongness;
@@ -271,8 +275,10 @@ public class TrackManager : MonoBehaviour
         }
         else
         {
+            lvlText.transform.parent.gameObject.SetActive(true);
+            car.parent.GetComponent<CarController>().speed = car.parent.GetComponent<CarController>().startSpeed;
             killBar.fillAmount = killValue / levelLongness;
-            killValue -= Time.deltaTime * decreaseMultiplicator;
+            //killValue -= Time.deltaTime * decreaseMultiplicator;
             killValue = Mathf.Clamp(killValue, 0, levelLongness);
         }
             

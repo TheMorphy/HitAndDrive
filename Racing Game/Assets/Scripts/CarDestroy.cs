@@ -52,8 +52,10 @@ public class CarDestroy : MonoBehaviour
 
     private void Update()
     {
+        
         if (zooming)
         {
+            
             StartCoroutine(LerpFunction(64, 0.3f));
             zooming = false;
         }
@@ -61,6 +63,7 @@ public class CarDestroy : MonoBehaviour
 
     IEnumerator LerpFunction(float endValue, float duration)
     {
+        
         StartCoroutine(LerpSound(2f, 0.3f));
         float time = 0;
         float startValue = mainCamera.fieldOfView;
@@ -88,10 +91,12 @@ public class CarDestroy : MonoBehaviour
 
     IEnumerator LerpSound(float endValue, float duration)
     {
+        
         float time = 0;
         float startValue = engineSound.pitch;
         while (time < duration)
         {
+            
             engineSound.pitch = Mathf.Lerp(startValue, endValue, time / duration);
             time += Time.deltaTime;
             yield return null;
