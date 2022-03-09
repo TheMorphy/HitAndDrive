@@ -52,12 +52,18 @@ public class TrackManager : MonoBehaviour
     GameObject feverCar;
     [SerializeField]
     string transformationAnimation;
+    bool feverTriggered;
+    bool endFeverTriggered;
+    [SerializeField]
+    Color feverColor;
+    Material nonFeverMat;
     
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
     // Start is called before the first frame update
     void Awake()
-    {      
+    {
+        endFeverTriggered = true;
         currentCarSize = car.localScale.y;
         lvltxtwrldrot = carLevelText.transform.rotation;
         currentlevel = startLevel;
@@ -83,7 +89,8 @@ public class TrackManager : MonoBehaviour
         currentlevel += lvl;
         if(!fever)
         {
-            if(updateTxtCoroutine == null)
+           
+        if(updateTxtCoroutine == null)
         {
             updateTxtCoroutine = StartCoroutine(updateLevelTxt());
         }
@@ -134,10 +141,7 @@ public class TrackManager : MonoBehaviour
             
         }
         }
-        else
-        {
-            carAnim.Play(transformationAnimation);
-        }
+        
         
 
     }
@@ -243,6 +247,20 @@ public class TrackManager : MonoBehaviour
     {
         
     }
+
+    CarChange getCurrentCarLevel()
+    {
+        CarChange current = null;
+        int curlvl = 0;
+        foreach(CarChange c in carChanges)
+        {
+            if(c.levelToReach < currentlevel && c.levelToReach > curlvl)
+            {
+                current = c;
+            }
+        }
+        return current;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -266,6 +284,16 @@ public class TrackManager : MonoBehaviour
         }
         if(fever)
         {
+            feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2].SetColor("_Color", feverColor);
+            if (!feverTriggered)
+            {
+               // nonFeverMat = feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2];
+                //feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2] = feverMat;
+                carAnim.Play(transformationAnimation, 0, 2);
+                carAnim.SetFloat("Car", 2);
+                feverTriggered = true;
+            }
+            endFeverTriggered = false;
             lvlText.transform.parent.gameObject.SetActive(false);
             car.parent.GetComponent<CarController>().speed = car.parent.GetComponent<CarController>().nitroSpeed;
             feverBurnTime -= Time.deltaTime * decreaseMultiplicator;
@@ -275,6 +303,22 @@ public class TrackManager : MonoBehaviour
         }
         else
         {
+            if(!endFeverTriggered)
+            {
+                addLevel(0);
+                CarChange backChange = getCurrentCarLevel();
+                carAnim.Play(backChange.animationName);
+                carAnim.Play("FeverToNormal");
+                currentLevelupAnim = backChange.levelupAnim;
+                if (backChange.CoroutineName != "")
+                {
+                    StartCoroutine(backChange.CoroutineName);
+                }
+                carAnim.SetFloat("Car", backChange.index);
+                endFeverTriggered = true;
+                //feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2] = nonFeverMat;
+            }
+            feverTriggered = false;
             lvlText.transform.parent.gameObject.SetActive(true);
             car.parent.GetComponent<CarController>().speed = car.parent.GetComponent<CarController>().startSpeed;
             killBar.fillAmount = killValue / levelLongness;
