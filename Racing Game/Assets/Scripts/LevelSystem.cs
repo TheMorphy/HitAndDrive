@@ -6,32 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class LevelSystem : MonoBehaviour
 {
-    [SerializeField] Transform Player;
-    [SerializeField] Transform EndLine;
-    [SerializeField] Slider slider;
+    [SerializeField] Transform Player, EndLine;
     [SerializeField] GameObject finishLevel;
-
+    [SerializeField] int numberOfLevels;
     bool hasFinished;
 
-    float maxDistance;
-
-    void Start()
+    private void Start()
     {
-        maxDistance = getDistance();
+        
     }
 
     void Update()
     {
-        if (Player.position.z <= EndLine.position.z)
-        {
-            float distance = 1 - (getDistance() / maxDistance);
-            SetProgress(distance);
-        }
-        else hasFinished = true;
-
         if (hasFinished == true)
         {
-            FinishLevelUI();
+            finishLevel.SetActive(true);
+            SaveLevel();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            hasFinished = true;
         }
     }
 
@@ -40,22 +38,16 @@ public class LevelSystem : MonoBehaviour
         return Vector3.Distance(Player.position, EndLine.position);
     }
 
-    void SetProgress(float p)
-    {
-        slider.value = p;
-    }
-
-    void FinishLevelUI()
-    {
-        finishLevel.SetActive(true);
-    }
-
     public void SaveLevel()
     {
-        string activeScene = SceneManager.GetActiveScene().name;
-        PlayerPrefs.SetString("LevelSaved", activeScene);
-        Debug.Log(activeScene);
-        gameObject.SetActive(false);
+        int savedScene = SceneManager.GetActiveScene().buildIndex + 1;
+        string activeScene = "Level" + savedScene.ToString();
+        //string activeScene = SceneManager.GetActiveScene().name;
+        if (savedScene <= numberOfLevels)
+        {
+            PlayerPrefs.SetString("LevelSaved", activeScene);
+            Debug.Log(activeScene);
+        }
     }
 
     public void LoadLevel()
