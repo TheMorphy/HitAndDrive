@@ -1,0 +1,6 @@
+[3/9/2022, 4:34:56 PM] layer "+ 500": Expected Either a default asset specification or a layer asset specification but "+" found.
+[3/9/2022, 4:34:56 PM] layer "+ 1 000": Expected Either a default asset specification or a layer asset specification but "+" found.
+[3/9/2022, 4:34:56 PM] layer "Tick.png copie": Expected end of input but "c" found.
+[3/9/2022, 4:34:56 PM] layer "Tick.png copie 2": Expected end of input but "c" found.
+[3/9/2022, 4:34:56 PM] layer "Tick.png copie 3": Expected end of input but "c" found.
+[3/9/2022, 4:34:56 PM] layer "Bouton Next Vert.png copie": Expected end of input but "c" found.
