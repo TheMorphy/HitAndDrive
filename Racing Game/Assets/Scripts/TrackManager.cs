@@ -55,7 +55,7 @@ public class TrackManager : MonoBehaviour
     bool feverTriggered;
     bool endFeverTriggered;
     [SerializeField]
-    Color feverColor;
+    Color feverColor, nonFeverColor;
     Material nonFeverMat;
     
 
@@ -87,74 +87,65 @@ public class TrackManager : MonoBehaviour
         //currentCarSize += carSizePlus;
         //car.localScale = Vector3.one * currentCarSize; 
         currentlevel += lvl;
-        if(!fever)
-        {
-           
-        if(updateTxtCoroutine == null)
-        {
-            updateTxtCoroutine = StartCoroutine(updateLevelTxt());
-        }
-        else
-        {
-            StopCoroutine(updateTxtCoroutine);
-            updateTxtCoroutine = StartCoroutine(updateLevelTxt());
-        }
-        
-        currentPlus += lvl;
-        showaddedLevelCountdown = showLevelTime;
         if (!fever)
         {
-            TextMeshPro tmp = Instantiate(carLevelText, car).GetComponent<TextMeshPro>();
-            tmp.text = prefix + lvl.ToString();
-            tmp.sortingOrder = currentlevel;
-            StartCoroutine(holdRotation(tmp.transform));
-            Destroy(tmp, 5);
-        }
-            
 
-        if (showupLevel == null)
-        {
-            
-            showupLevel = StartCoroutine(ShowUpText());
-        }
-        bool carChanged = false;
-        foreach (CarChange c in carChanges)
-        {
-            if(c.levelToReach <= currentlevel && c.changed == false)
+            if (updateTxtCoroutine == null)
             {
-                //changeCarModel(c.newCarModel);
-                c.changed = true;
-                carChanged = true;
-                carAnim.Play(c.animationName);
-                currentLevelupAnim = c.levelupAnim;
-                if(c.CoroutineName != "")
+                updateTxtCoroutine = StartCoroutine(updateLevelTxt());
+            }
+            else
+            {
+                StopCoroutine(updateTxtCoroutine);
+                updateTxtCoroutine = StartCoroutine(updateLevelTxt());
+            }
+
+            currentPlus += lvl;
+            showaddedLevelCountdown = showLevelTime;
+            if (!fever)
+            {
+                TextMeshPro tmp = Instantiate(carLevelText, car).GetComponent<TextMeshPro>();
+                tmp.text = prefix + lvl.ToString();
+                tmp.sortingOrder = currentlevel;
+                StartCoroutine(holdRotation(tmp.transform));
+                Destroy(tmp, 5);
+            }
+
+
+            if (showupLevel == null)
+            {
+
+                showupLevel = StartCoroutine(ShowUpText());
+            }
+            bool carChanged = false;
+            foreach (CarChange c in carChanges)
+            {
+                if (c.levelToReach <= currentlevel && c.changed == false)
                 {
-                    StartCoroutine(c.CoroutineName);
+                    //changeCarModel(c.newCarModel);
+                    c.changed = true;
+                    carChanged = true;
+                    carAnim.Play(c.animationName);
+                    currentLevelupAnim = c.levelupAnim;
+                    if (c.CoroutineName != "")
+                    {
+                        StartCoroutine(c.CoroutineName);
+                    }
+                    carAnim.SetFloat("Car", c.index);
                 }
-                carAnim.SetFloat("Car", c.index);
+            }
+
+            if (!carChanged)
+            {
+                carAnim.Play(currentLevelupAnim);
+
             }
         }
-        
-        if(!carChanged)        
-        {
-            carAnim.Play(currentLevelupAnim);
-            
-        }
-        }
-    }
-
-    public void RemoveLevel(int lvl)
-    {
-        currentlevel -= lvl;
-        if (updateTxtCoroutine == null)
-        {
-            updateTxtCoroutine = StartCoroutine(updateLevelTxt());
-        }
         else
-        {
-            StopCoroutine(updateTxtCoroutine);
-            updateTxtCoroutine = StartCoroutine(updateLevelTxt());
-        }
+            carAnim.Play("bigtrucklvlupanim");
+        
+        
+
     }
 
     IEnumerator SmoothCamOutForTruck()
@@ -316,16 +307,22 @@ public class TrackManager : MonoBehaviour
         {
             if(!endFeverTriggered)
             {
+                feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2].SetColor("_Color", nonFeverColor);
                 addLevel(0);
+                
                 CarChange backChange = getCurrentCarLevel();
-                carAnim.Play(backChange.animationName);
-                carAnim.Play("FeverToNormal");
-                currentLevelupAnim = backChange.levelupAnim;
-                if (backChange.CoroutineName != "")
+                if (backChange.index != 2)
                 {
-                    StartCoroutine(backChange.CoroutineName);
+                    carAnim.Play(backChange.animationName);
+                    carAnim.Play("FeverToNormal");
+                    currentLevelupAnim = backChange.levelupAnim;
+                    if (backChange.CoroutineName != "")
+                    {
+                        StartCoroutine(backChange.CoroutineName);
+                    }
+                    carAnim.SetFloat("Car", backChange.index);
                 }
-                carAnim.SetFloat("Car", backChange.index);
+                    
                 endFeverTriggered = true;
                 //feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2] = nonFeverMat;
             }
