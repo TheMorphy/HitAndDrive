@@ -141,9 +141,20 @@ public class TrackManager : MonoBehaviour
             
         }
         }
-        
-        
+    }
 
+    public void RemoveLevel(int lvl)
+    {
+        currentlevel -= lvl;
+        if (updateTxtCoroutine == null)
+        {
+            updateTxtCoroutine = StartCoroutine(updateLevelTxt());
+        }
+        else
+        {
+            StopCoroutine(updateTxtCoroutine);
+            updateTxtCoroutine = StartCoroutine(updateLevelTxt());
+        }
     }
 
     IEnumerator SmoothCamOutForTruck()

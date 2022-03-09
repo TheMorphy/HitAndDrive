@@ -4,7 +4,7 @@ using System.Collections;
 public class CarController : MonoBehaviour
 {
     [SerializeField] Rigidbody carRB;
-    [SerializeField] Rigidbody sphereRB;
+    [SerializeField] public Rigidbody sphereRB;
 
     [HideInInspector]
     public float startSpeed;
@@ -26,7 +26,11 @@ public class CarController : MonoBehaviour
 
     [SerializeField] TrailRenderer speedTrail;
 
+    Vector3 startingPosition;
+
     float yRotation;
+
+    public Vector3 StartingPosition { get => startingPosition; set => startingPosition = value; }
 
     void Start()
     {
@@ -37,6 +41,10 @@ public class CarController : MonoBehaviour
         normalDrag = sphereRB.drag;
 
         startSpeed = speed;
+
+        StartingPosition = transform.position;
+
+        Debug.Log(StartingPosition);
     }
 
     void Update()

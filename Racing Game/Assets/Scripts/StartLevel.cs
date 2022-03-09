@@ -8,18 +8,29 @@ public class StartLevel : MonoBehaviour
     [SerializeField] GameObject car, startGameUI;
     [SerializeField] private string newGameLevel;
 
+    CarController carScript;
+    LevelSystem levelSystem;
+
+    string levelToLoad;
+
+    private void Start()
+    {
+        carScript = car.GetComponent<CarController>();
+        levelSystem = GetComponent<LevelSystem>();
+        levelToLoad = PlayerPrefs.GetString("LevelSaved");
+
+        if (PlayerPrefs.HasKey("LevelSaved") && levelToLoad == levelSystem.ActiveScene)
+        {
+            SceneManager.LoadScene(levelToLoad);
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
             startGameUI.SetActive(false);
-
-            if (PlayerPrefs.HasKey("LevelSaved"))
-            {
-                string levelToLoad = PlayerPrefs.GetString("LevelSaved");
-                SceneManager.LoadScene(levelToLoad);
-
-            } else SceneManager.LoadScene(newGameLevel);
+            carScript.startSpeed = 27;
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
