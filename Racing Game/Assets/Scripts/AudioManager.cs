@@ -6,8 +6,16 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
+    public static AudioManager instance;
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogWarning("Too many Trackmanagers in Scene!");
+            return;
+        }
+        instance = this;
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -76,5 +84,27 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.pitch = pitch;
+    }
+
+    public GameObject PlaceSound(string name, Vector3 position, Transform parent = null, float spatialBlend = 1)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if(s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return null;
+        }
+        GameObject soundObject = new GameObject();
+        soundObject.name = name;
+        AudioSource a = soundObject.AddComponent<AudioSource>();
+        soundObject.transform.position = position;
+        soundObject.transform.parent = parent;
+        a.clip = s.clip;
+        a.spatialBlend = spatialBlend;
+        a.volume = s.volume;
+        a.loop = s.loop;
+        a.pitch = s.pitch;
+
+        return soundObject;
     }
 }

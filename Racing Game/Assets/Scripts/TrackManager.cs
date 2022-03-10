@@ -57,7 +57,11 @@ public class TrackManager : MonoBehaviour
     [SerializeField]
     Color feverColor, nonFeverColor;
     Material nonFeverMat;
-    
+
+    [Header("Wall break")]
+    [SerializeField]
+    public float wallDestructionForce = 4;
+    public float wallExplodeDelay = 0.3f;
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
     // Start is called before the first frame update
