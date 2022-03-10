@@ -23,6 +23,7 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
+        
         //if (!player.isGrounded() || player.isStunned)
         //{
         //    return;
