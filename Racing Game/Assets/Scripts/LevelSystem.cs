@@ -7,13 +7,31 @@ using UnityEngine.SceneManagement;
 public class LevelSystem : MonoBehaviour
 {
     [SerializeField] Transform Player, EndLine;
-    [SerializeField] GameObject finishLevel;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam;
+    [SerializeField] Text levelNumber;
     [SerializeField] int numberOfLevels;
+
+    #region private
     bool hasFinished;
+    int levelNumb, savedScene;
+    string activeScene;
+    CarController carScript;
+    Animator camAnim;
+    #endregion
+
+    #region Encapsulated
+    public int LevelNumb { get => levelNumb; set => levelNumb = value; }
+    public int SavedScene { get => savedScene; set => savedScene = value; }
+    public string ActiveScene { get => activeScene; set => activeScene = value; }
+    #endregion
 
     private void Start()
     {
-        
+        carScript = car.GetComponent<CarController>();
+        camAnim = cam.GetComponent<Animator>();
+
+        LevelNumb = SceneManager.GetActiveScene().buildIndex;
+        levelNumber.text = "Level " + LevelNumb.ToString();
     }
 
     void Update()
@@ -21,32 +39,35 @@ public class LevelSystem : MonoBehaviour
         if (hasFinished == true)
         {
             finishLevel.SetActive(true);
+            levelUI.SetActive(false);
             SaveLevel();
         }
     }
 
+    #region collisions
     private void OnTriggerEnter(Collider other)
     {
+        Vector3 newCarPosition = car.transform.position;
+
         if (other.CompareTag("Player"))
         {
-            hasFinished = true;
+            //hasFinished = true;
+            carScript.startSpeed *= 5;
+            newCarPosition.x = carScript.StartingPosition.x;
+            carScript.sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
         }
     }
+    #endregion
 
-    float getDistance()
-    {
-        return Vector3.Distance(Player.position, EndLine.position);
-    }
-
+    #region save and load level
     public void SaveLevel()
     {
-        int savedScene = SceneManager.GetActiveScene().buildIndex + 1;
-        string activeScene = "Level" + savedScene.ToString();
-        //string activeScene = SceneManager.GetActiveScene().name;
-        if (savedScene <= numberOfLevels)
+        SavedScene = SceneManager.GetActiveScene().buildIndex + 1;
+        ActiveScene = "Level" + SavedScene.ToString();
+        if (SavedScene <= numberOfLevels)
         {
-            PlayerPrefs.SetString("LevelSaved", activeScene);
-            Debug.Log(activeScene);
+            PlayerPrefs.SetString("LevelSaved", ActiveScene);
+            Debug.Log(ActiveScene);
         }
     }
 
@@ -54,9 +75,5 @@ public class LevelSystem : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
-    public void Menu()
-    {
-        SceneManager.LoadScene("MenuScene");
-    }
+    #endregion
 }
