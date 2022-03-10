@@ -19,7 +19,7 @@ public class StartLevel : MonoBehaviour
         levelSystem = GetComponent<LevelSystem>();
         levelToLoad = PlayerPrefs.GetString("LevelSaved");
 
-        if (PlayerPrefs.HasKey("LevelSaved") && levelToLoad == levelSystem.ActiveScene)
+        if (PlayerPrefs.HasKey("LevelSaved"))
         {
             SceneManager.LoadScene(levelToLoad);
         }

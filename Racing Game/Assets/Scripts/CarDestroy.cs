@@ -10,11 +10,19 @@ public class CarDestroy : MonoBehaviour
     [SerializeField] ParticleSystem levelUpParticle;
     [SerializeField] GameObject emoji;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject ls;
 
     bool zooming;
     [SerializeField] GameObject speedParticle;
     [SerializeField] AudioSource engineSound;
     [SerializeField] GameObject car;
+
+    LevelSystem levelSystem;
+
+    private void Start()
+    {
+        levelSystem = ls.GetComponent<LevelSystem>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,7 +32,7 @@ public class CarDestroy : MonoBehaviour
             levelUpParticle.Play();
         }
 
-        if (collision.gameObject.layer == 11)
+        if (collision.gameObject.layer == 11 && levelSystem.HasFinished == false)
         {
             Destroy(car);
             foreach (BoxCollider boxCollider in GetComponents<BoxCollider>())

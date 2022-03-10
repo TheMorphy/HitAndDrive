@@ -6,41 +6,74 @@ using UnityEngine.SceneManagement;
 
 public class LevelSystem : MonoBehaviour
 {
+
+    #region public
     //[SerializeField] Transform Player, target;
-    [SerializeField] GameObject finishLevel, levelUI, car, cam;
-    [SerializeField] Text levelNumber;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager;
+    [SerializeField] Text levelNumber; 
     [SerializeField] int numberOfLevels;
     //[SerializeField] float speed = 1.0f;
+    #endregion
 
     #region private
     bool hasFinished;
-    int levelNumb, savedScene;
+    int levelNumb, savedScene, money, moneyInOneRound;
+    public float multiplier;
     string activeScene;
     CarController carScript;
-    Animator camAnim;
+    TrackManager tmScript;
+    Text moneyNumber, moneyNumberFinal;
+    private IEnumerator waitToFinish;
     #endregion
 
     #region Encapsulated
     public int LevelNumb { get => levelNumb; set => levelNumb = value; }
     public int SavedScene { get => savedScene; set => savedScene = value; }
     public string ActiveScene { get => activeScene; set => activeScene = value; }
+    public int Money { get => money; set => money = value; }
+    public int MoneyInOneRound { get => moneyInOneRound; set => moneyInOneRound = value; }
+    public float Multiplier { get => multiplier; set => multiplier = value; }
+    public bool HasFinished { get => hasFinished; set => hasFinished = value; }
     #endregion
 
     private void Start()
     {
-        carScript = car.GetComponent<CarController>();
-        camAnim = cam.GetComponent<Animator>();
+        waitToFinish = WaitAndPrint(1.0f);
 
+        carScript = car.GetComponent<CarController>();
+        moneyNumber = moneyUI.GetComponent<Text>();
+        moneyNumberFinal = moneyUIFinal.GetComponent<Text>();
+        tmScript = trackManager.GetComponent<TrackManager>();
+
+        moneyInOneRound = 0;
+
+        money = PlayerPrefs.GetInt("Money");
+        
         LevelNumb = SceneManager.GetActiveScene().buildIndex;
         levelNumber.text = "Level " + LevelNumb.ToString();
+
+        UpdateMoney();
     }
 
     void Update()
     {
-        if (hasFinished == true)
+        if (HasFinished == true && tmScript.currentlevel <= 10)
         {
             finishLevel.SetActive(true);
             levelUI.SetActive(false);
+            StartCoroutine(waitToFinish);
+        }
+    }
+
+    private IEnumerator WaitAndPrint(float waitTime)
+    {
+        if(hasFinished == true)
+        {
+            hasFinished = false;
+            yield return new WaitForSeconds(waitTime);
+            moneyInOneRound = Mathf.RoundToInt(multiplier * moneyInOneRound);
+            //money = money + moneyInOneRound
+            moneyNumberFinal.text = "+ " + moneyInOneRound.ToString();
             SaveLevel();
         }
     }
@@ -48,12 +81,10 @@ public class LevelSystem : MonoBehaviour
     #region collisions
     private void OnTriggerEnter(Collider other)
     {
-        //Vector3 newCarPosition = car.transform.position;
-
         if (other.CompareTag("Player"))
         {
+            HasFinished = true;
             carScript.startSpeed *= 5;
-            //transform.position = Vector3.MoveTowards(Player.position, target.position, speed * Time.deltaTime);
             carScript.sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
         }
     }
@@ -63,6 +94,8 @@ public class LevelSystem : MonoBehaviour
     public void SaveLevel()
     {
         SavedScene = SceneManager.GetActiveScene().buildIndex + 1;
+        money = money + moneyInOneRound;
+        PlayerPrefs.SetInt("Money", money);
         ActiveScene = "Level" + SavedScene.ToString();
         if (SavedScene <= numberOfLevels)
         {
@@ -76,4 +109,9 @@ public class LevelSystem : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
+
+    public void UpdateMoney()
+    {
+        moneyNumber.text = (money + moneyInOneRound).ToString();
+    }
 }
