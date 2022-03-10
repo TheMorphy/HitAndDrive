@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelSystem : MonoBehaviour
 {
-    [SerializeField] Transform Player, EndLine;
+    //[SerializeField] Transform Player, target;
     [SerializeField] GameObject finishLevel, levelUI, car, cam;
     [SerializeField] Text levelNumber;
     [SerializeField] int numberOfLevels;
+    //[SerializeField] float speed = 1.0f;
 
     #region private
     bool hasFinished;
@@ -47,13 +48,12 @@ public class LevelSystem : MonoBehaviour
     #region collisions
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 newCarPosition = car.transform.position;
+        //Vector3 newCarPosition = car.transform.position;
 
         if (other.CompareTag("Player"))
         {
-            //hasFinished = true;
             carScript.startSpeed *= 5;
-            newCarPosition.x = carScript.StartingPosition.x;
+            //transform.position = Vector3.MoveTowards(Player.position, target.position, speed * Time.deltaTime);
             carScript.sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
         }
     }
