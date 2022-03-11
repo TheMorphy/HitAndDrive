@@ -8,11 +8,9 @@ public class LevelSystem : MonoBehaviour
 {
 
     #region public
-    //[SerializeField] Transform Player, target;
-    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI;
     [SerializeField] Text levelNumber; 
     [SerializeField] int numberOfLevels;
-    //[SerializeField] float speed = 1.0f;
     #endregion
 
     #region private
@@ -24,6 +22,7 @@ public class LevelSystem : MonoBehaviour
     TrackManager tmScript;
     Text moneyNumber, moneyNumberFinal;
     private IEnumerator waitToFinish;
+    Animator camAnim;
     #endregion
 
     #region Encapsulated
@@ -44,6 +43,7 @@ public class LevelSystem : MonoBehaviour
         moneyNumber = moneyUI.GetComponent<Text>();
         moneyNumberFinal = moneyUIFinal.GetComponent<Text>();
         tmScript = trackManager.GetComponent<TrackManager>();
+        camAnim = cam.GetComponent<Animator>();
 
         moneyInOneRound = 0;
 
@@ -57,6 +57,18 @@ public class LevelSystem : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            startGameUI.SetActive(false);
+            carScript.startSpeed = 27;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            PlayerPrefs.DeleteAll();
+            Debug.Log("Deleted Every Player Pref");
+        }
+
         if (HasFinished == true && tmScript.currentlevel <= 10)
         {
             finishLevel.SetActive(true);
@@ -72,7 +84,6 @@ public class LevelSystem : MonoBehaviour
             hasFinished = false;
             yield return new WaitForSeconds(waitTime);
             moneyInOneRound = Mathf.RoundToInt(multiplier * moneyInOneRound);
-            //money = money + moneyInOneRound
             moneyNumberFinal.text = "+ " + moneyInOneRound.ToString();
             SaveLevel();
         }
@@ -85,6 +96,8 @@ public class LevelSystem : MonoBehaviour
         {
             HasFinished = true;
             carScript.startSpeed *= 5;
+            camAnim.SetBool("final", true);
+            camAnim.Play("CamFinalStageAnim");
             carScript.sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
         }
     }

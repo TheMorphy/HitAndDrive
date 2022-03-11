@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartLevel : MonoBehaviour
 {
-    [SerializeField] GameObject car, startGameUI;
+    [SerializeField] GameObject car;
     [SerializeField] private string newGameLevel;
 
     CarController carScript;
@@ -22,21 +22,6 @@ public class StartLevel : MonoBehaviour
         if (PlayerPrefs.HasKey("LevelSaved"))
         {
             SceneManager.LoadScene(levelToLoad);
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            startGameUI.SetActive(false);
-            carScript.startSpeed = 27;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            PlayerPrefs.DeleteAll();
-            Debug.Log("Deleted Every Player Pref");
         }
     }
 }

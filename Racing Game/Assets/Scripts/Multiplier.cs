@@ -15,7 +15,7 @@ public class Multiplier : MonoBehaviour
     {
         levelSystem = lsGameobject.GetComponent<LevelSystem>();
         trackManager = tmGameobject.GetComponent<TrackManager>();
-        levelSystem.Multiplier = 1.0f;
+        levelSystem.Multiplier = 0.7f;
     }
     private void OnTriggerEnter(Collider other)
     {
