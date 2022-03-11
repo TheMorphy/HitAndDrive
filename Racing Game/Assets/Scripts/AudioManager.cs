@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
         s.source.pitch = pitch;
     }
 
-    public GameObject PlaceSound(string name, Vector3 position, Transform parent = null, float spatialBlend = 1)
+    public GameObject PlaceSound(string name, Vector3 position, Transform parent = null, float spatialBlend = 1, float costomVolume = 0)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if(s == null)
@@ -101,7 +101,10 @@ public class AudioManager : MonoBehaviour
         soundObject.transform.parent = parent;
         a.clip = s.clip;
         a.spatialBlend = spatialBlend;
-        a.volume = s.volume;
+        if (costomVolume == 0)
+            a.volume = s.volume;
+        else
+            a.volume = costomVolume;
         a.loop = s.loop;
         a.pitch = s.pitch;
 

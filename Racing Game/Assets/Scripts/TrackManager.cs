@@ -64,6 +64,8 @@ public class TrackManager : MonoBehaviour
     public float wallExplodeDelay = 0.3f;
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
+    Color c = new Color(1, 1, 1, 1);
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -86,11 +88,12 @@ public class TrackManager : MonoBehaviour
 
         lvlText.text = "Lv." + currentlevel.ToString();
     }
-    public void addLevel(int lvl)
+    public void changeLevel(int lvl, string prefix = "+", bool isRed = false)
     {
         //currentCarSize += carSizePlus;
         //car.localScale = Vector3.one * currentCarSize; 
         currentlevel += lvl;
+        currentlevel = Mathf.Clamp(currentlevel, 0, int.MaxValue);
         if (!fever)
         {
 
@@ -111,6 +114,11 @@ public class TrackManager : MonoBehaviour
                 TextMeshPro tmp = Instantiate(carLevelText, car).GetComponent<TextMeshPro>();
                 tmp.text = prefix + lvl.ToString();
                 tmp.sortingOrder = currentlevel;
+                if(isRed)
+                {
+                    tmp.color = Color.red;
+
+                }
                 StartCoroutine(holdRotation(tmp.transform));
                 Destroy(tmp, 5);
             }
@@ -284,9 +292,6 @@ public class TrackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-         
-        
         //print(fever);
         int posi = racers.Count;
         racers.Sort(SortByPos);
@@ -300,7 +305,6 @@ public class TrackManager : MonoBehaviour
         {
             feverBurnTime = killValue;
             fever = true;
-            
         }
         if(fever)
         {
@@ -326,7 +330,7 @@ public class TrackManager : MonoBehaviour
             if(!endFeverTriggered)
             {
                 feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2].SetColor("_Color", nonFeverColor);
-                addLevel(0);
+                changeLevel(0);
                 
                 CarChange backChange = getCurrentCarLevel();
                 if (backChange.index != 2)
@@ -351,10 +355,6 @@ public class TrackManager : MonoBehaviour
             //killValue -= Time.deltaTime * decreaseMultiplicator;
             killValue = Mathf.Clamp(killValue, 0, levelLongness);
         }
-            
-        
-        
-
     }
 
     static int SortByPos(PositionInRace r1, PositionInRace r2)

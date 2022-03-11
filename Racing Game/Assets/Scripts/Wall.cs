@@ -12,6 +12,11 @@ public class Wall : MonoBehaviour
     wallModes wallMode;
 
     [SerializeField]
+    int levelToLose = 5;
+    public string soundName;
+    public bool velocityVolumeImpact;
+
+    [SerializeField]
     List<GameObject> parts = new List<GameObject>();
 
 
@@ -23,9 +28,11 @@ public class Wall : MonoBehaviour
     {
         if(collision.gameObject.layer == 8)
         {
-            if(TrackManager.instance.currentlevel >= levelToBreakThrough)
+            if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever)
             {
-                foreach(GameObject g in parts)
+                TrackManager.instance.changeLevel(-levelToLose, "", true);
+            }
+            foreach (GameObject g in parts)
                 {
                     Rigidbody rb = g.GetComponent<Rigidbody>();
                     Vector3 dirToMove = (collision.ClosestPoint(g.transform.position) - g.transform.position).normalized;
@@ -33,14 +40,15 @@ public class Wall : MonoBehaviour
                     if (rightOrLeft)
                         dirToMove -= collision.transform.right * 0.5f;
                     else
-                        dirToMove += collision.transform.right * 0.5f; 
+                        dirToMove += collision.transform.right * 0.5f;
+                    dirToMove -= collision.transform.forward * 0.5f;
                     rb.isKinematic = false;
                     StartCoroutine(Explode(rb, dirToMove));
                     Destroy(g, 5f);
                     //rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, contact, 5);
 
                 }
-            }
+            
             
         }
     }
@@ -48,7 +56,7 @@ public class Wall : MonoBehaviour
     IEnumerator Explode(Rigidbody rb, Vector3 position)
     {
         yield return new WaitForSeconds(TrackManager.instance.wallExplodeDelay);
-        rb.AddForce(-position * TrackManager.instance.wallDestructionForce, ForceMode.Impulse);
+        rb.AddForce(-position * TrackManager.instance.wallDestructionForce, ForceMode.Force);
        // rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, position, 7);
     }
 
