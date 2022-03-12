@@ -21,6 +21,7 @@ public class CarDestroy : MonoBehaviour
 
     private void Start()
     {
+        if(levelSystem != null)
         levelSystem = ls.GetComponent<LevelSystem>();
     }
 
@@ -32,18 +33,19 @@ public class CarDestroy : MonoBehaviour
             levelUpParticle.Play();
         }
 
-        if (collision.gameObject.layer == 11 && levelSystem.HasFinished == false)
+        if (collision.gameObject.layer == 11)
         {
             Destroy(car);
             foreach (BoxCollider boxCollider in GetComponents<BoxCollider>())
             {
                 boxCollider.enabled = false;
             }
-            Instantiate(explosionParticle, gameObject.transform.position + new Vector3(0, 0.3f, 0), gameObject.transform.rotation);
+            Instantiate(explosionParticle, transform.position + new Vector3(0, 0.3f, 0), transform.rotation);
             engineSound.Stop();
             FindObjectOfType<AudioManager>().Play("Fail");
 
             gameOverScreen.SetActive(true);
+            TrackManager.instance.PlayerDie(transform.position);
         }
 
         if (collision.gameObject.layer == 12)

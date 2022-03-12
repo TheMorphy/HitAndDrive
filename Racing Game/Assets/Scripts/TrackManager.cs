@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TrackManager : MonoBehaviour
 {
@@ -62,6 +63,13 @@ public class TrackManager : MonoBehaviour
     [SerializeField]
     public float wallDestructionForce = 4;
     public float wallExplodeDelay = 0.3f;
+
+    [Header("Losing")]
+    public bool lost;
+    [SerializeField] GameObject explosionParticle;
+    [SerializeField] GameObject gameOverScreen;
+
+
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
     Color c = new Color(1, 1, 1, 1);
@@ -289,9 +297,30 @@ public class TrackManager : MonoBehaviour
         }
         return current;
     }
+
+    public void PlayerDie(Vector3 explosionPosition)
+    {
+
+        gameOverScreen.SetActive(true);
+        AudioManager.instance.Play("Fail");
+        Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
+        Destroy(car.parent.gameObject);
+        lost = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.buildIndex);
+        }
+
+        if(lost)
+        {
+            return;
+        }
         //print(fever);
         int posi = racers.Count;
         racers.Sort(SortByPos);

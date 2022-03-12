@@ -6,6 +6,8 @@ public class MetalWall : MonoBehaviour
 {
     [SerializeField]
     float impactForce, spin;
+    [SerializeField]
+    int levelsToLose;
 
     Rigidbody rb;
 
@@ -20,7 +22,7 @@ public class MetalWall : MonoBehaviour
             Vector3 force = (TrackManager.instance.transform.forward + Vector3.up * 0.2f + TrackManager.instance.transform.right * MoveDir()) * impactForce;
             rb.AddForce(force, ForceMode.Force);
             rb.AddTorque(Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, ForceMode.VelocityChange);
-
+            TrackManager.instance.changeLevel(-levelsToLose, "-", true);
         }
     }
 

@@ -30,7 +30,13 @@ public class Wall : MonoBehaviour
         {
             if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever)
             {
+                if (TrackManager.instance.currentlevel - levelToLose < 0)
+                {
+                    //Die
+                    TrackManager.instance.PlayerDie(collision.transform.position);
+                }
                 TrackManager.instance.changeLevel(-levelToLose, "", true);
+                
             }
             foreach (GameObject g in parts)
                 {
