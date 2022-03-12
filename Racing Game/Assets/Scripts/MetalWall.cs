@@ -7,7 +7,7 @@ public class MetalWall : MonoBehaviour
     [SerializeField]
     float impactForce, spin;
     [SerializeField]
-    int levelsToLose;
+    int levelToLose;
 
     Rigidbody rb;
 
@@ -16,13 +16,18 @@ public class MetalWall : MonoBehaviour
     {
         if(other.gameObject.layer == 8)
         {
+            if (TrackManager.instance.currentlevel - levelToLose < 0)
+            {
+                //Die
+                TrackManager.instance.PlayerDie(other.transform.position);
+            }
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = false;
             Physics.IgnoreLayerCollision(gameObject.layer, 0);
             Vector3 force = (TrackManager.instance.transform.forward + Vector3.up * 0.2f + TrackManager.instance.transform.right * MoveDir()) * impactForce;
             rb.AddForce(force, ForceMode.Force);
             rb.AddTorque(Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, ForceMode.VelocityChange);
-            TrackManager.instance.changeLevel(-levelsToLose, "-", true);
+            TrackManager.instance.changeLevel(-levelToLose, "-", true);
         }
     }
 
