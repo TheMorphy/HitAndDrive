@@ -51,7 +51,7 @@ public class Pedestrian : MonoBehaviour
 
             if (!collidedOnce)
             {
-                TrackManager.instance.changeLevel(lvl);
+                TrackManager.instance.addLevel(lvl);
                 FindObjectOfType<AudioManager>().Play("Hit");
                 //Apply force
                 Vector3 dirToMove = (other.transform.position - transform.position).normalized;

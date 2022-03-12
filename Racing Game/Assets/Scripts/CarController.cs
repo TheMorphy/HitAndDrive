@@ -9,7 +9,7 @@ public class CarController : MonoBehaviour
     [HideInInspector]
     public float startSpeed;
     [SerializeField] public float speed;
-   
+
     [SerializeField] public float nitroSpeed;
 
     //[SerializeField] float revSpeed;
@@ -26,11 +26,16 @@ public class CarController : MonoBehaviour
 
     [SerializeField] TrailRenderer speedTrail;
 
-    Vector3 startingPosition;
+    [SerializeField] GameObject levelManager;
 
-    float yRotation;
+    float yRotation, forcedRotation, xStartingPosition;
 
-    public Vector3 StartingPosition { get => startingPosition; set => startingPosition = value; }
+    LevelSystem levelSystem;
+
+    //DAVID VARIABLES
+    public float ForcedRotation { get => forcedRotation; set => forcedRotation = value; }
+    public float XStartingPosition { get => xStartingPosition; set => xStartingPosition = value; }
+    public float TurnSpeed { get => turnSpeed; set => turnSpeed = value; }
 
     void Start()
     {
@@ -42,9 +47,9 @@ public class CarController : MonoBehaviour
 
         startSpeed = speed;
 
-        StartingPosition = transform.position;
+        levelSystem = levelManager.GetComponent<LevelSystem>();
 
-        Debug.Log(StartingPosition);
+        XStartingPosition = transform.position.x;
     }
 
     void Update()
@@ -53,12 +58,20 @@ public class CarController : MonoBehaviour
         turnInput = Input.GetAxisRaw("Horizontal");
 
         // Calculate Turning Rotation
-        float newRot = turnInput * turnSpeed * Time.deltaTime;
+        float newRot = turnInput * TurnSpeed * Time.deltaTime;
 
         if (isCarGrounded)
             transform.Rotate(0, newRot, 0, Space.World);
 
-        yRotation = Mathf.Clamp(yRotation + Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, -30, 30);
+        if (levelSystem.HasFinished == false)
+        {
+            yRotation = Mathf.Clamp(yRotation + Input.GetAxis("Horizontal") * TurnSpeed * Time.deltaTime, -30, 30);
+        }
+        else
+        {
+            yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
+        }
+
         transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
 
         // Set Cars Position to Our Sphere
@@ -86,7 +99,7 @@ public class CarController : MonoBehaviour
         carRB.MoveRotation(transform.rotation);
     }
 
-    public IEnumerator Acceleration()
+    /*public IEnumerator Acceleration()
     {
         speedTrail.emitting = true;
         speed = nitroSpeed;
@@ -95,5 +108,13 @@ public class CarController : MonoBehaviour
 
         speed = startSpeed;
         speedTrail.emitting = false;
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("stop"))
+        {
+            //sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
+        }
     }
 }

@@ -11,10 +11,15 @@ public class LastPedestrian : MonoBehaviour
     float startHitRange;
     Rigidbody rb;
 
+    CarController carScript;
+
     [HideInInspector] public bool collidedOnce = false;
     float force;
     private void Start()
     {
+
+        carScript = FindObjectOfType<CarController>();
+
         foreach (BoxCollider b in GetComponents<BoxCollider>())
         {
             b.enabled = true;
@@ -76,8 +81,10 @@ public class LastPedestrian : MonoBehaviour
         }
         else if (other.gameObject.layer == 8)
         {
-            // transform.parent.parent.parent.GetComponent<Animator>().SetFloat("randomHit", System.Convert.ToInt16(Random.Range(2, 3)));
-            transform.gameObject.layer = 11;
+            Debug.Log("Test");
+            carScript.speed = 0;
+            carScript.nitroSpeed = 0;
+            carScript.startSpeed = 0;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -89,13 +96,4 @@ public class LastPedestrian : MonoBehaviour
             rb.AddForce(forceDir * force, ForceMode.Impulse);
         }
     }
-
-
-
-    //IEnumerator DestroySelf()
-    //{
-    //    yield return new WaitForSeconds(5f);
-
-    //    Destroy(gameObject.transform.parent.transform.parent.transform.parent.gameObject);
-    //}
 }

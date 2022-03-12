@@ -35,6 +35,7 @@ public class CarDestroy : MonoBehaviour
 
         if (collision.gameObject.layer == 11)
         {
+            Debug.Log("test");
             Destroy(car);
             foreach (BoxCollider boxCollider in GetComponents<BoxCollider>())
             {
