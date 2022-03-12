@@ -8,13 +8,13 @@ public class LevelSystem : MonoBehaviour
 {
 
     #region public
-    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor;
     [SerializeField] Text levelNumber; 
     [SerializeField] int numberOfLevels;
     #endregion
 
     #region private
-    bool hasFinished;
+    bool hasFinished, isMiddle;
     int levelNumb, savedScene, money, moneyInOneRound;
     public float multiplier;
     string activeScene;
@@ -69,6 +69,35 @@ public class LevelSystem : MonoBehaviour
             Debug.Log("Deleted Every Player Pref");
         }
 
+        if (HasFinished == true && motor.transform.position.x > -2.0f && isMiddle == false)
+        {
+            carScript.ForcedRotation = -0.5f;
+        }
+        
+        if (HasFinished == true && motor.transform.position.x < -1.6f && isMiddle == false)
+        {
+            carScript.ForcedRotation = 0.5f;
+        }
+
+        if (motor.transform.position.x < -1.6f && motor.transform.position.x > -2.0f)
+        {
+            isMiddle = true;
+        }
+        else isMiddle = false;
+
+        if (hasFinished == true)
+        {
+            if (isMiddle)
+            {
+                carScript.TurnSpeed = 0;
+            }
+        }
+
+        if (isMiddle)
+        {
+            carScript.ForcedRotation = 0;
+        }
+
         if (HasFinished == true && tmScript.currentlevel <= 10)
         {
             finishLevel.SetActive(true);
@@ -95,10 +124,9 @@ public class LevelSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HasFinished = true;
-            carScript.startSpeed *= 5;
+            carScript.startSpeed *= 2;
             camAnim.SetBool("final", true);
             camAnim.Play("CamFinalStageAnim");
-            carScript.sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
         }
     }
     #endregion
