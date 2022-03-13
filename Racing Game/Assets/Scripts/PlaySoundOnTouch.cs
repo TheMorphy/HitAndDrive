@@ -49,15 +49,20 @@ public class PlaySoundOnTouch : MonoBehaviour
         int layer = collision.gameObject.layer;
         rb = GetComponent<Rigidbody>();
         string soundName;
-        
+        float costomVolume = 0;
         switch (layer)
         {
             case 8:
-                wall.callCarCrash();
+            case 9:
+            case 14:
+                wall.callCarCrash(collision.collider);
                 break;
             case 0:
                 if (endMagnitude < wall.nonSoundlimit)
-                    return;
+                {
+                    costomVolume = 0.02f;
+                    soundName = wall.partContactSoundLight;
+                }
                 else if (endMagnitude < wall.lightSoundVelLimit)
                     soundName = wall.partContactSoundLight;
                 else if (endMagnitude < wall.MediumSoundLimit)
@@ -67,7 +72,7 @@ public class PlaySoundOnTouch : MonoBehaviour
 
 
                 print(soundName);
-                AudioManager.instance.PlaceSound(soundName, collision.GetContact(0).point, null, 1);
+                AudioManager.instance.PlaceSound(soundName, collision.GetContact(0).point, null, 1, costomVolume);
                 break;
         }
         preVelMag = 0;

@@ -26,17 +26,19 @@ public class Wall : MonoBehaviour
         
     }
 
-    public void callCarCrash()
+    public void callCarCrash(Collider collision)
     {
         if(!carCollided)
-        AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
-        carCollided = true;
+        
+        Collide(collision);
     }
-    private void OnTriggerEnter(Collider collision)
+    private void Collide(Collider collision)
     {
         if(collision.gameObject.layer == 8 && !carCollided)
         {
-            
+            carCollided = true;
+            AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
+
             if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever)
             {
                 if (TrackManager.instance.currentlevel - levelToLose < 0)
