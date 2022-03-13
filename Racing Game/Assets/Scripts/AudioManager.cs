@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,14 +13,15 @@ public class AudioManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Too many Trackmanagers in Scene!");
+            Debug.LogWarning("Too many Audiomanagers in Scene!");
             return;
         }
         instance = this;
         foreach (Sound s in sounds)
         {
+            
             s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
+            s.source.clip = s.clip[Random.Range(0, s.clip.Length - 1)];
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -39,6 +41,7 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("Sound: " + name + "not found!");
         }
+        s.source.clip = s.clip[Random.Range(0, s.clip.Length - 1)];
         s.source.Play();
     }
 
@@ -86,7 +89,7 @@ public class AudioManager : MonoBehaviour
         s.source.pitch = pitch;
     }
 
-    public GameObject PlaceSound(string name, Vector3 position, Transform parent = null, float spatialBlend = 1)
+    public GameObject PlaceSound(string name, Vector3 position, Transform parent = null, float spatialBlend = 1, float costomVolume = 1, float maxDistance = 30)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if(s == null)
@@ -99,12 +102,17 @@ public class AudioManager : MonoBehaviour
         AudioSource a = soundObject.AddComponent<AudioSource>();
         soundObject.transform.position = position;
         soundObject.transform.parent = parent;
-        a.clip = s.clip;
+        a.clip = s.clip[Random.Range(0, s.clip.Length)];
         a.spatialBlend = spatialBlend;
         a.volume = s.volume;
         a.loop = s.loop;
+        if(!a.loop)
+        {
+            Destroy(soundObject, a.clip.length);
+        }
         a.pitch = s.pitch;
-
+        a.maxDistance = maxDistance;
+        a.Play();
         return soundObject;
     }
 }

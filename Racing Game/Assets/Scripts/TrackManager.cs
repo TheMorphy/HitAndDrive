@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class TrackManager : MonoBehaviour
 {
@@ -95,8 +96,9 @@ public class TrackManager : MonoBehaviour
         usedCarModels.Add(standardCarModel);
 
         lvlText.text = "Lv." + currentlevel.ToString();
+        changeLevel(0, "", false, false);
     }
-    public void changeLevel(int lvl, string prefix = "+", bool isRed = false)
+    public void changeLevel(int lvl, string prefix = "+", bool isRed = false, bool showText = true)
     {
         //currentCarSize += carSizePlus;
         //car.localScale = Vector3.one * currentCarSize; 
@@ -117,7 +119,7 @@ public class TrackManager : MonoBehaviour
 
             currentPlus += lvl;
             showaddedLevelCountdown = showLevelTime;
-            if (!fever)
+            if (!fever && showText)
             {
                 TextMeshPro tmp = Instantiate(carLevelText, car).GetComponent<TextMeshPro>();
                 tmp.text = prefix + lvl.ToString();
@@ -134,11 +136,23 @@ public class TrackManager : MonoBehaviour
 
             if (showupLevel == null)
             {
-
                 showupLevel = StartCoroutine(ShowUpText());
             }
             bool carChanged = false;
-            foreach (CarChange c in carChanges)
+            if(!getCurrentCarLevel().changed)
+            {
+               CarChange c = getCurrentCarLevel();
+                c.changed = true;
+                carChanged = true;
+                carAnim.Play(c.animationName);
+                currentLevelupAnim = c.levelupAnim;
+                if (c.CoroutineName != "")
+                {
+                    StartCoroutine(c.CoroutineName);
+                }
+                carAnim.SetFloat("Car", c.index);
+            }
+            /*foreach (CarChange c in carChanges)
             {
                 if (c.levelToReach <= currentlevel && c.changed == false)
                 {
@@ -154,6 +168,7 @@ public class TrackManager : MonoBehaviour
                     carAnim.SetFloat("Car", c.index);
                 }
             }
+            */
 
             if (!carChanged)
             {
@@ -287,13 +302,25 @@ public class TrackManager : MonoBehaviour
     CarChange getCurrentCarLevel()
     {
         CarChange current = null;
-        int curlvl = 0;
-        foreach(CarChange c in carChanges)
+        for(int i = 0; i != carChanges.Capacity; i++)
         {
-            if(c.levelToReach < currentlevel && c.levelToReach > curlvl)
+            CarChange c = carChanges[i];
+
+            if (c.levelToReach <= currentlevel)
             {
-                current = c;
+                if (i + 1 != carChanges.Capacity)
+                {
+                    if (carChanges[i + 1].levelToReach > currentlevel)
+                        current = c;
+                    else c.changed = false;
+                }
+                else
+                {
+                    current = c;
+                }
             }
+            else
+                c.changed = false;
         }
         return current;
     }

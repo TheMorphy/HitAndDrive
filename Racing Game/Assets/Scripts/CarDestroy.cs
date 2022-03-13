@@ -27,6 +27,21 @@ public class CarDestroy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.layer == 14)
+        {
+            if(TrackManager.instance.fever)
+            {
+                collision.rigidbody.AddForce(transform.forward * TrackManager.instance.carCrashPower * 1.3f, ForceMode.Impulse);
+                collision.rigidbody.AddTorque(Random.Range(-1f, 1f) * 10, Random.Range(-1f, 1f) * 10, Random.Range(-1f, 1f) * 10, ForceMode.Force);
+            }
+            else
+            {
+                collision.rigidbody.AddForce(transform.forward * TrackManager.instance.carCrashPower, ForceMode.Impulse);
+                collision.rigidbody.AddTorque(Random.Range(-1f, 1f) * 5, Random.Range(-1f, 1f) * 5, Random.Range(-1f, 1f) * 5, ForceMode.Force);
+
+            }
+
+        }
         if (collision.gameObject.layer == 9)
         {
             //Instantiate(collisionParticle, collision.transform.position + new Vector3(0, 0.1f, 0), transform.rotation * Quaternion.Euler(-90f, 0, 0f));
@@ -35,18 +50,27 @@ public class CarDestroy : MonoBehaviour
 
         if (collision.gameObject.layer == 11)
         {
-            Debug.Log("test");
-            Destroy(car);
-            foreach (BoxCollider boxCollider in GetComponents<BoxCollider>())
+            if(TrackManager.instance.fever)
             {
-                boxCollider.enabled = false;
+                Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
+                Destroy(collision.gameObject);
+                
+                return;
             }
-            Instantiate(explosionParticle, transform.position + new Vector3(0, 0.3f, 0), transform.rotation);
-            engineSound.Stop();
-            FindObjectOfType<AudioManager>().Play("Fail");
+            int levelsToLose = 5;
+            if(TrackManager.instance.currentlevel - levelsToLose <= 0)
+            {
+                TrackManager.instance.PlayerDie(transform.position);
+            }
+            else
+            {
+                Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
+                Destroy(collision.gameObject);
+            }
+            TrackManager.instance.changeLevel(-levelsToLose, "", true);
 
-            gameOverScreen.SetActive(true);
-            TrackManager.instance.PlayerDie(transform.position);
+                    
+
         }
 
         if (collision.gameObject.layer == 12)
@@ -58,6 +82,16 @@ public class CarDestroy : MonoBehaviour
         if (collision.gameObject.layer == 13)
         {
             zooming = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 14 && collision.rigidbody.velocity.magnitude < 0.5f)
+        {
+            Destroy(collision.gameObject);
+            Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
+
         }
     }
 

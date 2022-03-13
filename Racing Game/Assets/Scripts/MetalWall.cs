@@ -10,24 +10,28 @@ public class MetalWall : MonoBehaviour
     int levelToLose;
 
     Rigidbody rb;
+    bool collided = false;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 8)
+        if(other.gameObject.layer == 8 && !collided)
         {
             if (TrackManager.instance.currentlevel - levelToLose < 0)
             {
                 //Die
                 TrackManager.instance.PlayerDie(other.transform.position);
+                collided = true;
+                return;
             }
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = false;
             Physics.IgnoreLayerCollision(gameObject.layer, 0);
-            Vector3 force = (TrackManager.instance.transform.forward + Vector3.up * 0.2f + TrackManager.instance.transform.right * MoveDir()) * impactForce;
+            Vector3 force = (TrackManager.instance.transform.forward * 3 + Vector3.up * 0.5f + TrackManager.instance.transform.right * MoveDir()) * impactForce;
             rb.AddForce(force, ForceMode.Force);
             rb.AddTorque(Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, ForceMode.VelocityChange);
             TrackManager.instance.changeLevel(-levelToLose, "-", true);
+            collided = true;
         }
     }
 

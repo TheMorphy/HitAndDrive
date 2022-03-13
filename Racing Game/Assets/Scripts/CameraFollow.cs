@@ -28,14 +28,18 @@ public class CameraFollow : MonoBehaviour
         //{
         //    return;
         //}
-        Vector3 newV3 = new Vector3(transform.position.x, target.position.y + currentOffset.y, target.position.z + currentOffset.z);
-        transform.position = newV3;
-        
+        if(target !=null)
+        {
+            Vector3 newV3 = new Vector3(transform.position.x, target.position.y + currentOffset.y, target.position.z + currentOffset.z);
+            transform.position = newV3;
 
-        if(TrackManager.instance.fever)
-            camAnim.SetBool("fever", true);       
-        else
-            camAnim.SetBool("fever", false);
+
+            if (TrackManager.instance.fever)
+                camAnim.SetBool("fever", true);
+            else
+                camAnim.SetBool("fever", false);
+
+        }
 
     }
 }

@@ -13,21 +13,30 @@ public class Wall : MonoBehaviour
 
     [SerializeField]
     int levelToLose = 5;
-    public string soundName;
+    public string partContactSoundHeavy, partContactSoundMedium, partContactSoundLight;
+    public float nonSoundlimit, lightSoundVelLimit, MediumSoundLimit;
     public bool velocityVolumeImpact;
 
     [SerializeField]
     List<GameObject> parts = new List<GameObject>();
 
-
+    bool carCollided = false;
     private void Start()
     {
         
     }
+
+    public void callCarCrash()
+    {
+        if(!carCollided)
+        AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
+        carCollided = true;
+    }
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.layer == 8)
+        if(collision.gameObject.layer == 8 && !carCollided)
         {
+            
             if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever)
             {
                 if (TrackManager.instance.currentlevel - levelToLose < 0)
@@ -51,12 +60,35 @@ public class Wall : MonoBehaviour
                     rb.isKinematic = false;
                     StartCoroutine(Explode(rb, dirToMove));
                     Destroy(g, 5f);
+                    g.GetComponent<PlaySoundOnTouch>().startDestructed();
                     //rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, contact, 5);
 
                 }
             
             
         }
+        else
+            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > 10) && !carCollided)
+            {
+            foreach (GameObject g in parts)
+            {
+                Rigidbody rb = g.GetComponent<Rigidbody>();
+                Vector3 dirToMove = (collision.ClosestPoint(g.transform.position) - g.transform.position).normalized;
+                bool rightOrLeft = Vector3.SignedAngle(collision.transform.forward, dirToMove, Vector3.up) < 0;
+                if (rightOrLeft)
+                    dirToMove -= collision.transform.right * 0.5f;
+                else
+                    dirToMove += collision.transform.right * 0.5f;
+                dirToMove -= collision.transform.forward * 0.5f;
+                rb.isKinematic = false;
+                StartCoroutine(Explode(rb, dirToMove));
+                //Destroy(g, 5f);
+                g.GetComponent<PlaySoundOnTouch>().startDestructed();
+                //rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, contact, 5);
+                carCollided = true;
+            }
+        }
+
     }
 
     IEnumerator Explode(Rigidbody rb, Vector3 position)
