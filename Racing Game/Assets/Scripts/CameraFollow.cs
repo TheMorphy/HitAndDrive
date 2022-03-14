@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform target, camPos;
+    [SerializeField] GameObject driver;
     private Vector3 playerOffset;
 
     private Vector3 currentOffset;
@@ -13,10 +14,16 @@ public class CameraFollow : MonoBehaviour
     float smoothfever = 0.1f;
 
     Animator camAnim;
+
+    
+
+    DriverFly driverFly;
     private void Start()
     {
         camAnim = GetComponentInChildren<Animator>();
         playerOffset = transform.position - target.position;
+
+        driverFly = FindObjectOfType<DriverFly>();
 
         currentOffset = playerOffset;
     }
@@ -38,7 +45,11 @@ public class CameraFollow : MonoBehaviour
                 camAnim.SetBool("fever", true);
             else
                 camAnim.SetBool("fever", false);
+        }
 
+        if (driverFly.IsSpawned)
+        {
+            target = FindObjectOfType<movefoward>().transform;
         }
 
     }

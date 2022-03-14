@@ -109,12 +109,4 @@ public class CarController : MonoBehaviour
         speed = startSpeed;
         speedTrail.emitting = false;
     }*/
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("stop"))
-        {
-            //sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
-        }
-    }
 }
