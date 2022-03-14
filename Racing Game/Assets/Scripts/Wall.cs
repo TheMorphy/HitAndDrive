@@ -83,20 +83,20 @@ public class Wall : MonoBehaviour
                     dirToMove += collision.transform.right * 0.5f;
                 dirToMove -= collision.transform.forward * 0.5f;
                 rb.isKinematic = false;
-                StartCoroutine(Explode(rb, dirToMove));
+                StartCoroutine(Explode(rb, dirToMove, 5));
                 //Destroy(g, 5f);
                 g.GetComponent<PlaySoundOnTouch>().startDestructed();
-                //rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, contact, 5);
+                rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, collision.transform.position, 5);
                 carCollided = true;
             }
         }
 
     }
 
-    IEnumerator Explode(Rigidbody rb, Vector3 position)
+    IEnumerator Explode(Rigidbody rb, Vector3 position, float multiplicator = 1)
     {
         yield return new WaitForSeconds(TrackManager.instance.wallExplodeDelay);
-        rb.AddForce(-position * TrackManager.instance.wallDestructionForce, ForceMode.Force);
+        rb.AddForce(-position * TrackManager.instance.wallDestructionForce * multiplicator, ForceMode.Force);
        // rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, position, 7);
     }
 
