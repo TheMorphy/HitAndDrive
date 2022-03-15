@@ -3,9 +3,8 @@ using System.Collections;
 
 public class CarController : MonoBehaviour
 {
-    public enum carType { Car, MotorCycle }
 
-    public carType currentCarType;
+    [SerializeField] bool isUsingSteeringWheel;
 
     [SerializeField] Rigidbody carRB;
     [SerializeField] public Rigidbody sphereRB;
@@ -34,12 +33,17 @@ public class CarController : MonoBehaviour
 
     float yRotation, forcedRotation, xStartingPosition;
 
+    private float inputHorizontal;
+
+    public string horizontalAxis = "Horizontal";
+
     LevelSystem levelSystem;
 
     //DAVID VARIABLES
     public float ForcedRotation { get => forcedRotation; set => forcedRotation = value; }
     public float XStartingPosition { get => xStartingPosition; set => xStartingPosition = value; }
     public float TurnSpeed { get => turnSpeed; set => turnSpeed = value; }
+    public bool IsUsingSteeringWheel { get => isUsingSteeringWheel; set => isUsingSteeringWheel = value; }
 
     void Start()
     {
@@ -58,38 +62,49 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        // Get Input
-        turnInput = Input.GetAxisRaw("Horizontal");
-
-        // Calculate Turning Rotation
-        float newRot = turnInput * TurnSpeed * Time.deltaTime;
-
-        if (isCarGrounded)
+        if (!IsUsingSteeringWheel)
         {
-            
-            switch(currentCarType)
+            // Get Input
+            turnInput = Input.GetAxisRaw("Horizontal");
+
+            // Calculate Turning Rotation
+            float newRot = turnInput * TurnSpeed * Time.deltaTime;
+
+            if (isCarGrounded)
+                transform.Rotate(0, newRot, 0, Space.World);
+
+            if (levelSystem.HasFinished == false)
             {
-                case carType.Car:
-                    transform.Rotate(0, newRot, 0, Space.World);
-                    break;
-                case carType.MotorCycle:
-                    transform.Rotate(0, newRot, 0, Space.World);
-                    transform.Rotate(0, 0, newRot, Space.Self);
-                    break;
+                yRotation = Mathf.Clamp(yRotation + Input.GetAxis("Horizontal") * TurnSpeed * Time.deltaTime, -30, 30);
+            }
+            else
+            {
+                yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
             }
         }
-            
 
-        if (levelSystem.HasFinished == false)
+        if (IsUsingSteeringWheel)
         {
-            yRotation = Mathf.Clamp(yRotation + Input.GetAxis("Horizontal") * TurnSpeed * Time.deltaTime, -30, 30);
-        }
-        else
-        {
-            yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
+            inputHorizontal = SimpleInput.GetAxis(horizontalAxis);
+
+            // Calculate Turning Rotation With Steering Wheel
+            float newRot = inputHorizontal * TurnSpeed * Time.deltaTime;
+
+            if (isCarGrounded)
+                transform.Rotate(0, newRot, 0, Space.World);
+
+            //SteeringWheelInputs
+            if (levelSystem.HasFinished == false)
+            {
+                yRotation = Mathf.Clamp(yRotation + inputHorizontal * TurnSpeed * Time.deltaTime, -30, 30);
+            }
+            else
+            {
+                yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
+            }
         }
 
-        transform.eulerAngles = new Vector3(0.0f, yRotation, -yRotation);
+        transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
 
         // Set Cars Position to Our Sphere
         transform.position = sphereRB.transform.position;
@@ -126,12 +141,4 @@ public class CarController : MonoBehaviour
         speed = startSpeed;
         speedTrail.emitting = false;
     }*/
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("stop"))
-        {
-            //sphereRB.constraints = RigidbodyConstraints.FreezePositionX;
-        }
-    }
 }

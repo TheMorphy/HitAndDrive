@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17668419, g: 0.22115763, b: 0.30346012, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -225,6 +225,7 @@ MonoBehaviour:
   levelLongness: 5
   decreaseMultiplicator: 2
   killValue: 0
+  fever: 0
   carCrashPower: 3
   startLevel: 1
   currentlevel: 0
@@ -267,6 +268,20 @@ MonoBehaviour:
   - levelToReach: 10
     newCarModel: {fileID: 919132148891959256}
     changed: 0
+    animationName: 
+    levelupAnim: 
+    CoroutineName: 
+    index: 0
+  carCollider: {fileID: 0}
+  feverCar: {fileID: 0}
+  transformationAnimation: 
+  feverColor: {r: 0, g: 0, b: 0, a: 0}
+  nonFeverColor: {r: 0, g: 0, b: 0, a: 0}
+  wallDestructionForce: 4
+  wallExplodeDelay: 0.3
+  lost: 0
+  explosionParticle: {fileID: 0}
+  gameOverScreen: {fileID: 0}
 --- !u!4 &13245894
 Transform:
   m_ObjectHideFlags: 0
@@ -4006,6 +4021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carRB: {fileID: 1801321136}
   sphereRB: {fileID: 1324305094}
+  startSpeed: 0
   speed: 27
   nitroSpeed: 75
   turnSpeed: 140
@@ -4015,6 +4031,7 @@ MonoBehaviour:
   modifiedDrag: 1
   alignToGroundTime: 40
   speedTrail: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!4 &390552508
 Transform:
   m_ObjectHideFlags: 0
@@ -5485,13 +5502,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Hit
-    clip: {fileID: 8300000, guid: 6a6461c7ca181854ca29a6de6de65e3a, type: 3}
+    clip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Fail
-    clip: {fileID: 8300000, guid: 1819660d7a289ca40808ca93410dd212, type: 3}
+    clip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     volume: 0.1
     pitch: 1
     loop: 0
@@ -13916,6 +13939,7 @@ MonoBehaviour:
   animator: {fileID: 34073412}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &866577177
 BoxCollider:
@@ -14261,6 +14285,7 @@ MonoBehaviour:
   animator: {fileID: 1432778593}
   lvl: 10
   lvlToKill: 10
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &877724735
 BoxCollider:
@@ -15009,6 +15034,7 @@ MonoBehaviour:
   animator: {fileID: 918771779}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &934279614
 BoxCollider:
@@ -15214,6 +15240,7 @@ MonoBehaviour:
   animator: {fileID: 1244611730}
   lvl: 2
   lvlToKill: 2
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &938537044
 BoxCollider:
@@ -15878,6 +15905,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 390552508}
+  camPos: {fileID: 0}
+  driver: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  feverCamPos: {x: 0, y: 0, z: 0}
+  feverCamRot: {x: 0, y: 0, z: 0}
+  smoothfever: 0.1
 --- !u!1 &969567826
 GameObject:
   m_ObjectHideFlags: 0
@@ -23347,6 +23380,7 @@ MonoBehaviour:
   animator: {fileID: 1710963795}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &1540365199
 BoxCollider:
@@ -24198,6 +24232,7 @@ MonoBehaviour:
   animator: {fileID: 610537460}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &1614013546
 BoxCollider:
@@ -27225,6 +27260,7 @@ MonoBehaviour:
   levelUpParticle: {fileID: 3351140300603794030, guid: e0bb0ad27ac910a48a20d8a778dea8a7, type: 3}
   emoji: {fileID: 9068945019791597551, guid: c4f2b82f6cf4dec4bbf2c4d521f3ee6c, type: 3}
   gameOverScreen: {fileID: 952545373}
+  ls: {fileID: 0}
   speedParticle: {fileID: 2108043298}
   engineSound: {fileID: 1324305099}
   car: {fileID: 390552506}
@@ -29155,6 +29191,7 @@ MonoBehaviour:
   animator: {fileID: 1719711173}
   lvl: 5
   lvlToKill: 5
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &2031572624
 BoxCollider:

@@ -364,15 +364,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carRB: {fileID: 2318904785613962223}
   sphereRB: {fileID: 2318904786105895833}
+  startSpeed: 0
   speed: 50
   nitroSpeed: 100
-  isAccelerating: 0
   turnSpeed: 100
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   modifiedDrag: 1
   alignToGroundTime: 40
+  speedTrail: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!114 &2318904785142782689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,8 +395,9 @@ MonoBehaviour:
   trails:
   - {fileID: 2318904784941547349}
   - {fileID: 2318904785163336354}
-  smoke: {fileID: 851802409359810137}
+  tireSmokes: []
   rotationSpeed: 1000
+  tireScreechSound: {fileID: 0}
 --- !u!95 &2318904785142782690
 Animator:
   serializedVersion: 3
@@ -762,7 +765,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1809001c97f2d04998b5ca39c009295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  collisionParticle: {fileID: 0}
   explosionParticle: {fileID: 6628612064335551708, guid: 28e70c9ff7b1cf84d99b6bca0198a92b, type: 3}
+  levelUpParticle: {fileID: 0}
+  emoji: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  ls: {fileID: 0}
+  speedParticle: {fileID: 0}
+  engineSound: {fileID: 0}
+  car: {fileID: 0}
 --- !u!1 &2318904785679929325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,10 +1641,5 @@ PrefabInstance:
 --- !u!4 &844234466258630356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3141600883651811567, guid: d2724bfe247fb924daab20a0cf916b65, type: 3}
-  m_PrefabInstance: {fileID: 2318904786249985595}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &851802409359810137 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3169498787631902818, guid: d2724bfe247fb924daab20a0cf916b65, type: 3}
   m_PrefabInstance: {fileID: 2318904786249985595}
   m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6958963251766097357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6958963251766097359}
+  - component: {fileID: 6958963251766097356}
+  m_Layer: 0
+  m_Name: TrackManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6958963251766097359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958963251766097357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6958963251766097356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958963251766097357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9252d2191f6f14942bd0ec2ee0223de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  reloadPathDistance: 10
+  racers: []
+  killBar: {fileID: 0}
+  levelLongness: 153.58
+  decreaseMultiplicator: 1.6
+  killValue: 0
+  fever: 0
+  carCrashPower: 3
+  startLevel: 10
+  currentlevel: 0
+  showLevelTime: 1
+  carLevelText: {fileID: 1072647130155401365, guid: d4511e1199388e445a190c8e17e67ff9, type: 3}
+  prefix: +
+  textPopupCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0041656494
+      value: 0.49526978
+      inSlope: 0.50684154
+      outSlope: 0.50684154
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.50684154
+      outSlope: 0.50684154
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curveMultiplier: 1.5
+  camera: {fileID: 0}
+  lvlText: {fileID: 0}
+  textRefreshSpeed: 14
+  carSizePlus: 0.015
+  currentCarSize: 0
+  car: {fileID: 0}
+  standardCarModel: {fileID: 0}
+  carChanges:
+  - levelToReach: 0
+    newCarModel: {fileID: 0}
+    changed: 0
+    animationName: GradeToStandardCar
+    levelupAnim: LevelUp
+    CoroutineName: 
+    index: 0
+  - levelToReach: 10
+    newCarModel: {fileID: 0}
+    changed: 0
+    animationName: LevelUpCar
+    levelupAnim: LevelUpTruck
+    CoroutineName: 
+    index: 1
+  - levelToReach: 30
+    newCarModel: {fileID: 0}
+    changed: 0
+    animationName: ChangeToBigTruck
+    levelupAnim: bigtrucklvlupanim
+    CoroutineName: SmoothCamOutForTruck
+    index: 2
+  carCollider: {fileID: 0}
+  feverCar: {fileID: 0}
+  transformationAnimation: ChangeToBigTruck
+  feverColor: {r: 1, g: 0, b: 0, a: 0}
+  nonFeverColor: {r: 0.95294124, g: 0.85098046, b: 0.16470589, a: 1}
+  wallDestructionForce: 0.19
+  wallExplodeDelay: 0.18
+  lost: 0
+  explosionParticle: {fileID: 6628612064335551708, guid: 28e70c9ff7b1cf84d99b6bca0198a92b, type: 3}
+  gameOverScreen: {fileID: 0}
