@@ -12,4 +12,5 @@ public class CarChange
     public Texture normalTexture, feverTexture;
     public MeshRenderer mainMatMeshRenderer;
     public int materialIndex;
+    public CarController.carType type;
 }

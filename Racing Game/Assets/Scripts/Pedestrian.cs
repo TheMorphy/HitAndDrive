@@ -75,8 +75,8 @@ public class Pedestrian : MonoBehaviour
         }
         else if(other.gameObject.layer == 8)
         {
-           // transform.parent.parent.parent.GetComponent<Animator>().SetFloat("randomHit", System.Convert.ToInt16(Random.Range(2, 3)));
-            transform.gameObject.layer = 11;
+            // transform.parent.parent.parent.GetComponent<Animator>().SetFloat("randomHit", System.Convert.ToInt16(Random.Range(2, 3)));
+            TrackManager.instance.PlayerDie(Vector3.zero);
         }
     }
     private void OnCollisionEnter(Collision collision)
