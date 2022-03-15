@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17668419, g: 0.22115763, b: 0.30346012, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4960,6 +4960,7 @@ MonoBehaviour:
   levelUpParticle: {fileID: 1808392011}
   emoji: {fileID: 9068945019791597551, guid: c4f2b82f6cf4dec4bbf2c4d521f3ee6c, type: 3}
   gameOverScreen: {fileID: 1811772318}
+  ls: {fileID: 0}
   speedParticle: {fileID: 1312717999}
   engineSound: {fileID: 1583878023}
   car: {fileID: 1905023770}
@@ -5531,6 +5532,7 @@ MonoBehaviour:
   animator: {fileID: 2116219656}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &367599278
 BoxCollider:
@@ -6981,6 +6983,7 @@ MonoBehaviour:
   animator: {fileID: 711524937}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &470243378
 BoxCollider:
@@ -10151,6 +10154,7 @@ MonoBehaviour:
   animator: {fileID: 617738834}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &694364621
 BoxCollider:
@@ -11836,6 +11840,7 @@ MonoBehaviour:
   animator: {fileID: 1900862422}
   lvl: 5
   lvlToKill: 5
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &837537138
 BoxCollider:
@@ -20408,6 +20413,7 @@ MonoBehaviour:
   levelLongness: 5
   decreaseMultiplicator: 2
   killValue: 0
+  fever: 0
   carCrashPower: 3
   startLevel: 1
   currentlevel: 0
@@ -20450,6 +20456,20 @@ MonoBehaviour:
   - levelToReach: 10
     newCarModel: {fileID: 1044505480}
     changed: 0
+    animationName: 
+    levelupAnim: 
+    CoroutineName: 
+    index: 0
+  carCollider: {fileID: 0}
+  feverCar: {fileID: 0}
+  transformationAnimation: 
+  feverColor: {r: 0, g: 0, b: 0, a: 0}
+  nonFeverColor: {r: 0, g: 0, b: 0, a: 0}
+  wallDestructionForce: 4
+  wallExplodeDelay: 0.3
+  lost: 0
+  explosionParticle: {fileID: 0}
+  gameOverScreen: {fileID: 0}
 --- !u!4 &1085087618
 Transform:
   m_ObjectHideFlags: 0
@@ -23754,6 +23774,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1905023775}
+  camPos: {fileID: 0}
+  driver: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  feverCamPos: {x: 0, y: 0, z: 0}
+  feverCamRot: {x: 0, y: 0, z: 0}
+  smoothfever: 0.1
 --- !u!81 &1247760438
 AudioListener:
   m_ObjectHideFlags: 0
@@ -25143,6 +25169,7 @@ MonoBehaviour:
   animator: {fileID: 745251757}
   lvl: 2
   lvlToKill: 2
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &1358449626
 BoxCollider:
@@ -31202,13 +31229,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Hit
-    clip: {fileID: 8300000, guid: 6a6461c7ca181854ca29a6de6de65e3a, type: 3}
+    clip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Fail
-    clip: {fileID: 8300000, guid: 1819660d7a289ca40808ca93410dd212, type: 3}
+    clip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     volume: 0.1
     pitch: 1
     loop: 0
@@ -40534,6 +40567,7 @@ MonoBehaviour:
   animator: {fileID: 335250726}
   lvl: 5
   lvlToKill: 5
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &1758250572
 BoxCollider:
@@ -41961,6 +41995,7 @@ MonoBehaviour:
   animator: {fileID: 825787154}
   lvl: 10
   lvlToKill: 10
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &1861708369
 BoxCollider:
@@ -42182,6 +42217,7 @@ MonoBehaviour:
   animator: {fileID: 1689438389}
   lvl: 5
   lvlToKill: 5
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &1865743993
 BoxCollider:
@@ -42884,6 +42920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carRB: {fileID: 330297804}
   sphereRB: {fileID: 1583878024}
+  startSpeed: 0
   speed: 27
   nitroSpeed: 75
   turnSpeed: 140
@@ -42893,6 +42930,7 @@ MonoBehaviour:
   modifiedDrag: 1
   alignToGroundTime: 40
   speedTrail: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!4 &1905023775
 Transform:
   m_ObjectHideFlags: 0
@@ -44124,6 +44162,7 @@ MonoBehaviour:
   animator: {fileID: 1497411262}
   lvl: 1
   lvlToKill: 0
+  startHitRange: 0
   collidedOnce: 0
 --- !u!65 &2026430753
 BoxCollider:

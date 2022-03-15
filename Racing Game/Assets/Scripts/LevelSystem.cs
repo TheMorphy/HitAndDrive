@@ -8,7 +8,7 @@ public class LevelSystem : MonoBehaviour
 {
 
     #region public
-    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel;
     [SerializeField] Text levelNumber; 
     [SerializeField] int numberOfLevels;
     #endregion
@@ -39,7 +39,7 @@ public class LevelSystem : MonoBehaviour
     {
         waitToFinish = WaitAndPrint(1.0f);
 
-        carScript = car.GetComponent<CarController>();
+        carScript = FindObjectOfType<CarController>();
         moneyNumber = moneyUI.GetComponent<Text>();
         moneyNumberFinal = moneyUIFinal.GetComponent<Text>();
         tmScript = trackManager.GetComponent<TrackManager>();
@@ -50,7 +50,7 @@ public class LevelSystem : MonoBehaviour
         money = PlayerPrefs.GetInt("Money");
         
         LevelNumb = SceneManager.GetActiveScene().buildIndex;
-        levelNumber.text = "Level " + LevelNumb.ToString();
+        levelNumber.text = "Level " + (LevelNumb + 1).ToString();
 
         UpdateMoney();
     }
@@ -60,6 +60,14 @@ public class LevelSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             startGameUI.SetActive(false);
+            if(carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
+            carScript.startSpeed = 27;
+        }
+
+        if (Input.touchCount > 0)
+        {
+            startGameUI.SetActive(false);
+            if (carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
             carScript.startSpeed = 27;
         }
 
@@ -125,6 +133,7 @@ public class LevelSystem : MonoBehaviour
         {
             HasFinished = true;
             carScript.startSpeed *= 2;
+            steeringWheel.SetActive(false);
             camAnim.SetBool("final", true);
             camAnim.Play("CamFinalStageAnim");
         }

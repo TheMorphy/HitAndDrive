@@ -473,6 +473,12 @@ MonoBehaviour:
   feverCar: {fileID: 500333061}
   transformationAnimation: ChangeToBigTruck
   feverColor: {r: 0, g: 0, b: 0, a: 0}
+  nonFeverColor: {r: 0, g: 0, b: 0, a: 0}
+  wallDestructionForce: 4
+  wallExplodeDelay: 0.3
+  lost: 0
+  explosionParticle: {fileID: 0}
+  gameOverScreen: {fileID: 0}
 --- !u!4 &13245894
 Transform:
   m_ObjectHideFlags: 0
@@ -9558,6 +9564,7 @@ MonoBehaviour:
   modifiedDrag: 1
   alignToGroundTime: 40
   speedTrail: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!4 &390552508
 Transform:
   m_ObjectHideFlags: 0
@@ -12539,13 +12546,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Hit
-    clip: {fileID: 8300000, guid: 6a6461c7ca181854ca29a6de6de65e3a, type: 3}
+    clip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Fail
-    clip: {fileID: 8300000, guid: 1819660d7a289ca40808ca93410dd212, type: 3}
+    clip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     volume: 0.1
     pitch: 1
     loop: 0
@@ -26965,11 +26978,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d90feeea4a47224e8e15d14187480d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 390552508}
-  EndLine: {fileID: 1691305129}
   finishLevel: {fileID: 108120625}
   levelUI: {fileID: 0}
+  car: {fileID: 0}
+  cam: {fileID: 0}
+  moneyUI: {fileID: 0}
+  moneyUIFinal: {fileID: 0}
+  trackManager: {fileID: 0}
+  startGameUI: {fileID: 0}
+  motor: {fileID: 0}
+  levelNumber: {fileID: 0}
   numberOfLevels: 3
+  multiplier: 0
 --- !u!65 &920500449
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26996,7 +27016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 390552506}
-  startGameUI: {fileID: 1029040611}
   newGameLevel: Level1
 --- !u!1 &924281712
 GameObject:
@@ -30620,11 +30639,6 @@ Transform:
   m_Father: {fileID: 967669645}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1029040611 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 947068834589018581, guid: 0f5bd97edf95a8047889f523d609cd3d, type: 3}
-  m_PrefabInstance: {fileID: 947068834912690230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1029040612 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 947068834589018578, guid: 0f5bd97edf95a8047889f523d609cd3d, type: 3}
@@ -43549,6 +43563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 390552508}
   camPos: {fileID: 0}
+  driver: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   feverCamPos: {x: -0.2833333, y: 12.37, z: -22.06}
   feverCamRot: {x: 20.769, y: 0, z: 0}
@@ -49345,6 +49360,7 @@ MonoBehaviour:
   levelUpParticle: {fileID: 3352429490561935713}
   emoji: {fileID: 9068945019791597551, guid: c4f2b82f6cf4dec4bbf2c4d521f3ee6c, type: 3}
   gameOverScreen: {fileID: 952545373}
+  ls: {fileID: 0}
   speedParticle: {fileID: 2108043298}
   engineSound: {fileID: 1324305099}
   car: {fileID: 390552506}

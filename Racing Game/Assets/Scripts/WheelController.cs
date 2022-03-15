@@ -14,6 +14,10 @@ public class WheelController : MonoBehaviour
 
     public AudioSource tireScreechSound;
 
+    private float inputHorizontal;
+
+    public string hAxis = "Horizontal";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +27,10 @@ public class WheelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalAxis = Input.GetAxisRaw("Horizontal");
+        //float horizontalAxis = Input.GetAxisRaw("Horizontal");
+
+        //SteeringWheel Input
+        float horizontalAxis = SimpleInput.GetAxis(hAxis.ToString());
 
         foreach (var wheel in wheelsToRotate)
         {
