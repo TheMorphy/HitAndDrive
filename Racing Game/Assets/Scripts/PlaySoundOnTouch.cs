@@ -56,6 +56,7 @@ public class PlaySoundOnTouch : MonoBehaviour
             case 9:
             case 14:
                 wall.callCarCrash(collision.collider);
+                rb.AddForceAtPosition((transform.position - collision.GetContact(0).point).normalized * TrackManager.instance.wallDestructionForce, collision.GetContact(0).point, ForceMode.Force);
                 break;
             case 0:
                 if (endMagnitude < wall.nonSoundlimit)
@@ -76,6 +77,15 @@ public class PlaySoundOnTouch : MonoBehaviour
                 break;
         }
         preVelMag = 0;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.layer == 8)
+        {
+            rb.AddForce((transform.position - collision.GetContact(0).point).normalized * 2, ForceMode.Force);
+
+        }
     }
 
 }

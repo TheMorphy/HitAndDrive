@@ -50,15 +50,17 @@ public class TrackManager : MonoBehaviour
     Animator carAnim;
     string currentLevelupAnim = "LevelUp";
     [Header("Fever Mode")]
-    [SerializeField]
-    GameObject feverCar;
-    [SerializeField]
-    string transformationAnimation;
+   // [SerializeField]
+    //GameObject feverCar;
+    //[SerializeField]
+    //string transformationAnimation;
     bool feverTriggered;
     bool endFeverTriggered;
     [SerializeField]
     Color feverColor, nonFeverColor;
     Material nonFeverMat;
+    [SerializeField]
+    List<GameObject> gameobjectsToEnableOnlyOnFever = new List<GameObject>();
 
     [Header("Wall break")]
     [SerializeField]
@@ -70,6 +72,7 @@ public class TrackManager : MonoBehaviour
     [SerializeField] GameObject explosionParticle;
     [SerializeField] GameObject gameOverScreen;
 
+    [SerializeField] CarDestroy carDestroy;
 
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
@@ -331,7 +334,14 @@ public class TrackManager : MonoBehaviour
         gameOverScreen.SetActive(true);
         AudioManager.instance.Play("Fail");
         Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
-        Destroy(car.parent.gameObject);
+        foreach(Rigidbody r in getCurrentCarLevel().newCarModel.GetComponentsInChildren<Rigidbody>())
+        {
+            r.isKinematic = false;
+            r.GetComponent<Collider>().isTrigger = false;
+            
+        }
+        car.parent.GetComponent<CarController>().enabled = false;
+        //Destroy(car.parent.gameObject);
         lost = true;
     }
 
@@ -364,13 +374,17 @@ public class TrackManager : MonoBehaviour
         }
         if(fever)
         {
-            feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2].SetColor("_Color", feverColor);
+            getCurrentCarLevel().mainMatMeshRenderer.materials[getCurrentCarLevel().materialIndex].SetTexture("_MainTex", getCurrentCarLevel().feverTexture);
             if (!feverTriggered)
             {
                // nonFeverMat = feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2];
                 //feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2] = feverMat;
-                carAnim.Play(transformationAnimation, 0, 2);
-                carAnim.SetFloat("Car", 2);
+                //carAnim.Play(transformationAnimation, 0, 2);
+                foreach(GameObject g in gameobjectsToEnableOnlyOnFever)
+                {
+                    g.SetActive(true);
+                }
+
                 feverTriggered = true;
             }
             endFeverTriggered = false;
@@ -385,7 +399,11 @@ public class TrackManager : MonoBehaviour
         {
             if(!endFeverTriggered)
             {
-                feverCar.transform.GetChild(0).GetComponent<MeshRenderer>().materials[2].SetColor("_Color", nonFeverColor);
+                foreach(GameObject g in gameobjectsToEnableOnlyOnFever)
+                {
+                    g.SetActive(false);
+                }
+                getCurrentCarLevel().mainMatMeshRenderer.materials[getCurrentCarLevel().materialIndex].SetTexture("_MainTex", getCurrentCarLevel().normalTexture);
                 changeLevel(0);
                 
                 CarChange backChange = getCurrentCarLevel();

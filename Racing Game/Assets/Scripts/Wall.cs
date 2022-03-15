@@ -46,6 +46,7 @@ public class Wall : MonoBehaviour
                     //Die
                     TrackManager.instance.PlayerDie(collision.transform.position);
                 }
+                else
                 TrackManager.instance.changeLevel(-levelToLose, "", true);
                 
             }

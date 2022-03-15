@@ -9,4 +9,7 @@ public class CarChange
     public string levelupAnim;
     public string CoroutineName;
     public int index = 0;
+    public Texture normalTexture, feverTexture;
+    public MeshRenderer mainMatMeshRenderer;
+    public int materialIndex;
 }

@@ -3,6 +3,10 @@ using System.Collections;
 
 public class CarController : MonoBehaviour
 {
+    public enum carType { Car, MotorCycle }
+
+    public carType currentCarType;
+
     [SerializeField] Rigidbody carRB;
     [SerializeField] public Rigidbody sphereRB;
 
@@ -61,7 +65,20 @@ public class CarController : MonoBehaviour
         float newRot = turnInput * TurnSpeed * Time.deltaTime;
 
         if (isCarGrounded)
-            transform.Rotate(0, newRot, 0, Space.World);
+        {
+            
+            switch(currentCarType)
+            {
+                case carType.Car:
+                    transform.Rotate(0, newRot, 0, Space.World);
+                    break;
+                case carType.MotorCycle:
+                    transform.Rotate(0, newRot, 0, Space.World);
+                    transform.Rotate(0, 0, newRot, Space.Self);
+                    break;
+            }
+        }
+            
 
         if (levelSystem.HasFinished == false)
         {
@@ -72,7 +89,7 @@ public class CarController : MonoBehaviour
             yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
         }
 
-        transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
+        transform.eulerAngles = new Vector3(0.0f, yRotation, -yRotation);
 
         // Set Cars Position to Our Sphere
         transform.position = sphereRB.transform.position;
