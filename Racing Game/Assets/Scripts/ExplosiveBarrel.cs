@@ -45,7 +45,7 @@ public class ExplosiveBarrel : MonoBehaviour
          //   }
             if (c.attachedRigidbody != null && c.GetComponent<PlaySoundOnTouch>() == null)
             {
-                c.attachedRigidbody.AddForceAtPosition((c.transform.position -transform.position).normalized * force, transform.position, ForceMode.Impulse);
+                c.attachedRigidbody.AddForceAtPosition(((c.transform.position -transform.position).normalized * force) + transform.up * force, transform.position, ForceMode.Impulse);
                 //c.attachedRigidbody.AddExplosionForce(force, transform.position, range);
                 //print(c.name);
             }

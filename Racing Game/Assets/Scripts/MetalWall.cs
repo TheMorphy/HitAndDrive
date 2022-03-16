@@ -16,7 +16,8 @@ public class MetalWall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 8 && !collided)
+        
+        if (other.gameObject.layer == 8 && !collided)
         {
             if (TrackManager.instance.currentlevel - levelToLose < 0)
             {
@@ -35,6 +36,10 @@ public class MetalWall : MonoBehaviour
             collided = true;
             notDestructed.SetActive(false);
             destructed.SetActive(true);
+            foreach (Collider c in GetComponents<Collider>())
+            {
+                c.isTrigger = true;
+            }
         }
     }
 

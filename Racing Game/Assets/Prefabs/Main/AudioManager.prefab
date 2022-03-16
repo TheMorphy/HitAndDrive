@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &502275555257250034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502275555257250036}
+  - component: {fileID: 502275555257250035}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &502275555257250036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502275555257250034}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.075271, y: -13.86281, z: 11.665756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502275555257250035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502275555257250034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb7d30c366a37740921e11c11b4694d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Hit
+    clip:
+    - {fileID: 8300000, guid: 6a6461c7ca181854ca29a6de6de65e3a, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fail
+    clip:
+    - {fileID: 8300000, guid: 1819660d7a289ca40808ca93410dd212, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Stone_Asphalt_Heavy
+    clip:
+    - {fileID: 8300000, guid: 009a9497425b9456fbeb69f12cbbeb1e, type: 3}
+    - {fileID: 8300000, guid: 0cb13b7c0513a4a2e96d3ceeb8e111db, type: 3}
+    - {fileID: 8300000, guid: 0cb13b7c0513a4a2e96d3ceeb8e111db, type: 3}
+    volume: 0.12
+    pitch: 0.809
+    loop: 0
+    source: {fileID: 0}
+  - name: Stone_Asphalt_Medium
+    clip:
+    - {fileID: 8300000, guid: 0cb13b7c0513a4a2e96d3ceeb8e111db, type: 3}
+    - {fileID: 8300000, guid: 009a9497425b9456fbeb69f12cbbeb1e, type: 3}
+    volume: 0.089
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Stone_Asphalt_Light
+    clip:
+    - {fileID: 8300000, guid: 0a322c4bf5418450ba0c0437e5dec2ee, type: 3}
+    - {fileID: 8300000, guid: adc8f0adae3794e518ff40e412cd75d3, type: 3}
+    - {fileID: 8300000, guid: 585796fd5acb44c0ab576191da7221b3, type: 3}
+    volume: 0.066
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Stone_Car
+    clip:
+    - {fileID: 8300000, guid: f6d575773d1214a0986bb96a6f86db71, type: 3}
+    volume: 0.228
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
