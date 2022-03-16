@@ -92,7 +92,7 @@ public class TrackManager : MonoBehaviour
         }
         instance = this;
         carAnim = car.GetComponent<Animator>();
-        currentLevelupAnim = "LevelUp";
+        currentLevelupAnim = getCurrentCarLevel().levelupAnim;
     }
     private void Start()
     {
@@ -100,6 +100,7 @@ public class TrackManager : MonoBehaviour
 
         lvlText.text = "Lv." + currentlevel.ToString();
         changeLevel(0, "", false, false);
+        //car.GetComponent<pivot>().ChangeToModel(getCurrentCarLevel().index);
     }
     public void changeLevel(int lvl, string prefix = "+", bool isRed = false, bool showText = true)
     {
@@ -149,10 +150,13 @@ public class TrackManager : MonoBehaviour
                 carChanged = true;
                 carAnim.Play(c.animationName);
                 currentLevelupAnim = c.levelupAnim;
-                if (c.CoroutineName != "")
-                {
+                if (c.CoroutineName != "")              
                     StartCoroutine(c.CoroutineName);
-                }
+                
+               
+                car.parent.GetComponent<CarController>().currentCarType = c.type;
+                
+               
                 carAnim.SetFloat("Car", c.index);
             }
             /*foreach (CarChange c in carChanges)
@@ -299,10 +303,10 @@ public class TrackManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        
+        //print(getCurrentCarLevel().newCarModel.name);
     }
 
-    CarChange getCurrentCarLevel()
+    public CarChange getCurrentCarLevel(int offset = 0)
     {
         CarChange current = null;
         for(int i = 0; i != carChanges.Capacity; i++)
@@ -314,12 +318,12 @@ public class TrackManager : MonoBehaviour
                 if (i + 1 != carChanges.Capacity)
                 {
                     if (carChanges[i + 1].levelToReach > currentlevel)
-                        current = c;
+                        current = carChanges[c.index + offset];
                     else c.changed = false;
                 }
                 else
                 {
-                    current = c;
+                    current = carChanges[c.index + offset];
                 }
             }
             else
@@ -330,6 +334,10 @@ public class TrackManager : MonoBehaviour
 
     public void PlayerDie(Vector3 explosionPosition)
     {
+        if(explosionPosition == Vector3.zero)
+        {
+            explosionPosition = car.position;
+        }
 
         gameOverScreen.SetActive(true);
         AudioManager.instance.Play("Fail");

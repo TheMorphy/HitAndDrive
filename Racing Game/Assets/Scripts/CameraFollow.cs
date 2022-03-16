@@ -46,7 +46,7 @@ public class CameraFollow : MonoBehaviour
             else
                 camAnim.SetBool("fever", false);
         }
-
+        if(driverFly != null)
         if (driverFly.IsSpawned)
         {
             if (tm.currentlevel < 10)

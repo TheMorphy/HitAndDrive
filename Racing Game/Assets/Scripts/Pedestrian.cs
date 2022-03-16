@@ -10,11 +10,19 @@ public class Pedestrian : MonoBehaviour
     [SerializeField]
     float startHitRange;
     Rigidbody rb;
-
+    [SerializeField] GameObject canvas;
+    [SerializeField] Rigidbody pelvisRB;
+    [SerializeField] List<Rigidbody> bodyParts = new List<Rigidbody>();
     [HideInInspector] public bool collidedOnce = false;
     float force;
     private void Start()
     {
+        
+
+        if(pelvisRB == null)
+        {
+            pelvisRB = this.GetComponent<Rigidbody>();
+        }
         foreach(BoxCollider b in GetComponents<BoxCollider>())
         {
             b.enabled = true;
@@ -39,12 +47,21 @@ public class Pedestrian : MonoBehaviour
     {
         if (other.gameObject.layer == 8 && TrackManager.instance.currentlevel >= lvlToKill)
         {
+            if(canvas == null)
             transform.parent.transform.parent.transform.parent.GetChild(2).GetComponent<Canvas>().enabled = false;
+            else
+            {
+                canvas.GetComponent<Canvas>().enabled = false;
+            }
 
             rb = GetComponent<Rigidbody>();
 
             animator.enabled = false;
             rb.isKinematic = false;
+            foreach (Rigidbody r in bodyParts)
+            {
+                r.isKinematic = false;
+            }
 
             //Update the killbar       
             TrackManager.instance.killValue += 1;
@@ -65,8 +82,8 @@ public class Pedestrian : MonoBehaviour
                     moveDir = other.transform.forward + (other.transform.up * 0.5f) + (other.transform.right * -0.5f);
                 }
                 Vector3 forceDir = moveDir;
-                rb.mass = 1f;
-                rb.AddForce(forceDir * force, ForceMode.Impulse);
+                pelvisRB.mass = 1f;
+                pelvisRB.AddForce(forceDir * force, ForceMode.Impulse);
                 
                 collidedOnce = true;
             }
@@ -75,8 +92,8 @@ public class Pedestrian : MonoBehaviour
         }
         else if(other.gameObject.layer == 8)
         {
-           // transform.parent.parent.parent.GetComponent<Animator>().SetFloat("randomHit", System.Convert.ToInt16(Random.Range(2, 3)));
-            transform.gameObject.layer = 11;
+            // transform.parent.parent.parent.GetComponent<Animator>().SetFloat("randomHit", System.Convert.ToInt16(Random.Range(2, 3)));
+            TrackManager.instance.PlayerDie(Vector3.zero);
         }
     }
     private void OnCollisionEnter(Collision collision)

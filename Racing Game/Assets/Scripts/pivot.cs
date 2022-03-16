@@ -49,8 +49,11 @@ public class pivot : MonoBehaviour
     {
         foreach(CarChange c in TrackManager.instance.carChanges)
         {
-            if(c.index == index)
+            if (c.index == index)
+            {
+                print(c.newCarModel.name);
                 c.newCarModel.SetActive(true);
+            }              
             else
                 c.newCarModel.SetActive(false);
         }

@@ -49,11 +49,17 @@ public class LevelSystem : MonoBehaviour
         moneyInOneRound = 0;
 
         money = PlayerPrefs.GetInt("Money");
-        
-        LevelNumb = SceneManager.GetActiveScene().buildIndex;
-        levelNumber.text = "Level " + (LevelNumb + 1).ToString();
+        if (levelNumber != null)
+        {
+            
 
-        UpdateMoney();
+            LevelNumb = SceneManager.GetActiveScene().buildIndex;
+
+            levelNumber.text = "Level " + (LevelNumb + 1).ToString();
+
+            UpdateMoney();
+        }
+            
     }
 
     void Update()
