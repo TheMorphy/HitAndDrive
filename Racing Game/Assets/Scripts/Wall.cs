@@ -32,14 +32,14 @@ public class Wall : MonoBehaviour
         
         Collide(collision);
     }
-    private void Collide(Collider collision)
+    public void Collide(Collider collision)
     {
-        if(collision.gameObject.layer == 8 && !carCollided)
+        if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided)
         {
             carCollided = true;
             AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
 
-            if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever)
+            if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever && collision.GetComponent<ExplosiveBarrel>() == null)
             {
                 if (TrackManager.instance.currentlevel - levelToLose < 0)
                 {

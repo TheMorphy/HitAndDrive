@@ -306,7 +306,7 @@ public class TrackManager : MonoBehaviour
         //print(getCurrentCarLevel().newCarModel.name);
     }
 
-    CarChange getCurrentCarLevel()
+    public CarChange getCurrentCarLevel(int offset = 0)
     {
         CarChange current = null;
         for(int i = 0; i != carChanges.Capacity; i++)
@@ -318,12 +318,12 @@ public class TrackManager : MonoBehaviour
                 if (i + 1 != carChanges.Capacity)
                 {
                     if (carChanges[i + 1].levelToReach > currentlevel)
-                        current = c;
+                        current = carChanges[c.index + offset];
                     else c.changed = false;
                 }
                 else
                 {
-                    current = c;
+                    current = carChanges[c.index + offset];
                 }
             }
             else

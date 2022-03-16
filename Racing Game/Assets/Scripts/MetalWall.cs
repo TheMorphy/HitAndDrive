@@ -11,6 +11,7 @@ public class MetalWall : MonoBehaviour
 
     Rigidbody rb;
     bool collided = false;
+    [SerializeField] GameObject notDestructed, destructed;
 
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +33,8 @@ public class MetalWall : MonoBehaviour
             rb.AddTorque(Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, Random.Range(0f, 1f) * spin, ForceMode.VelocityChange);
             TrackManager.instance.changeLevel(-levelToLose, "-", true);
             collided = true;
+            notDestructed.SetActive(false);
+            destructed.SetActive(true);
         }
     }
 

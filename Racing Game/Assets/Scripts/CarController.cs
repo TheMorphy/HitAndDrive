@@ -103,16 +103,16 @@ public class CarController : MonoBehaviour
             turnInput = Input.GetAxisRaw("Horizontal");
 
             // Calculate Turning Rotation
-            float newRot = turnInput * TurnSpeed * Time.deltaTime;
+            //float newRot = turnInput * TurnSpeed * Time.fixedDeltaTime;
 
 
             if (levelSystem.HasFinished == false)
             {
-                yRotation = Mathf.Clamp(yRotation + Input.GetAxis("Horizontal") * TurnSpeed * Time.deltaTime, -30, 30);
+                yRotation = Mathf.Clamp(yRotation + turnInput * TurnSpeed * Time.fixedDeltaTime, -30, 30);
             }
             else
             {
-                yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
+                yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.fixedDeltaTime, -30, 30);
             }
             if (isCarGrounded)
             {
