@@ -11,10 +11,14 @@ public class Multiplier : MonoBehaviour
     LevelSystem levelSystem;
     TrackManager trackManager;
 
+    movefoward mf;
+
     private void Start()
     {
         levelSystem = lsGameobject.GetComponent<LevelSystem>();
         trackManager = tmGameobject.GetComponent<TrackManager>();
+        mf = FindObjectOfType<movefoward>();
+
         levelSystem.Multiplier = 0.7f;
     }
     private void OnTriggerEnter(Collider other)
@@ -22,6 +26,8 @@ public class Multiplier : MonoBehaviour
         if (other.CompareTag("Player") && trackManager.currentlevel > 9)
         {
             levelSystem.Multiplier += 0.3f;
+            mf.MoveSpeed /= 2;
+            print(levelSystem.Multiplier);
         }
     }
 }

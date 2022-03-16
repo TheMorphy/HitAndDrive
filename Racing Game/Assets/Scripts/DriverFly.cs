@@ -6,10 +6,17 @@ public class DriverFly : MonoBehaviour
 {
     [SerializeField] Transform prefab;
     bool isSpawned;
+    bool isBlocked;
+
+    TrackManager tm;
 
     public bool IsSpawned { get => isSpawned; set => isSpawned = value; }
+    public bool IsBlocked { get => isBlocked; set => isBlocked = value; }
 
-    //public GameObject spawnPoint;
+    private void Start()
+    {
+        tm = FindObjectOfType<TrackManager>();
+    }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
@@ -19,7 +26,11 @@ public class DriverFly : MonoBehaviour
             if (!IsSpawned) 
             {
                 IsSpawned = true;
-                Instantiate(prefab, transform.position, Quaternion.identity);
+                IsBlocked = true;
+                if (tm.currentlevel > 9)
+                {
+                    Instantiate(prefab, transform.position, Quaternion.identity);
+                }
             }
         }
     }

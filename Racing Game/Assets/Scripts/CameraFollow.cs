@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     Animator camAnim;
 
-    
+    TrackManager tm;
 
     DriverFly driverFly;
     private void Start()
@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
         playerOffset = transform.position - target.position;
 
         driverFly = FindObjectOfType<DriverFly>();
-
+        tm = FindObjectOfType<TrackManager>();
         currentOffset = playerOffset;
     }
 
@@ -49,7 +49,11 @@ public class CameraFollow : MonoBehaviour
 
         if (driverFly.IsSpawned)
         {
-            target = FindObjectOfType<movefoward>().transform;
+            if (tm.currentlevel < 10)
+            {
+                target = FindObjectOfType<transformDummy>().transform;
+            } else 
+                target = FindObjectOfType<movefoward>().transform;
         }
 
     }

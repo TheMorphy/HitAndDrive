@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelSystem : MonoBehaviour
 {
-
     #region public
     [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel;
     [SerializeField] Text levelNumber; 
@@ -20,6 +19,7 @@ public class LevelSystem : MonoBehaviour
     string activeScene;
     CarController carScript;
     TrackManager tmScript;
+    DriverFly driverFly;
     Text moneyNumber, moneyNumberFinal;
     private IEnumerator waitToFinish;
     Animator camAnim;
@@ -44,6 +44,7 @@ public class LevelSystem : MonoBehaviour
         moneyNumberFinal = moneyUIFinal.GetComponent<Text>();
         tmScript = trackManager.GetComponent<TrackManager>();
         camAnim = cam.GetComponent<Animator>();
+        driverFly = FindObjectOfType<DriverFly>();
 
         moneyInOneRound = 0;
 
@@ -57,6 +58,7 @@ public class LevelSystem : MonoBehaviour
 
     void Update()
     {
+        #region Start Game and Delete Prefs
         if (Input.GetKeyDown(KeyCode.X))
         {
             startGameUI.SetActive(false);
@@ -76,7 +78,9 @@ public class LevelSystem : MonoBehaviour
             PlayerPrefs.DeleteAll();
             Debug.Log("Deleted Every Player Pref");
         }
+        #endregion
 
+        #region Car Goes To The Middle
         if (HasFinished == true && motor.transform.position.x > -2.0f && isMiddle == false)
         {
             carScript.ForcedRotation = -0.5f;
@@ -105,11 +109,10 @@ public class LevelSystem : MonoBehaviour
         {
             carScript.ForcedRotation = 0;
         }
+        #endregion
 
-        if (HasFinished == true && tmScript.currentlevel <= 10)
+        if (HasFinished == true && tmScript.currentlevel < 10 && driverFly.IsBlocked == true)
         {
-            finishLevel.SetActive(true);
-            levelUI.SetActive(false);
             StartCoroutine(waitToFinish);
         }
     }
@@ -119,7 +122,9 @@ public class LevelSystem : MonoBehaviour
         if(hasFinished == true)
         {
             hasFinished = false;
+            levelUI.SetActive(false);
             yield return new WaitForSeconds(waitTime);
+            finishLevel.SetActive(true);
             moneyInOneRound = Mathf.RoundToInt(multiplier * moneyInOneRound);
             moneyNumberFinal.text = "+ " + moneyInOneRound.ToString();
             SaveLevel();
@@ -132,7 +137,7 @@ public class LevelSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HasFinished = true;
-            carScript.startSpeed *= 2;
+            carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 40;
             steeringWheel.SetActive(false);
             camAnim.SetBool("final", true);
             camAnim.Play("CamFinalStageAnim");

@@ -21,7 +21,10 @@ public class StartLevel : MonoBehaviour
 
         if (PlayerPrefs.HasKey("LevelSaved"))
         {
-            SceneManager.LoadScene(levelToLoad);
+            if(levelToLoad != "Level1")
+            {
+                SceneManager.LoadScene(levelToLoad);
+            }
         }
     }
 }
