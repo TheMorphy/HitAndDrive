@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelSystem : MonoBehaviour
 {
     #region public
-    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel, leftPosition, rightPosition;
     [SerializeField] Text levelNumber; 
     [SerializeField] int numberOfLevels;
     #endregion
@@ -87,21 +87,27 @@ public class LevelSystem : MonoBehaviour
         #endregion
 
         #region Car Goes To The Middle
-        if (HasFinished == true && motor.transform.position.x > -2.0f && isMiddle == false)
-        {
-            carScript.ForcedRotation = -0.5f;
-        }
-        
-        if (HasFinished == true && motor.transform.position.x < -1.6f && isMiddle == false)
-        {
-            carScript.ForcedRotation = 0.5f;
-        }
 
-        if (motor.transform.position.x < -1.6f && motor.transform.position.x > -2.0f)
+        /*if (isMiddle == false)
         {
+            if (HasFinished == true && motor.transform.position.x > leftPosition.transform.position.x)
+            {
+                carScript.ForcedRotation = leftPosition.transform.position.x - motor.transform.position.x;
+            }
+
+            if (HasFinished == true && motor.transform.position.x < rightPosition.transform.position.x)
+            {
+                carScript.ForcedRotation = rightPosition.transform.position.x - motor.transform.position.x;
+            }
+        }*/
+
+        /*if (motor.transform.position.x < rightPosition.transform.position.x && motor.transform.position.x > leftPosition.transform.position.x)
+        {
+            carScript.ForcedRotation = carScript.transform.position.x - trackManager.transform.position.x;
             isMiddle = true;
+            carScript.ForcedRotation = 0;
         }
-        else isMiddle = false;
+        else isMiddle = false;*/
 
         if (hasFinished == true)
         {
@@ -109,11 +115,6 @@ public class LevelSystem : MonoBehaviour
             {
                 carScript.TurnSpeed = 0;
             }
-        }
-
-        if (isMiddle)
-        {
-            carScript.ForcedRotation = 0;
         }
         #endregion
 
@@ -129,6 +130,7 @@ public class LevelSystem : MonoBehaviour
         {
             hasFinished = false;
             levelUI.SetActive(false);
+            //StartCoroutine(CheckPosition());
             yield return new WaitForSeconds(waitTime);
             finishLevel.SetActive(true);
             moneyInOneRound = Mathf.RoundToInt(multiplier * moneyInOneRound);
@@ -137,8 +139,47 @@ public class LevelSystem : MonoBehaviour
         }
     }
 
-    #region collisions
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator CheckPosition()
+    {
+        //float endRotation = 0;
+
+        float x = Mathf.Min(Mathf.Min(Mathf.Abs(motor.transform.position.x - leftPosition.transform.position.x), Mathf.Abs(motor.transform.position.x - trackManager.transform.position.x)), Mathf.Abs(motor.transform.position.x - rightPosition.transform.position.x));
+
+        Transform final;
+
+        if (Mathf.Abs(motor.transform.position.x - leftPosition.transform.position.x) == x)
+        {
+            final = leftPosition.transform;
+        } else if (Mathf.Abs(motor.transform.position.x - trackManager.transform.position.x) == x)
+        {
+            final = trackManager.transform;
+        } else final = rightPosition.transform;
+
+
+        /*Vector3 dirToMove = (motor.transform.position - Vector3.right * endRotation).normalized;
+
+        bool rightOrLeft = Vector3.SignedAngle(motor.transform.forward, dirToMove, Vector3.up) < 0;
+
+        float moveDir;
+
+        if (rightOrLeft)
+        {
+            moveDir = 1;
+        }
+        else
+        {
+            moveDir = -1;
+        }*/
+
+        while (false == false)
+        {
+            carScript.ForcedRotation = motor.transform.rotation.x - final.position.x;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+        #region collisions
+        private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

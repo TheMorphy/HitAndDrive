@@ -86,6 +86,8 @@ public class Pedestrian : MonoBehaviour
                 pelvisRB.AddForce(forceDir * force, ForceMode.Impulse);
                 
                 collidedOnce = true;
+
+                Destroy(gameObject, 5);
             }
 
             //StartCoroutine(DestroySelf());

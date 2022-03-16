@@ -97,6 +97,13 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(Mathf.Abs(forcedRotation) < 0.2f)
+        {
+            forcedRotation = 0;
+        }
+
+        forcedRotation = transform.position.x - TrackManager.instance.transform.position.x;
+
         if (!IsUsingSteeringWheel)
         {
             // Get Input
@@ -105,14 +112,15 @@ public class CarController : MonoBehaviour
             // Calculate Turning Rotation
             //float newRot = turnInput * TurnSpeed * Time.fixedDeltaTime;
 
-
             if (levelSystem.HasFinished == false)
             {
-                yRotation = Mathf.Clamp(yRotation + turnInput * TurnSpeed * Time.fixedDeltaTime, -30, 30);
+                float raw = Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11;
+                yRotation = Mathf.Lerp(yRotation, raw, 0.1f);
             }
             else
             {
-                yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.fixedDeltaTime, -30, 30);
+                float raw = Mathf.Clamp(Mathf.Clamp(-forcedRotation/2,-1, 1) * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                yRotation = Mathf.Lerp(yRotation, raw, 0.5f);
             }
             if (isCarGrounded)
             {
@@ -154,7 +162,31 @@ public class CarController : MonoBehaviour
             float newRot = inputHorizontal * TurnSpeed * Time.deltaTime;
 
             if (isCarGrounded)
-                transform.Rotate(0, newRot, 0, Space.World);
+            {
+
+                switch (currentCarType)
+                {
+                    /*if (isCarGrounded)
+                    transform.Rotate(0, newRot, 0, Space.World);*/
+
+                    case carType.Car:
+                        //motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, Input.GetAxisRaw("Horizontal"), 0.15f);
+                        break;
+                    case carType.MotorCycle:
+                        float raw = inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11;
+                        motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, raw, 0.1f);
+                        print(isleaning);
+                        if (!isleaning)
+                        {
+                            motorCycleLean = motorCycleyRotation;
+                        }
+                        else
+                        {
+                            motorCycleLean = Mathf.Lerp(motorCycleLean, 0, 0.1f);
+                        }
+                        break;
+                }
+            }
 
             //SteeringWheelInputs
             if (levelSystem.HasFinished == false)
@@ -164,6 +196,7 @@ public class CarController : MonoBehaviour
             else
             {
                 yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
+                Debug.Log(forcedRotation);
             }
         }
 
