@@ -14,7 +14,7 @@ public class pivot : MonoBehaviour
     [SerializeField]
     Transform canvas;
     [SerializeField]
-    
+    Animator carCollider;
     // Start is called before the first frame update
     public void CanvasToPos()
     {
@@ -53,6 +53,7 @@ public class pivot : MonoBehaviour
             {
                 print(c.newCarModel.name);
                 c.newCarModel.SetActive(true);
+                carCollider.SetFloat("car", index);
             }              
             else
                 c.newCarModel.SetActive(false);

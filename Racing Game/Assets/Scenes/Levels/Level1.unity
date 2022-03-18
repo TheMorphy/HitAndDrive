@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43579224, g: 0.31479996, b: 0.89990616, a: 1}
+  m_IndirectSpecularColor: {r: 0.43579227, g: 0.3147999, b: 0.89990616, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3536,7 +3536,7 @@ PrefabInstance:
       objectReference: {fileID: 1767020648}
     - target: {fileID: 230487196525544719, guid: 567ecbda5369bfd4a96cdfd9f3e85463, type: 3}
       propertyPath: startLevel
-      value: 1
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 230487196525544719, guid: 567ecbda5369bfd4a96cdfd9f3e85463, type: 3}
       propertyPath: carCollider
@@ -10421,6 +10421,50 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!1 &299227755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299227756}
+  - component: {fileID: 299227757}
+  m_Layer: 8
+  m_Name: ExtraCollider01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299227756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299227755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 491681706}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &299227757
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299227755}
+  m_Material: {fileID: 13400000, guid: d204de650f34147efa7a5f32f24b4912, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8125312, y: 0.44023344, z: 2.4804008}
+  m_Center: {x: -0.01380874, y: 0.7336934, z: -1.0238965}
 --- !u!1 &299463648
 GameObject:
   m_ObjectHideFlags: 0
@@ -17519,6 +17563,11 @@ Transform:
   m_Father: {fileID: 631817954}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &491681706 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3548720883568103438, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+  m_PrefabInstance: {fileID: 1767020643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &491877701
 GameObject:
   m_ObjectHideFlags: 0
@@ -67979,6 +68028,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 881523472071654648, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620480884748919936, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3548720881621332225, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -68047,10 +68104,50 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3548720881798336696, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883362050585, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: carCollider
+      value: 
+      objectReference: {fileID: 1767020646}
+    - target: {fileID: 3548720883568103432, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883568103439, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3987703
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883568103439, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8869594
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883568103439, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Size.z
+      value: 5.298646
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883568103439, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0067383046
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883568103439, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Center.y
+      value: 0.04710501
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720883568103439, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_Center.z
+      value: -0.24188888
+      objectReference: {fileID: 0}
     - target: {fileID: 3777812873637353945, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 27681daa1837e5b48b9ad8bae4b57073, type: 2}
+    - target: {fileID: 4467288284972914021, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6283077057929973385, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -68071,7 +68168,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 6f1f5666b13440346be55e268be3cf62, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3548720883568103432, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
 --- !u!4 &1767020644 stripped
 Transform:
@@ -78012,6 +78110,7 @@ MonoBehaviour:
   motor: {fileID: 1324305099}
   truckSound: {fileID: 0}
   canvas: {fileID: 289195186}
+  carCollider: {fileID: 0}
 --- !u!4 &2022838992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7388989371774417429, guid: 3f6849571b5a5457db91b421012e34eb, type: 3}
