@@ -1308,6 +1308,7 @@ MonoBehaviour:
   - {fileID: 2593466359893394846}
   - {fileID: 566611764625779775}
   - {fileID: 9220167951714178416}
+  rbVelocityToBreak: 3
 --- !u!65 &1440693792537966155
 BoxCollider:
   m_ObjectHideFlags: 0
