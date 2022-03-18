@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Multiplier : MonoBehaviour
 {
-
-    [SerializeField] GameObject lsGameobject;
-    [SerializeField] GameObject tmGameobject;
-
     LevelSystem levelSystem;
     TrackManager trackManager;
+    DriverFly driverFly;
 
     movefoward mf;
 
     private void Start()
     {
-        levelSystem = lsGameobject.GetComponent<LevelSystem>();
-        trackManager = tmGameobject.GetComponent<TrackManager>();
-        mf = FindObjectOfType<movefoward>();
+        levelSystem = FindObjectOfType<LevelSystem>();
+        trackManager = FindObjectOfType<TrackManager>();
+        driverFly = FindObjectOfType<DriverFly>();
 
         levelSystem.Multiplier = 0.7f;
     }
@@ -25,9 +22,9 @@ public class Multiplier : MonoBehaviour
     {
         if (other.CompareTag("Player") && trackManager.currentlevel > 9)
         {
+            mf = FindObjectOfType<movefoward>();
             levelSystem.Multiplier += 0.3f;
-            mf.MoveSpeed /= 2;
-            print(levelSystem.Multiplier);
+            mf.MoveSpeed -= 5;
         }
     }
 }

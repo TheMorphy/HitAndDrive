@@ -17,7 +17,12 @@ public class movefoward : MonoBehaviour
     {
         tm = FindObjectOfType<TrackManager>();
 
-        MoveSpeed = (tm.currentlevel / 10) + 5;
+        MoveSpeed = (Mathf.FloorToInt(tm.currentlevel / 10) * 10 / 2);
+
+        if (MoveSpeed >= 25)
+        {
+            MoveSpeed = 25;
+        }
 
         Instantiate(dummy, transform.position, Quaternion.identity);
     }
@@ -25,5 +30,10 @@ public class movefoward : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * Time.deltaTime * MoveSpeed;
+
+        if (moveSpeed <= 0)
+        {
+            moveSpeed = 2;
+        }
     }
 }

@@ -21,6 +21,8 @@ public class Wall : MonoBehaviour
     List<GameObject> parts = new List<GameObject>();
 
     bool carCollided = false;
+
+    [SerializeField] float rbVelocityToBreak;
     private void Start()
     {
         
@@ -72,7 +74,7 @@ public class Wall : MonoBehaviour
             
         }
         else
-            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > 10) && !carCollided)
+            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > rbVelocityToBreak) && !carCollided)
             {
             foreach (GameObject g in parts)
             {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5519962824728996438}
   - component: {fileID: 8115139195735337956}
+  - component: {fileID: 7883585317320514486}
   m_Layer: 0
   m_Name: TransformDummy
   m_TagString: Player
@@ -45,3 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   dummy: {fileID: 4123286320209494537, guid: dc2d979147d201f4bbbde5287c139626, type: 3}
+--- !u!65 &7883585317320514486
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519962824728996439}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
