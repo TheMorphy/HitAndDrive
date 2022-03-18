@@ -37,14 +37,15 @@ public class Wall : MonoBehaviour
         if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided)
         {
             carCollided = true;
-            AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
 
             if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever && collision.GetComponent<ExplosiveBarrel>() == null)
             {
                 if (TrackManager.instance.currentlevel - levelToLose < 0)
                 {
                     //Die
+                    AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
                     TrackManager.instance.PlayerDie(collision.transform.position);
+                    GameObject.Find("Motor").GetComponent<AudioSource>().mute = true;
                 }
                 else
                 TrackManager.instance.changeLevel(-levelToLose, "", true);

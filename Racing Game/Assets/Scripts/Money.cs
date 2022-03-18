@@ -21,6 +21,7 @@ public class Money : MonoBehaviour
             levelScript.MoneyInOneRound += 1;
             levelScript.UpdateMoney();
             Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("Collect");
         }
     }
 }

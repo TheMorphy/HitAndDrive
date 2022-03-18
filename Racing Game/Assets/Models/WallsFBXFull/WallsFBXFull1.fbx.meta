@@ -7,8 +7,913 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Money
+    second: {fileID: 2100000, guid: 9bfdeb3efc5c049448bbf6f4be1710f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: WallStone
     second: {fileID: 2100000, guid: 79747739402443440b808a10324508e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_lambert3
+    second: {fileID: 2100000, guid: 2ba98eba2a0e99f4b8a72be40df69385, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__blinn17
+    second: {fileID: 2100000, guid: 6c046758af3a34d4294be6708db7dc92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__blinn18
+    second: {fileID: 2100000, guid: fd9d4d7448ec5c44fa7ac324fc8d2969, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__blinn19
+    second: {fileID: 2100000, guid: 36c9d65d7cf0a8546957fab9d42dfb0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__blinn20
+    second: {fileID: 2100000, guid: 3bec0ec0b1da9d24e96a3238653b43f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn37
+    second: {fileID: 2100000, guid: 6d3ff407f77f35d4c87d960fb2b72a37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn38
+    second: {fileID: 2100000, guid: eade6943913420c4083196bd06fb6fa6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn39
+    second: {fileID: 2100000, guid: 82bc57a32de162741ae85c9a3c86d5bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn40
+    second: {fileID: 2100000, guid: 7a3d37736f3bfb242a66d2ddbb8759d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn42
+    second: {fileID: 2100000, guid: 5e3ff564d33da6c4298bb9faf91fcf8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn43
+    second: {fileID: 2100000, guid: 8f38203d81f1f0f489eb5f950e8edd4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn45
+    second: {fileID: 2100000, guid: 35a3bd98db5eb0f41ac362fdddc1510e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn46
+    second: {fileID: 2100000, guid: 0604edb109a76974390ff4a31d807e9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn47
+    second: {fileID: 2100000, guid: 7bd48d6608cc8784a8df0f8958af9be1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn48
+    second: {fileID: 2100000, guid: fb102d64f9b0bdd44b474db9d0d1be0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn49
+    second: {fileID: 2100000, guid: df5698cc370c4994699ba3bda4484e77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn50
+    second: {fileID: 2100000, guid: dba14884d25b33e4786832e607f4e784, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn51
+    second: {fileID: 2100000, guid: 7f26172d2327ccf49a544056824a3e9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn52
+    second: {fileID: 2100000, guid: e9fe9fc50340c7941994f3dabcf64f97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn53
+    second: {fileID: 2100000, guid: f171b35837eb8524aaf817baf964a67e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn54
+    second: {fileID: 2100000, guid: 6769e75ac73de2f4db986aada749d8ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn55
+    second: {fileID: 2100000, guid: b21d109a452cdb34090a89947374653a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn56
+    second: {fileID: 2100000, guid: 5cc1bd37790a2954ca09c1e521ea86e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn57
+    second: {fileID: 2100000, guid: 11953c7553b7e454998220d61bcd971f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn58
+    second: {fileID: 2100000, guid: 9cb959b959656a54597777e8f9742e35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn59
+    second: {fileID: 2100000, guid: 5de6e007a1aca04488be68827c57e79c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn60
+    second: {fileID: 2100000, guid: b6a0bf39d3294764eb47272fea9c9669, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn61
+    second: {fileID: 2100000, guid: e978bba4b45f64a49a9b0e5cac644c91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__blinn62
+    second: {fileID: 2100000, guid: e059bf3e81187ff43a5cce2e0b5cc827, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn17
+    second: {fileID: 2100000, guid: b6a8793880bba284db87be2751c41952, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn18
+    second: {fileID: 2100000, guid: 84396d3a114223a4e880d2f02b8001b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn30
+    second: {fileID: 2100000, guid: 5f01f959aa564d641874ccf3f4e1efc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn31
+    second: {fileID: 2100000, guid: d3dcf0cd5b324e148a2f8e7e31b2d81e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn32
+    second: {fileID: 2100000, guid: 931396e316e01cf45a30dc6778b42b13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn37
+    second: {fileID: 2100000, guid: 3647d90eab9ee4049b3db3d4a02b7b57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn38
+    second: {fileID: 2100000, guid: cc384959d4ce9b3429bd12264894953e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn39
+    second: {fileID: 2100000, guid: 01d3f4dbe267b694fbe65dfd0fcfa2df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn40
+    second: {fileID: 2100000, guid: a63ebad0e9d6780408b0cb8520d21e2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn41
+    second: {fileID: 2100000, guid: 331087ca8a727ae45a6803c216aed3ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn42
+    second: {fileID: 2100000, guid: c2ca261f573650f40996b1d2da8b25d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn43
+    second: {fileID: 2100000, guid: c6d2c545c115b71409350a364c7f27f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn45
+    second: {fileID: 2100000, guid: 4b9c72f51e7f35045bd37d2c9901c555, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn46
+    second: {fileID: 2100000, guid: d48e39fd922d7ea4a9335f002d17c49a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn48
+    second: {fileID: 2100000, guid: ea5dfb35525cfec479433481608500d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn49
+    second: {fileID: 2100000, guid: c5590d8cd7b6ee7469f1778ddce79eee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn50
+    second: {fileID: 2100000, guid: 123a72d78af89d3469c72af91505573a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn51
+    second: {fileID: 2100000, guid: 58e666850d246aa4cb4f3a05b6bef93a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn52
+    second: {fileID: 2100000, guid: bead8c9e0f7b18246a3c7e8f1fde6f5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn53
+    second: {fileID: 2100000, guid: 703e39783ab30c24893afbd89defac89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn54
+    second: {fileID: 2100000, guid: ba03d5e596ea1d64d92c2cf62d4e79d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn55
+    second: {fileID: 2100000, guid: eb9b0a4de4823764481c66181cab79bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn56
+    second: {fileID: 2100000, guid: 7ae16a7c6eaa1704290170d03b431560, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn57
+    second: {fileID: 2100000, guid: dd658d9b095c72247b5b04c777c0600f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn58
+    second: {fileID: 2100000, guid: 62dcf110c1771234b8e2eeed65a71286, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn59
+    second: {fileID: 2100000, guid: c3f627675252e354cb539b43a2c1cf2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn60
+    second: {fileID: 2100000, guid: eec6cc148fdc4b849a52415f8a9baf69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn61
+    second: {fileID: 2100000, guid: cb82d9ce2ad890b4da1b72cef897f5bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn62
+    second: {fileID: 2100000, guid: d3aa8362ab5e6ff408e06014c86a0eda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn63
+    second: {fileID: 2100000, guid: cd63e733de5005042a30164319887a95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn64
+    second: {fileID: 2100000, guid: f3f9018e72efdd748a81ebb881012691, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn65
+    second: {fileID: 2100000, guid: 0b46265df1378b64fb1ed70963c37bd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn66
+    second: {fileID: 2100000, guid: c5df8ef7f4707f147883c374587ccae5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn67
+    second: {fileID: 2100000, guid: 6da669f7502db8b44b94f8cd097b24df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn68
+    second: {fileID: 2100000, guid: e555ab5acd4f18f41b19ee332b515fb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn69
+    second: {fileID: 2100000, guid: d3ca3af6aebb6aa44a79b5d4ab21087d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn70
+    second: {fileID: 2100000, guid: f576a6d9b5d06a140b905fb552bba60a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn71
+    second: {fileID: 2100000, guid: 56f570fb50745654eb8d6571ce31e7db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn72
+    second: {fileID: 2100000, guid: a314f1b6af4939b4287116ab1c2fc6c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn73
+    second: {fileID: 2100000, guid: 0b01ec3d8e7d8c9438e0a791d0c91ac9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__blinn74
+    second: {fileID: 2100000, guid: 41f395fc353b2e444a38090fd7ab8811, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn22
+    second: {fileID: 2100000, guid: 4df3e3766e43b4641b00d5bf5767641b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn33
+    second: {fileID: 2100000, guid: 908105ec93276e242becaa934405ad8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn34
+    second: {fileID: 2100000, guid: 77ea54f68f8ea884495fd14129e1b32b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn35
+    second: {fileID: 2100000, guid: 02940801aad6100489aea6641b2a22ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn36
+    second: {fileID: 2100000, guid: 3d156b9f4e279104c888f1c357161e10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn40
+    second: {fileID: 2100000, guid: 5c02537b9312dc74792aef066e9a94c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn41
+    second: {fileID: 2100000, guid: 16b10c0745097c64eb54ee2db2ad0fb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn42
+    second: {fileID: 2100000, guid: 5ccb27d88a7c17545ac1246f78dcc5a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn43
+    second: {fileID: 2100000, guid: 45ac69b11bf03a3469633f8ab2a146ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn44
+    second: {fileID: 2100000, guid: 10e8e72dcac69764eb10e073dc8ce1a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn46
+    second: {fileID: 2100000, guid: 3aa181a4e5498a342838da5c3c606726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn47
+    second: {fileID: 2100000, guid: faf177caf2766024ab49230a5776bd8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn48
+    second: {fileID: 2100000, guid: 9018e91568d565e42be041b53316e1ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn49
+    second: {fileID: 2100000, guid: 1668e4e2c3675654194f1170d42429bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn50
+    second: {fileID: 2100000, guid: 4a4c429e6a39b804fb7bf95663b8ab01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn51
+    second: {fileID: 2100000, guid: 8815c035f58c61c488be9340f6ee4996, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn52
+    second: {fileID: 2100000, guid: b11e6400040b6d347a06ca287152f047, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn53
+    second: {fileID: 2100000, guid: ef798068015322044b73fd110d6f000e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn54
+    second: {fileID: 2100000, guid: 3f2d237484c384e4b858e9e79bb1f49f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn55
+    second: {fileID: 2100000, guid: a35eb2d51ea994e4e8a735f18acdd5cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn56
+    second: {fileID: 2100000, guid: 8aa925f2423345d46b5f417e0d35d46d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn57
+    second: {fileID: 2100000, guid: a75add7bfaad9a04395f0ea4a049ea87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn58
+    second: {fileID: 2100000, guid: 80db0dd0332bd824f8b2da85329aa7cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn59
+    second: {fileID: 2100000, guid: e912bb7168d7b09438aa23e3f2211dd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn60
+    second: {fileID: 2100000, guid: 900245c46e6ccdd4c8f6edbf5bb8712f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn61
+    second: {fileID: 2100000, guid: 96b2606b682fe87449365d1abc3654a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn62
+    second: {fileID: 2100000, guid: 75ca783ee3d817e42a0f6b2b5926b3b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn63
+    second: {fileID: 2100000, guid: 8f2e6e03c6d59c04385c3fbebf968f73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn64
+    second: {fileID: 2100000, guid: 056b08305f322c2498deb6a7a286e851, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn65
+    second: {fileID: 2100000, guid: 5cdb2d2a0cdfe574a9c817eb84c3450d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn66
+    second: {fileID: 2100000, guid: 9605e00e6b0ed0e4ca8f8c6b7fde6bf9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn67
+    second: {fileID: 2100000, guid: 5233d1f028ff88f418fb2b00a135341f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__blinn68
+    second: {fileID: 2100000, guid: 29010b2ad7f97bc49bd0eb30a41d6342, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn14
+    second: {fileID: 2100000, guid: 6e8bf620fe2c10743b80a4cbb2aa015b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn15
+    second: {fileID: 2100000, guid: d42c77477135bd847b1e4ebc680130c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn16
+    second: {fileID: 2100000, guid: ac5186eb326dd814c960e1651fe1ca29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn17
+    second: {fileID: 2100000, guid: 73b0d4117b389db41919e513275f2b41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn18
+    second: {fileID: 2100000, guid: 439d123df9d8b444dbda62cac43597e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn31
+    second: {fileID: 2100000, guid: 15dbe65a2922ac04ba52ec1491a5afb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn32
+    second: {fileID: 2100000, guid: 10ca9baecb48b0c4f8df76bca7ebbfcb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn33
+    second: {fileID: 2100000, guid: c68ef883a2c4df847adde6cc5efe6111, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn34
+    second: {fileID: 2100000, guid: b627882f6151c8b498fbc71cd9d12ae5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn35
+    second: {fileID: 2100000, guid: 609963d7763bd5e4c81ed18310c0f89f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn36
+    second: {fileID: 2100000, guid: b6dba533d85e4ad408f0dbfc50a7af25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn37
+    second: {fileID: 2100000, guid: c6d1b628dbb420447b97917e70fee953, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn38
+    second: {fileID: 2100000, guid: 0a3373ab62d1bf6469e035abe2112dce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn40
+    second: {fileID: 2100000, guid: 6403e08770d88904e9388bfa0fb28091, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn41
+    second: {fileID: 2100000, guid: 15b7d793a5f09ec4dbde38bbe1159dca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn42
+    second: {fileID: 2100000, guid: 58ba4e3fd4b7cd94b99fccd7ec87141d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn43
+    second: {fileID: 2100000, guid: 03fef0efc027d7c44a10b5dad1412532, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn44
+    second: {fileID: 2100000, guid: 97ac4c6e47c82f340b82bf2b8007e0ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn45
+    second: {fileID: 2100000, guid: a6bea980b522f444b96d89b58b1ff2c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn46
+    second: {fileID: 2100000, guid: 81e2b370b76130941ba20ed7b7413c77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn47
+    second: {fileID: 2100000, guid: b6e8e7336761f1b43ae4dc5cdfe45748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn48
+    second: {fileID: 2100000, guid: 71b66be6e611cdd418a6e9c9a3843c48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn49
+    second: {fileID: 2100000, guid: 03d32fd6a50b8704c8d929b2ba6afd54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn50
+    second: {fileID: 2100000, guid: eb626bd089a1134468bef21440317038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn51
+    second: {fileID: 2100000, guid: 7dcc038e0458e664087bd0eb1f3897d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn52
+    second: {fileID: 2100000, guid: 7635c29bfc5f2b648b55dccb4837e1d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn53
+    second: {fileID: 2100000, guid: 2c553da21c23c5743986960c2949348b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn54
+    second: {fileID: 2100000, guid: 195767f994c0e754c88b0bbb680827ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn55
+    second: {fileID: 2100000, guid: c28b7b53894a07648aea613d789458ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn56
+    second: {fileID: 2100000, guid: 9e140aa8d7658cb4085862aa22d24a2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn57
+    second: {fileID: 2100000, guid: cd095940b73ec8b45a935c825d94b098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn58
+    second: {fileID: 2100000, guid: 57c83afc6a4e51046862b97d896dcfcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn59
+    second: {fileID: 2100000, guid: 644db2693aa669e498d593aab431a21e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__blinn60
+    second: {fileID: 2100000, guid: 5ca38c9c895cf9a4c80b28e4eb201ead, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn20
+    second: {fileID: 2100000, guid: abd66c22fa574fe439aa39ffdd3391b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn25
+    second: {fileID: 2100000, guid: 270902b335452a04c818771f1f71239b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn32
+    second: {fileID: 2100000, guid: 43e8ecf8c8dd49f41bb4e6316067f267, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn34
+    second: {fileID: 2100000, guid: 4700c2a9157a15b41abbbf991de8f903, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn35
+    second: {fileID: 2100000, guid: e2947e83de2e40846baf09984b449ef7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn36
+    second: {fileID: 2100000, guid: 48f1fdd0c9b5b4142a6e18941fe7e14d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn37
+    second: {fileID: 2100000, guid: 653d0de6254b8e94ab9c6b002d41287c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn38
+    second: {fileID: 2100000, guid: 60a04d10681d45f409f1a2802d17efcc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn39
+    second: {fileID: 2100000, guid: 5ec464ad7ed7e7c498e92dca50b65360, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn40
+    second: {fileID: 2100000, guid: 0a40078715093e844b174f4aafdcd3ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn41
+    second: {fileID: 2100000, guid: b730f439dcc3c074cb756e82f75f39c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn42
+    second: {fileID: 2100000, guid: aee5d0e33b3d5b84dac7853a97226900, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__blinn43
+    second: {fileID: 2100000, guid: b3a8b31b4ad8e614aaacf410a56f7798, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn16
+    second: {fileID: 2100000, guid: 76c0be5e50e57bd47a10d53e244b17f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn25
+    second: {fileID: 2100000, guid: 8ecc59feae7ecbc489c925c2ac8196be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn26
+    second: {fileID: 2100000, guid: 1c5f4fd2417c42e4e82cc284e469741b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn27
+    second: {fileID: 2100000, guid: 88a1eff10ad180249a00a8f63b8fd58c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn28
+    second: {fileID: 2100000, guid: 21518367ed28fbf4193787c95ca6f273, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn29
+    second: {fileID: 2100000, guid: 0f13af0af9a8fac4f99030b23c97dc73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn30
+    second: {fileID: 2100000, guid: 9e3cbb570b75d1f478acaa3eb665f94b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn31
+    second: {fileID: 2100000, guid: f9f22eb6103f117428fe9ad547aa44c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn32
+    second: {fileID: 2100000, guid: 6024c808e17a652448c8bcaed05c8141, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn33
+    second: {fileID: 2100000, guid: cc5311e6a8c3fa446b7a3923a62c30aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn34
+    second: {fileID: 2100000, guid: f183e42f71d8a03499ec2506227ea18b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn7
+    second: {fileID: 2100000, guid: fc1346f731dda464791bd488041c8d6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn12
+    second: {fileID: 2100000, guid: 9afcdc2d5ad9fa1439fb1fde58c00991, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn13
+    second: {fileID: 2100000, guid: ff7dd441fb8d7a047a22fd4a87f07bcc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn14
+    second: {fileID: 2100000, guid: 58e160bcb5ed0104ba8c9d78a35f4ce6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn15
+    second: {fileID: 2100000, guid: fac89452ae8b02c458d96922187cc2b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn16
+    second: {fileID: 2100000, guid: 1b461593caea1eb45b88d9477665da7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn17
+    second: {fileID: 2100000, guid: 747e304918fcd6e4b927551d3707b995, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn18
+    second: {fileID: 2100000, guid: 8da77a29cfdc2c54f90a5a2dd5bdcc36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn19
+    second: {fileID: 2100000, guid: d87c70d764556d4438f8daf00595d1f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn20
+    second: {fileID: 2100000, guid: d5846063ff55a6541bc092517d413e88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn6
+    second: {fileID: 2100000, guid: 882e709e47f47254bbb190ea43cbd470, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn7
+    second: {fileID: 2100000, guid: 3be75ca79ccb4e64594e510be7d8a1cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn4
+    second: {fileID: 2100000, guid: 751e22726bc98324295da0b9566fce61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn6
+    second: {fileID: 2100000, guid: edb74ab9b2c5ce34f88fbbfef7254758, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn7
+    second: {fileID: 2100000, guid: c31433badbbef7543a6b7969b2578001, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn8
+    second: {fileID: 2100000, guid: 800c154f78b2ccc44985bbc8b7897e4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall___Copy_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__blinn6
+    second: {fileID: 2100000, guid: cd4e5260a7ade3e43931d05c792a4c1a, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: MoneyTexture
+    second: {fileID: 2800000, guid: d08cccc6267378940b2ae107da0e4028, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WallMetalTexture
+    second: {fileID: 2800000, guid: d1d6db8188af20844aa14f9517794c32, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

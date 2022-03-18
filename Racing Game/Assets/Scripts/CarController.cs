@@ -72,9 +72,9 @@ public class CarController : MonoBehaviour
         while (gameObject.activeSelf)
         {
             float yrot1 = yRotation;
-            yield return new WaitForEndOfFrame();
             float yrot2 = yRotation;
             isleaning = yrot1 != yrot2;
+            yield return null;
         }
     }
 
@@ -132,7 +132,7 @@ public class CarController : MonoBehaviour
                         break;
                     case carType.MotorCycle:
                         float raw = Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11;
-                        motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, raw, 0.1f);
+                        motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.1f);
                         print(isleaning);
                         if(!isleaning)
                         {
@@ -140,7 +140,7 @@ public class CarController : MonoBehaviour
                         }
                         else
                         {
-                            motorCycleLean = Mathf.Lerp(motorCycleLean, 0, 0.1f);
+                            motorCycleLean = Mathf.SmoothStep(motorCycleLean, 0, 0.1f);
                         }
                         
                         //motorCycleTemp = Mathf.Lerp(motorCycleTemp, raw, 0.5f);
@@ -174,7 +174,7 @@ public class CarController : MonoBehaviour
                         break;
                     case carType.MotorCycle:
                         float raw = inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11;
-                        motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, raw, 0.1f);
+                        motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.1f);
                         print(isleaning);
                         if (!isleaning)
                         {
@@ -182,7 +182,7 @@ public class CarController : MonoBehaviour
                         }
                         else
                         {
-                            motorCycleLean = Mathf.Lerp(motorCycleLean, 0, 0.1f);
+                            motorCycleLean = Mathf.SmoothStep(motorCycleLean, 0, 0.1f);
                         }
                         break;
                 }

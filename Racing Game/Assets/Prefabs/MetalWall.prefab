@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3523182022208915163, guid: 1863fa4766e8ebb46a8f96e1d5235683, type: 3}
+  - {fileID: 2100000, guid: 7caf730b318785146897a3f07dd6ba9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,3 +128,5 @@ MonoBehaviour:
   impactForce: 25.12
   spin: 10
   levelToLose: 15
+  notDestructed: {fileID: 0}
+  destructed: {fileID: 0}

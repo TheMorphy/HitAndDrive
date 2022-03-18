@@ -18,6 +18,7 @@ public class WrenchKey : MonoBehaviour
             //TrackManager.instance.getCurrentCarLevel().levelToReach = TrackManager.instance.currentlevel;
             TrackManager.instance.changeLevel(levelToAdd);
             collected = true;
+            FindObjectOfType<AudioManager>().Play("Collect");
         }
     }
 
