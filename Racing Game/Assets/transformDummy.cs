@@ -20,9 +20,9 @@ public class transformDummy : MonoBehaviour
     {
         transform.position = MoveFoward.transform.position;
 
-        //if(tm.currentlevel < 10)
-        //{
-        //    gameObject.GetComponent<transformDummy>().enabled = false;
-        //}
+        if(tm.currentlevel < 10)
+        {
+           gameObject.GetComponent<transformDummy>().enabled = false;
+        }
     }
 }
