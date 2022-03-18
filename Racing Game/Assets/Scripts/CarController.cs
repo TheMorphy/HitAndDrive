@@ -131,9 +131,9 @@ public class CarController : MonoBehaviour
                         //motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, Input.GetAxisRaw("Horizontal"), 0.15f);
                         break;
                     case carType.MotorCycle:
-                        float raw = Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11;
-                        motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.1f);
-                        print(isleaning);
+                        float raw = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                        motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.2f);
+                        print(motorCycleyRotation);
                         if(!isleaning)
                         {
                             motorCycleLean = motorCycleyRotation;
@@ -207,8 +207,8 @@ public class CarController : MonoBehaviour
         }          
         else
         {
-            transform.eulerAngles = new Vector3(0.0f, motorCycleyRotation, 0);
-            motorBike.transform.localEulerAngles = new Vector3(0.0f, 0, -motorCycleLean * 1.5f);
+            transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
+            motorBike.transform.localEulerAngles = new Vector3(0.0f, 0, -yRotation * 1.5f);
         }
 
 
