@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Wall : MonoBehaviour
 {
@@ -25,9 +26,12 @@ public class Wall : MonoBehaviour
     [SerializeField] float rbVelocityToBreak;
 
     LevelSystem levelSystem;
+
+    TextMeshProUGUI multiplierText;
     private void Start()
     {
         levelSystem = FindObjectOfType<LevelSystem>();
+        multiplierText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void callCarCrash(Collider collision)
@@ -41,6 +45,11 @@ public class Wall : MonoBehaviour
         if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided && levelSystem.HasFinished == false)
         {
             carCollided = true;
+
+            if (multiplierText != null)
+            {
+                multiplierText.enabled = false;
+            }
 
             if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever && collision.GetComponent<ExplosiveBarrel>() == null)
             {
