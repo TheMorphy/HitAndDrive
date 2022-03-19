@@ -20,7 +20,11 @@ public class movefoward : MonoBehaviour
         if(tm.currentlevel > 9)
         {
             MoveSpeed = (Mathf.FloorToInt(tm.currentlevel / 10) * 10 / 2);
-        } else MoveSpeed = 5;
+            if (MoveSpeed < 8)
+            {
+                MoveSpeed = 8;
+            }
+        } else MoveSpeed = 8;
 
 
         if (MoveSpeed >= 25)
