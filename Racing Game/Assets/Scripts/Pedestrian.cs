@@ -15,6 +15,11 @@ public class Pedestrian : MonoBehaviour
     [SerializeField] List<Rigidbody> bodyParts = new List<Rigidbody>();
     [HideInInspector] public bool collidedOnce = false;
     float force;
+
+    [SerializeField] float forwardForce;
+    [SerializeField] float upwardsForce;
+    [SerializeField] float sideForce;
+
     private void Start()
     {
         
@@ -76,10 +81,10 @@ public class Pedestrian : MonoBehaviour
                 Vector3 moveDir;
                 if(rightOrLeft)
                 {
-                    moveDir = other.transform.forward + (other.transform.up * 0.5f+ other.transform.right * 0.5f);
+                    moveDir = (other.transform.forward * forwardForce) + (other.transform.up * upwardsForce + other.transform.right * sideForce);
                 }else
                 {
-                    moveDir = other.transform.forward + (other.transform.up * 0.5f) + (other.transform.right * -0.5f);
+                    moveDir = (other.transform.forward * forwardForce) + (other.transform.up * upwardsForce) + (other.transform.right * -sideForce);
                 }
                 Vector3 forceDir = moveDir;
                 pelvisRB.mass = 1f;
