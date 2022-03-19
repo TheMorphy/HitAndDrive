@@ -18,6 +18,8 @@ public class CameraFollow : MonoBehaviour
     TrackManager tm;
 
     DriverFly driverFly;
+
+    LevelSystem levelSystem;
     private void Start()
     {
         camAnim = GetComponentInChildren<Animator>();
@@ -26,6 +28,8 @@ public class CameraFollow : MonoBehaviour
         driverFly = FindObjectOfType<DriverFly>();
         tm = FindObjectOfType<TrackManager>();
         currentOffset = playerOffset;
+
+        levelSystem = FindObjectOfType<LevelSystem>();
     }
 
     void Update()
@@ -49,7 +53,7 @@ public class CameraFollow : MonoBehaviour
         if(driverFly != null)
         if (driverFly.IsSpawned)
         {
-            if (tm.currentlevel < 10)
+            if (tm.currentlevel < 5)
             {
                 target = FindObjectOfType<transformDummy>().transform;
             } else 

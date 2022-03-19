@@ -10,8 +10,6 @@ public class Multiplier : MonoBehaviour
 
     movefoward mf;
 
-    public static bool hasHitOnce;
-
     private void Start()
     {
         levelSystem = FindObjectOfType<LevelSystem>();
@@ -29,12 +27,11 @@ public class Multiplier : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            hasHitOnce = true;
-            if (trackManager.currentlevel > 9)
+            if (trackManager.currentlevel > 4)
             {
                 mf = FindObjectOfType<movefoward>();
                 levelSystem.MultiplierL += 0.3f;
-                mf.MoveSpeed -= 5;
+                mf.MoveSpeed -= 2.5f;
             }
         }
     }

@@ -93,7 +93,7 @@ public class LevelSystem : MonoBehaviour
         }
         #endregion
 
-        if (HasFinished == true && /*tmScript.currentlevel < 10 && driverFly.IsBlocked == true && */Multiplier.hasHitOnce)
+        if (HasFinished == true && tmScript.currentlevel < 5 && driverFly.IsBlocked == true)
         {
             StartCoroutine(waitToFinish);
         }
@@ -117,17 +117,20 @@ public class LevelSystem : MonoBehaviour
 
     #region collisions
         private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
         {
-            HasFinished = true;
-            tmScript.currentlevel = 11;
-            carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 40;
-            steeringWheel.SetActive(false);
-            camAnim.SetBool("final", true);
-            camAnim.Play("CamFinalStageAnim");
+            if (other.CompareTag("Player"))
+            {
+                HasFinished = true;
+                if(tmScript.currentlevel < 6)
+                {
+                    tmScript.currentlevel = 6;
+                }
+                carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 40;
+                steeringWheel.SetActive(false);
+                camAnim.SetBool("final", true);
+                camAnim.Play("CamFinalStageAnim");
+            }
         }
-    }
     #endregion
 
     #region save and load level
