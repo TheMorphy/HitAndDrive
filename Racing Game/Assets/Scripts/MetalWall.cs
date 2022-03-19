@@ -19,7 +19,7 @@ public class MetalWall : MonoBehaviour
         
         if (other.gameObject.layer == 8 && !collided)
         {
-            if (TrackManager.instance.currentlevel - levelToLose < 0)
+            if (TrackManager.instance.currentlevel - levelToLose <= 0)
             {
                 //Die
                 TrackManager.instance.PlayerDie(other.transform.position);
