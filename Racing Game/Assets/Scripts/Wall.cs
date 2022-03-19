@@ -42,7 +42,7 @@ public class Wall : MonoBehaviour
 
             if (TrackManager.instance.currentlevel < levelToBreakThrough || levelToBreakThrough == 0 && !TrackManager.instance.fever && collision.GetComponent<ExplosiveBarrel>() == null)
             {
-                if (TrackManager.instance.currentlevel - levelToLose < 0)
+                if (TrackManager.instance.currentlevel - levelToLose <= 0)
                 {
                     //Die
                     AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
