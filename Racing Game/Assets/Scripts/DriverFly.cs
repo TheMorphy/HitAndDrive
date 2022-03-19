@@ -33,12 +33,12 @@ public class DriverFly : MonoBehaviour
             {
                 IsSpawned = true;
                 IsBlocked = true;
-                if (tm.currentlevel > 9)
+                WallsToBreak = Mathf.FloorToInt(tm.currentlevel / 10);
+                if (WallsToBreak < 1)
                 {
-                    WallsToBreak = Mathf.FloorToInt(tm.currentlevel / 10);
-                    print(WallsToBreak);
-                    Instantiate(prefab, transform.position, Quaternion.identity);
+                    WallsToBreak = 1;
                 }
+                Instantiate(prefab, transform.position, Quaternion.identity);
             }
         }
     }

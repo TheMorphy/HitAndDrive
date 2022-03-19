@@ -20,7 +20,7 @@ public class transformDummy : MonoBehaviour
     {
         transform.position = MoveFoward.transform.position;
 
-        if(tm.currentlevel < 10)
+        if(tm.currentlevel < 10 && Multiplier.hasHitOnce == true)
         {
            gameObject.GetComponent<transformDummy>().enabled = false;
         }

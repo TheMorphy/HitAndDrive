@@ -51,7 +51,7 @@ public class pivot : MonoBehaviour
         {
             if (c.index == index)
             {
-                print(c.newCarModel.name);
+                //print(c.newCarModel.name);
                 c.newCarModel.SetActive(true);
                 carCollider.SetFloat("car", index);
             }              

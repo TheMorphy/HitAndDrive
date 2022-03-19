@@ -23,9 +23,11 @@ public class Wall : MonoBehaviour
     bool carCollided = false;
 
     [SerializeField] float rbVelocityToBreak;
+
+    LevelSystem levelSystem;
     private void Start()
     {
-        
+        levelSystem = FindObjectOfType<LevelSystem>();
     }
 
     public void callCarCrash(Collider collision)
@@ -36,7 +38,7 @@ public class Wall : MonoBehaviour
     }
     public void Collide(Collider collision)
     {
-        if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided)
+        if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided && levelSystem.HasFinished == false)
         {
             carCollided = true;
 
@@ -74,7 +76,7 @@ public class Wall : MonoBehaviour
             
         }
         else
-            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > rbVelocityToBreak) && !carCollided)
+            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > rbVelocityToBreak) && !carCollided && levelSystem.HasFinished == false)
             {
             foreach (GameObject g in parts)
             {
@@ -116,7 +118,6 @@ public class Wall : MonoBehaviour
 
                     //rb.isKinematic = false;
                     rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, collision.transform.position, 7);
-
                 }
             }
         }

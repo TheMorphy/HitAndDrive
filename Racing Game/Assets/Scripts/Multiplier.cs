@@ -10,21 +10,32 @@ public class Multiplier : MonoBehaviour
 
     movefoward mf;
 
+    public static bool hasHitOnce;
+
     private void Start()
     {
         levelSystem = FindObjectOfType<LevelSystem>();
         trackManager = FindObjectOfType<TrackManager>();
         driverFly = FindObjectOfType<DriverFly>();
 
-        levelSystem.Multiplier = 0.7f;
+        levelSystem.MultiplierL = 0.7f;
+    }
+
+    private void Update()
+    {
+        //print(hasHitOnce);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && trackManager.currentlevel > 9)
+        if (other.CompareTag("Player"))
         {
-            mf = FindObjectOfType<movefoward>();
-            levelSystem.Multiplier += 0.3f;
-            mf.MoveSpeed -= 5;
+            hasHitOnce = true;
+            if (trackManager.currentlevel > 9)
+            {
+                mf = FindObjectOfType<movefoward>();
+                levelSystem.MultiplierL += 0.3f;
+                mf.MoveSpeed -= 5;
+            }
         }
     }
 }

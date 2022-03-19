@@ -15,7 +15,7 @@ public class LevelSystem : MonoBehaviour
     #region private
     bool hasFinished, isMiddle;
     int levelNumb, savedScene, money, moneyInOneRound;
-    public float multiplier;
+    public float mp;
     string activeScene;
     CarController carScript;
     TrackManager tmScript;
@@ -31,7 +31,7 @@ public class LevelSystem : MonoBehaviour
     public string ActiveScene { get => activeScene; set => activeScene = value; }
     public int Money { get => money; set => money = value; }
     public int MoneyInOneRound { get => moneyInOneRound; set => moneyInOneRound = value; }
-    public float Multiplier { get => multiplier; set => multiplier = value; }
+    public float MultiplierL { get => mp; set => mp = value; }
     public bool HasFinished { get => hasFinished; set => hasFinished = value; }
     #endregion
 
@@ -51,15 +51,12 @@ public class LevelSystem : MonoBehaviour
         money = PlayerPrefs.GetInt("Money");
         if (levelNumber != null)
         {
-            
-
             LevelNumb = SceneManager.GetActiveScene().buildIndex;
 
             levelNumber.text = "Level " + (LevelNumb + 1).ToString();
 
             UpdateMoney();
         }
-            
     }
 
     void Update()
@@ -96,10 +93,12 @@ public class LevelSystem : MonoBehaviour
         }
         #endregion
 
-        if (HasFinished == true && tmScript.currentlevel < 10 && driverFly.IsBlocked == true)
+        if (HasFinished == true && /*tmScript.currentlevel < 10 && driverFly.IsBlocked == true && */Multiplier.hasHitOnce)
         {
             StartCoroutine(waitToFinish);
         }
+
+        print(hasFinished);
     }
 
     private IEnumerator WaitAndPrint(float waitTime)
@@ -110,7 +109,7 @@ public class LevelSystem : MonoBehaviour
             levelUI.SetActive(false);
             yield return new WaitForSeconds(waitTime);
             finishLevel.SetActive(true);
-            moneyInOneRound = Mathf.RoundToInt(multiplier * moneyInOneRound);
+            moneyInOneRound = Mathf.RoundToInt(mp * moneyInOneRound);
             moneyNumberFinal.text = "+ " + moneyInOneRound.ToString();
             SaveLevel();
         }
@@ -122,6 +121,7 @@ public class LevelSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HasFinished = true;
+            tmScript.currentlevel = 11;
             carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 40;
             steeringWheel.SetActive(false);
             camAnim.SetBool("final", true);

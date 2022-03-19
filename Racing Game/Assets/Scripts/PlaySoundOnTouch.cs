@@ -80,7 +80,7 @@ public class PlaySoundOnTouch : MonoBehaviour
                     soundName = wall.partContactSoundHeavy;
 
 
-                print(soundName);
+                //print(soundName);
                 AudioManager.instance.PlaceSound(soundName, collision.GetContact(0).point, null, 1, costomVolume);
                 break;
         }

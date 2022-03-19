@@ -13,11 +13,17 @@ public class MetalWall : MonoBehaviour
     bool collided = false;
     [SerializeField] GameObject notDestructed, destructed;
 
+    LevelSystem levelSystem;
+
+    private void Start()
+    {
+        levelSystem = FindObjectOfType<LevelSystem>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.gameObject.layer == 8 && !collided)
+        if (other.gameObject.layer == 8 && !collided && levelSystem.HasFinished == false)
         {
             if (TrackManager.instance.currentlevel - levelToLose <= 0)
             {

@@ -17,7 +17,11 @@ public class movefoward : MonoBehaviour
     {
         tm = FindObjectOfType<TrackManager>();
 
-        MoveSpeed = (Mathf.FloorToInt(tm.currentlevel / 10) * 10 / 2);
+        if(tm.currentlevel > 9)
+        {
+            MoveSpeed = (Mathf.FloorToInt(tm.currentlevel / 10) * 10 / 2);
+        } else MoveSpeed = 5;
+
 
         if (MoveSpeed >= 25)
         {

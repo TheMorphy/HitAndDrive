@@ -133,7 +133,7 @@ public class CarController : MonoBehaviour
                     case carType.MotorCycle:
                         float raw = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
                         motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.2f);
-                        print(motorCycleyRotation);
+                        //print(motorCycleyRotation);
                         if(!isleaning)
                         {
                             motorCycleLean = motorCycleyRotation;

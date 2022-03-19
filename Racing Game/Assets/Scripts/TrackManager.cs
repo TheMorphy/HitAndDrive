@@ -74,6 +74,8 @@ public class TrackManager : MonoBehaviour
 
     [SerializeField] CarDestroy carDestroy;
 
+    LevelSystem levelSystem;
+
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
     Color c = new Color(1, 1, 1, 1);
@@ -100,6 +102,8 @@ public class TrackManager : MonoBehaviour
 
         lvlText.text = "Lv." + currentlevel.ToString();
         changeLevel(0, "", false, false);
+
+        levelSystem = FindObjectOfType<LevelSystem>();
         //car.GetComponent<pivot>().ChangeToModel(getCurrentCarLevel().index);
     }
     public void changeLevel(int lvl, string prefix = "+", bool isRed = false, bool showText = true)
@@ -334,23 +338,26 @@ public class TrackManager : MonoBehaviour
 
     public void PlayerDie(Vector3 explosionPosition)
     {
-        if(explosionPosition == Vector3.zero)
+        if (levelSystem.HasFinished == false)
         {
-            explosionPosition = car.position;
-        }
+            if (explosionPosition == Vector3.zero)
+            {
+                explosionPosition = car.position;
+            }
 
-        gameOverScreen.SetActive(true);
-        AudioManager.instance.Play("Fail");
-        Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
-        foreach(Rigidbody r in getCurrentCarLevel().newCarModel.GetComponentsInChildren<Rigidbody>())
-        {
-            r.isKinematic = false;
-            r.GetComponent<Collider>().isTrigger = false;
-            
+            gameOverScreen.SetActive(true);
+            AudioManager.instance.Play("Fail");
+            Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
+            foreach (Rigidbody r in getCurrentCarLevel().newCarModel.GetComponentsInChildren<Rigidbody>())
+            {
+                r.isKinematic = false;
+                r.GetComponent<Collider>().isTrigger = false;
+
+            }
+            car.parent.GetComponent<CarController>().enabled = false;
+            //Destroy(car.parent.gameObject);
+            lost = true;
         }
-        car.parent.GetComponent<CarController>().enabled = false;
-        //Destroy(car.parent.gameObject);
-        lost = true;
     }
 
     // Update is called once per frame
