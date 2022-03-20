@@ -64125,7 +64125,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1574370285}
   - component: {fileID: 1574370284}
-  - component: {fileID: 1574370283}
   - component: {fileID: 1574370282}
   m_Layer: 0
   m_Name: LevelManager
@@ -64147,20 +64146,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.687914, y: 1.521546, z: 1}
   m_Center: {x: 0.056339264, y: 0.26077324, z: 0}
---- !u!114 &1574370283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574370281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b284dda830b3448b4d6b77bf898165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  car: {fileID: 1976940371}
-  newGameLevel: Level1
 --- !u!114 &1574370284
 MonoBehaviour:
   m_ObjectHideFlags: 0
