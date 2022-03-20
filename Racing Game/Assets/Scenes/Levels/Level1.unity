@@ -54208,7 +54208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548720881621332230, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
       propertyPath: isUsingTouchControl
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3548720881621332230, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
       propertyPath: isUsingSteeringWheel
