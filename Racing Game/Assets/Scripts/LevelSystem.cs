@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelSystem : MonoBehaviour
 {
     #region public
-    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel, leftPosition, rightPosition;
+    [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel, touchMovement,leftPosition, rightPosition;
     [SerializeField] Text levelNumber; 
     [SerializeField] int numberOfLevels;
     #endregion
@@ -57,6 +57,10 @@ public class LevelSystem : MonoBehaviour
 
             UpdateMoney();
         }
+
+
+        if (carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
+        if (carScript.IsUsingTouchControl) touchMovement.SetActive(true);
     }
 
     void Update()
@@ -65,14 +69,14 @@ public class LevelSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             startGameUI.SetActive(false);
-            if(carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
+            if (carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
+            if (carScript.IsUsingTouchControl) touchMovement.SetActive(true);
             carScript.startSpeed = 27;
         }
 
         if (Input.touchCount > 0)
         {
             startGameUI.SetActive(false);
-            if (carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
             carScript.startSpeed = 27;
         }
 
@@ -97,8 +101,6 @@ public class LevelSystem : MonoBehaviour
         {
             StartCoroutine(waitToFinish);
         }
-
-        print(hasFinished);
     }
 
     private IEnumerator WaitAndPrint(float waitTime)

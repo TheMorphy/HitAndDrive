@@ -32,6 +32,11 @@ public class Multiplier : MonoBehaviour
                 mf = FindObjectOfType<movefoward>();
                 levelSystem.MultiplierL += 0.3f;
                 mf.MoveSpeed -= 2.5f;
+                //Fix Level 5 bug
+                if (trackManager.currentlevel == 5)
+                {
+                    trackManager.currentlevel = 6;
+                }
             }
         }
     }

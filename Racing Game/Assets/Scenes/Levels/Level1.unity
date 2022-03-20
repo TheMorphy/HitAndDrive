@@ -10682,6 +10682,7 @@ MonoBehaviour:
   currentCarType: 0
   motorBike: {fileID: 5165243715559405845}
   isUsingSteeringWheel: 1
+  isUsingTouchControl: 0
   carRB: {fileID: 1801321136}
   sphereRB: {fileID: 1324305094}
   startSpeed: 0
@@ -30469,6 +30470,7 @@ MonoBehaviour:
   startGameUI: {fileID: 1770661889}
   motor: {fileID: 888057902}
   steeringWheel: {fileID: 432569485}
+  touchMovement: {fileID: 2089477199}
   leftPosition: {fileID: 1619913742}
   rightPosition: {fileID: 1338408632}
   levelNumber: {fileID: 584460968}
@@ -30499,7 +30501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b284dda830b3448b4d6b77bf898165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 390552506}
   newGameLevel: Level1
 --- !u!1 &921179283
 GameObject:
@@ -54206,6 +54207,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3548720881621332230, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
+      propertyPath: isUsingTouchControl
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548720881621332230, guid: 658e8e8210b80bb4daa3d3e0af5a51c3, type: 3}
       propertyPath: isUsingSteeringWheel
       value: 0
       objectReference: {fileID: 0}
@@ -61239,7 +61244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224650763690852736, guid: 5fe76d8874b5ab349a260c69ea0dece9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 201
+      value: 429
       objectReference: {fileID: 0}
     - target: {fileID: 224650763690852736, guid: 5fe76d8874b5ab349a260c69ea0dece9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -65768,7 +65773,7 @@ MonoBehaviour:
     value: 0
   invertHorizontal: 0
   invertVertical: 0
-  sensitivity: 2
+  sensitivity: 1
 --- !u!114 &2089477203
 MonoBehaviour:
   m_ObjectHideFlags: 0

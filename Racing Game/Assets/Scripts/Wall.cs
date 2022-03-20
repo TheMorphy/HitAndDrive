@@ -42,7 +42,7 @@ public class Wall : MonoBehaviour
     }
     public void Collide(Collider collision)
     {
-        if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided && levelSystem.HasFinished == false)
+        if(collision.gameObject.layer == 8 && !carCollided || collision.GetComponent<ExplosiveBarrel>() != null && !carCollided)
         {
             carCollided = true;
 
@@ -85,7 +85,7 @@ public class Wall : MonoBehaviour
             
         }
         else
-            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > rbVelocityToBreak) && !carCollided && levelSystem.HasFinished == false)
+            if((collision.gameObject.layer == 9 || collision.gameObject.layer == 14 && collision.attachedRigidbody.velocity.magnitude > rbVelocityToBreak) && !carCollided)
             {
             foreach (GameObject g in parts)
             {

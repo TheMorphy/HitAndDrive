@@ -9,7 +9,7 @@ public class CarController : MonoBehaviour
     [SerializeField] GameObject motorBike;
     bool isleaning;
 
-    [SerializeField] bool isUsingSteeringWheel;
+    [SerializeField] bool isUsingSteeringWheel, isUsingTouchControl;
 
     [SerializeField] Rigidbody carRB;
     [SerializeField] public Rigidbody sphereRB;
@@ -50,6 +50,7 @@ public class CarController : MonoBehaviour
     public float XStartingPosition { get => xStartingPosition; set => xStartingPosition = value; }
     public float TurnSpeed { get => turnSpeed; set => turnSpeed = value; }
     public bool IsUsingSteeringWheel { get => isUsingSteeringWheel; set => isUsingSteeringWheel = value; }
+    public bool IsUsingTouchControl { get => isUsingTouchControl; set => isUsingTouchControl = value; }
 
     void Start()
     {
@@ -104,7 +105,8 @@ public class CarController : MonoBehaviour
 
         forcedRotation = transform.position.x - TrackManager.instance.transform.position.x;
 
-        if (!IsUsingSteeringWheel)
+        #region keyboard controls
+        if (!IsUsingSteeringWheel && !IsUsingTouchControl)
         {
             // Get Input
             turnInput = Input.GetAxisRaw("Horizontal");
@@ -153,29 +155,37 @@ public class CarController : MonoBehaviour
                 }
             }
         }
+        #endregion
 
-        if (IsUsingSteeringWheel)
+        #region steering wheel controls and Touch Controls
+        if (IsUsingSteeringWheel || IsUsingTouchControl)
         {
             inputHorizontal = SimpleInput.GetAxis(horizontalAxis);
 
             // Calculate Turning Rotation With Steering Wheel
-            float newRot = inputHorizontal * TurnSpeed * Time.deltaTime;
+            //float newRot = inputHorizontal * TurnSpeed * Time.deltaTime;
 
+            if (levelSystem.HasFinished == false)
+            {
+                float raw = inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11;
+                yRotation = Mathf.Lerp(yRotation, raw, 0.1f);
+            }
+            else
+            {
+                float raw = Mathf.Clamp(Mathf.Clamp(-forcedRotation / 2, -1, 1) * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                yRotation = Mathf.Lerp(yRotation, raw, 0.5f);
+            }
             if (isCarGrounded)
             {
 
                 switch (currentCarType)
                 {
-                    /*if (isCarGrounded)
-                    transform.Rotate(0, newRot, 0, Space.World);*/
-
                     case carType.Car:
                         //motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, Input.GetAxisRaw("Horizontal"), 0.15f);
                         break;
                     case carType.MotorCycle:
-                        float raw = inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11;
-                        motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.1f);
-                        print(isleaning);
+                        float raw = Mathf.Clamp(inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                        motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.2f);
                         if (!isleaning)
                         {
                             motorCycleLean = motorCycleyRotation;
@@ -187,18 +197,8 @@ public class CarController : MonoBehaviour
                         break;
                 }
             }
-
-            //SteeringWheelInputs
-            if (levelSystem.HasFinished == false)
-            {
-                yRotation = Mathf.Clamp(yRotation + inputHorizontal * TurnSpeed * Time.deltaTime, -30, 30);
-            }
-            else
-            {
-                yRotation = Mathf.Clamp((yRotation + forcedRotation) * TurnSpeed * Time.deltaTime, -30, 30);
-                Debug.Log(forcedRotation);
-            }
         }
+        #endregion
 
         if (currentCarType == carType.Car)
         {
@@ -210,7 +210,6 @@ public class CarController : MonoBehaviour
             transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
             motorBike.transform.localEulerAngles = new Vector3(0.0f, 0, -yRotation * 1.5f);
         }
-
 
         if (isCarGrounded)
             sphereRB.AddForce(transform.forward * speed, ForceMode.Acceleration); // Add Movement
