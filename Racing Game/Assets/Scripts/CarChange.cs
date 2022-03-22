@@ -13,4 +13,5 @@ public class CarChange
     public MeshRenderer mainMatMeshRenderer;
     public int materialIndex;
     public CarController.carType type;
+    public Vector3 collider1Center, collider1Size, collider2Center, collider2Size;
 }
