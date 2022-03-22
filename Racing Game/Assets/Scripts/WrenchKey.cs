@@ -9,6 +9,7 @@ public class WrenchKey : MonoBehaviour
     [SerializeField]
     int levelToAdd = 1;
     bool collected = false;
+    [SerializeField] ParticleSystem collectParticle;
 
     void Collect()
     {
@@ -19,6 +20,9 @@ public class WrenchKey : MonoBehaviour
             TrackManager.instance.changeLevel(levelToAdd);
             collected = true;
             FindObjectOfType<AudioManager>().Play("Collect");
+            ParticleSystem collect = Instantiate(collectParticle, transform.position, Quaternion.identity);
+            collect.Play();
+            StartCoroutine(DestroyParticle(collect));
         }
     }
 
@@ -33,5 +37,12 @@ public class WrenchKey : MonoBehaviour
     public void endCollect()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator DestroyParticle(ParticleSystem particle)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        Destroy(particle);
     }
 }

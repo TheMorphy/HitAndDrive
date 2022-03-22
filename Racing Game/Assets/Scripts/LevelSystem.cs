@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelSystem : MonoBehaviour
 {
     #region public
     [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel, touchMovement,leftPosition, rightPosition;
-    [SerializeField] Text levelNumber; 
+    [SerializeField] TextMeshProUGUI levelNumber; 
     [SerializeField] int numberOfLevels;
     #endregion
 
@@ -20,7 +21,8 @@ public class LevelSystem : MonoBehaviour
     CarController carScript;
     TrackManager tmScript;
     DriverFly driverFly;
-    Text moneyNumber, moneyNumberFinal;
+    TextMeshProUGUI moneyNumber;
+    Text moneyNumberFinal;
     private IEnumerator waitToFinish;
     Animator camAnim;
     #endregion
@@ -40,7 +42,7 @@ public class LevelSystem : MonoBehaviour
         waitToFinish = WaitAndPrint(1.0f);
 
         carScript = FindObjectOfType<CarController>();
-        moneyNumber = moneyUI.GetComponent<Text>();
+        moneyNumber = moneyUI.GetComponent<TextMeshProUGUI>();
         moneyNumberFinal = moneyUIFinal.GetComponent<Text>();
         tmScript = trackManager.GetComponent<TrackManager>();
         camAnim = cam.GetComponent<Animator>();
@@ -72,6 +74,7 @@ public class LevelSystem : MonoBehaviour
             if (carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
             if (carScript.IsUsingTouchControl) touchMovement.SetActive(true);
             carScript.startSpeed = 27;
+            levelNumber.enabled = true;
         }
 
         if (Input.touchCount > 0)

@@ -7,6 +7,7 @@ public class Money : MonoBehaviour
 
     [SerializeField] GameObject levelGameobject;
     LevelSystem levelScript;
+    [SerializeField] ParticleSystem moneyCollectParticle;
 
     private void Start()
     {
@@ -22,6 +23,16 @@ public class Money : MonoBehaviour
             levelScript.UpdateMoney();
             Destroy(gameObject);
             FindObjectOfType<AudioManager>().Play("Collect");
+            ParticleSystem moneyCollect = Instantiate(moneyCollectParticle, transform.position, Quaternion.identity);
+            moneyCollect.Play();
+            StartCoroutine(DestroyParticle(moneyCollect));
         }
+    }
+
+    IEnumerator DestroyParticle(ParticleSystem particle)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        Destroy(particle);
     }
 }

@@ -44,5 +44,10 @@ public class movefoward : MonoBehaviour
         {
             moveSpeed = 2;
         }
+
+        if (moveSpeed <= 8)
+        {
+            moveSpeed = 8;
+        }
     }
 }

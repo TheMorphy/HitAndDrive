@@ -161,3 +161,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5610173455126197199}
   levelToAdd: 1
+  collectParticle: {fileID: 7110599101217098018, guid: 825fb0ca377271f41983d35a238ec1d8, type: 3}
