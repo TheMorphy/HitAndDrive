@@ -130,7 +130,7 @@ public class LevelSystem : MonoBehaviour
                 {
                     tmScript.currentlevel = 6;
                 }
-                carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 30;
+                carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 40;
                 steeringWheel.SetActive(false);
                 camAnim.SetBool("final", true);
                 camAnim.Play("CamFinalStageAnim");

@@ -14,10 +14,7 @@ public class pivot : MonoBehaviour
     [SerializeField]
     Transform canvas;
     [SerializeField]
-    Transform carCollider;
-    Vector3 v1, v2, v3, v4;
-    [SerializeField]
-    float smoothingCollider = 0.2f;
+    Animator carCollider;
     // Start is called before the first frame update
     public void CanvasToPos()
     {
@@ -56,21 +53,11 @@ public class pivot : MonoBehaviour
             {
                 //print(c.newCarModel.name);
                 c.newCarModel.SetActive(true);
-                v1 = c.collider1Center;
-                v2 = c.collider1Size;
-                v3 = c.collider2Center;
-                v4 = c.collider2Size;
+                carCollider.SetFloat("car", index);
             }              
             else
                 c.newCarModel.SetActive(false);
         }
-    }
-    private void LateUpdate()
-    {
-        carCollider.GetComponent<BoxCollider>().center = Vector3.Lerp(carCollider.GetComponent<BoxCollider>().center, v1, smoothingCollider);
-        carCollider.GetComponent<BoxCollider>().size = Vector3.Lerp(carCollider.GetComponent<BoxCollider>().size, v2, smoothingCollider);
-        carCollider.transform.GetChild(0).GetComponent<BoxCollider>().center = Vector3.Lerp(carCollider.transform.GetChild(0).GetComponent<BoxCollider>().center, v3, smoothingCollider);
-        carCollider.transform.GetChild(0).GetComponent<BoxCollider>().size = Vector3.Lerp(carCollider.transform.GetChild(0).GetComponent<BoxCollider>().size, v4, smoothingCollider);
     }
 
     public void changeFromFever()
