@@ -43,7 +43,7 @@ public class PlaySoundOnTouch : MonoBehaviour
     }
     public void getHittedbyExplosion(Collider collision)
     {
-        print("dadasdaDSdsd");
+        //print("dadasdaDSdsd");
         wall.callCarCrash(collision);
         rb = GetComponent<Rigidbody>();
         rb.AddForceAtPosition((transform.position - collision.transform.position).normalized * 24, collision.transform.position, ForceMode.Force);

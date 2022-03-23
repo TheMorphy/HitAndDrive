@@ -8,21 +8,50 @@ public class transformDummy : MonoBehaviour
 
     TrackManager tm;
 
+    [SerializeField]
+    List<Rigidbody> limbs;
+    Coroutine waitAFrame;
+    bool stop = false;
+
     // Start is called before the first frame update
     void Start()
     {
         MoveFoward = FindObjectOfType<movefoward>();
-        tm = FindObjectOfType<TrackManager>();
+        tm = TrackManager.instance;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        transform.position = MoveFoward.transform.position;
+        
 
-        if(tm.currentlevel < 5)
+        if(tm.currentlevel < 5 && waitAFrame == null)  
         {
-           gameObject.GetComponent<transformDummy>().enabled = false;
+            waitAFrame = StartCoroutine(WaitOneFrame());
         }
+        if (!stop)
+        {
+            transform.position = MoveFoward.transform.position;
+        }
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (tm.currentlevel < 5)
+        {
+            foreach (Rigidbody r in limbs)
+            {
+                r.mass = 1;
+                r.drag = 4;
+            }
+            enabled = false;
+        }
+    }
+
+    IEnumerator WaitOneFrame()
+    {
+        yield return null;
+        stop = true;
     }
 }

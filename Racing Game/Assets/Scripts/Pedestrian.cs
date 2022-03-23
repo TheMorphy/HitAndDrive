@@ -62,7 +62,7 @@ public class Pedestrian : MonoBehaviour
             rb = GetComponent<Rigidbody>();
 
             animator.enabled = false;
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
             foreach (Rigidbody r in bodyParts)
             {
                 r.isKinematic = false;
@@ -92,7 +92,8 @@ public class Pedestrian : MonoBehaviour
                 
                 collidedOnce = true;
 
-                Destroy(gameObject, 5);
+                Destroy(gameObject, 10);
+                enabled = false;
             }
 
             //StartCoroutine(DestroySelf());

@@ -49,8 +49,20 @@ public class ExplosiveBarrel : MonoBehaviour
                 //c.attachedRigidbody.AddExplosionForce(force, transform.position, range);
                 //print(c.name);
             }
+            else if(c.GetComponent<PlaySoundOnTouch>() != null)
+            {
+                try
+                {
+                    c.SendMessage("getHittedbyExplosion", GetComponent<Collider>());
+                }
+                catch (System.Exception e)
+                {
+                    print(e);
+
+                }
+            }
+           
             
-            c.SendMessage("getHittedbyExplosion", GetComponent<Collider>());
 
            // GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, range);
         }
@@ -67,7 +79,7 @@ public class ExplosiveBarrel : MonoBehaviour
         {
             Explode();
         }
-        else if(collision.gameObject.layer == 9 || collision.gameObject.layer == 14)
+        else if(collision.gameObject.layer == 9)
         {
             if (collision.rigidbody.velocity.magnitude > 4)
             {
