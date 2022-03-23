@@ -11,6 +11,7 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] GameObject finishLevel, levelUI, car, cam, moneyUI, moneyUIFinal, trackManager, startGameUI, motor, steeringWheel, touchMovement,leftPosition, rightPosition;
     [SerializeField] TextMeshProUGUI levelNumber; 
     [SerializeField] int numberOfLevels;
+    [SerializeField] bool is4ad;
     #endregion
 
     #region private
@@ -132,8 +133,18 @@ public class LevelSystem : MonoBehaviour
                 }
                 carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 30;
                 steeringWheel.SetActive(false);
-                camAnim.SetBool("final", true);
-                camAnim.Play("CamFinalStageAnim");
+
+                if (is4ad)
+                {
+                    //4th Add camera Position, comment if needed
+                    camAnim.SetBool("final", true);
+                    camAnim.Play("newFinalStageAnim");
+                }
+                else 
+                {
+                    camAnim.SetBool("final", true); 
+                    camAnim.Play("CamFinalStageAnim");
+                }
             }
         }
     #endregion
