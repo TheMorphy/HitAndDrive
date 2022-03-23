@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GradientGreen
+  m_Name: GradientBlueWhite
   m_Shader: {fileID: 4800000, guid: 026432306b3529d47b36ec5792fc4dc4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -87,11 +87,11 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Exponent: 1.81
+    - _Exponent: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Intensity: 0.9
+    - _Intensity: 1.77
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -102,18 +102,18 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _UpVectorPitch: 0
-    - _UpVectorYaw: 0
+    - _UpVectorPitch: 24
+    - _UpVectorYaw: -13
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.77647066, g: 0.93725497, b: 0.5764706, a: 0}
-    - _Color2: {r: 0, g: 1, b: 0.99999976, a: 0}
+    - _Color1: {r: 0.631, g: 0.30780488, b: 0, a: 0}
+    - _Color2: {r: 1, g: 0.7803922, b: 0.21176472, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _UpVector: {r: 0, g: -0.74, b: 0.39, a: 0}
+    - _UpVector: {r: 0, g: -0.91, b: 0.35, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8241333135781005768
 MonoBehaviour:
