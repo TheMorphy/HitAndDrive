@@ -34,6 +34,7 @@ public class movefoward : MonoBehaviour
         }
 
         Instantiate(dummy, transform.position, Quaternion.identity);
+        tm.car.parent.GetComponent<CarController>().sphereRB.GetComponent<AudioSource>().mute = true;
     }
 
     void Update()
