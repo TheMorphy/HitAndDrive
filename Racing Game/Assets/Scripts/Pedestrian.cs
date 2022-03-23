@@ -22,9 +22,10 @@ public class Pedestrian : MonoBehaviour
 
     private void Start()
     {
-        
 
-        if(pelvisRB == null)
+        rb = GetComponent<Rigidbody>();
+
+        if (pelvisRB == null)
         {
             pelvisRB = this.GetComponent<Rigidbody>();
         }
@@ -58,8 +59,8 @@ public class Pedestrian : MonoBehaviour
             {
                 canvas.GetComponent<Canvas>().enabled = false;
             }
-
-            rb = GetComponent<Rigidbody>();
+            pelvisRB.isKinematic = false;
+            
 
             animator.enabled = false;
             //rb.isKinematic = false;
