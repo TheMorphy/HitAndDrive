@@ -42,8 +42,8 @@ public class transformDummy : MonoBehaviour
         {
             foreach (Rigidbody r in limbs)
             {
-                r.mass = 1;
-                r.drag = 4;
+                r.mass = 0.5f;
+                r.drag = 0.5f;
             }
             enabled = false;
         }
