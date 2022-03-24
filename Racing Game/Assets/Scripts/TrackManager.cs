@@ -308,6 +308,10 @@ public class TrackManager : MonoBehaviour
     private void LateUpdate()
     {
         //print(getCurrentCarLevel().newCarModel.name);
+        if(!gameObject.activeSelf)
+        {
+            StopAllCoroutines();
+        }
     }
 
     public CarChange getCurrentCarLevel(int offset = 0)
@@ -374,14 +378,9 @@ public class TrackManager : MonoBehaviour
             return;
         }
         //print(fever);
-        int posi = racers.Count;
-        racers.Sort(SortByPos);
-        foreach(PositionInRace p in racers)
-        {
-            //print(p.name);
-            p.position = posi;
-            posi--;
-        }
+        
+        
+        
         if(killValue >= levelLongness && !fever)
         {
             feverBurnTime = killValue;
@@ -446,12 +445,5 @@ public class TrackManager : MonoBehaviour
         }
     }
 
-    static int SortByPos(PositionInRace r1, PositionInRace r2)
-    {
-        if(r1.realLineIndex.CompareTo(r2.realLineIndex) == 0)
-        {
-            return r1.remainingDistance.CompareTo(r2.remainingDistance) * -1;
-        }
-        return r1.realLineIndex.CompareTo(r2.realLineIndex);
-    }
+    
 }

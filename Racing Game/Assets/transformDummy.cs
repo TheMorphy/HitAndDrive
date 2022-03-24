@@ -53,5 +53,7 @@ public class transformDummy : MonoBehaviour
     {
         yield return null;
         stop = true;
+
+        yield break;
     }
 }

@@ -65,45 +65,28 @@ public class CarController : MonoBehaviour
         levelSystem = levelManager.GetComponent<LevelSystem>();
 
         XStartingPosition = transform.position.x;
-        StartCoroutine(leaningCheck());
+        
     }
 
-    IEnumerator leaningCheck()
-    {
-        while (gameObject.activeSelf)
-        {
-            float yrot1 = yRotation;
-            float yrot2 = yRotation;
-            isleaning = yrot1 != yrot2;
-            yield return null;
-        }
-    }
+    
 
     void Update()
     {
+        if (Mathf.Abs(forcedRotation) < 0.2f)
+        {
+            forcedRotation = 0;
+        }
         // Set Cars Position to Our Sphere
         transform.position = sphereRB.transform.position;
 
         // Raycast to the ground and get normal to align car with it.
-        RaycastHit hit;
-        isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 0.5f, groundLayer);
+        
 
         // Rotate Car to align with ground
-        Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.deltaTime);
+        
 
         // Calculate Drag
         sphereRB.drag = isCarGrounded ? normalDrag : modifiedDrag;
-    }
-
-    private void FixedUpdate()
-    {
-        if(Mathf.Abs(forcedRotation) < 0.2f)
-        {
-            forcedRotation = 0;
-        }
-
-        forcedRotation = transform.position.x - TrackManager.instance.transform.position.x;
 
         #region keyboard controls
         if (!IsUsingSteeringWheel && !IsUsingTouchControl)
@@ -116,12 +99,12 @@ public class CarController : MonoBehaviour
 
             if (levelSystem.HasFinished == false)
             {
-                float raw = Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11;
+                float raw = Input.GetAxisRaw("Horizontal") * turnSpeed * Time.deltaTime * 11;
                 yRotation = Mathf.Lerp(yRotation, raw, 0.1f);
             }
             else
             {
-                float raw = Mathf.Clamp(Mathf.Clamp(-forcedRotation/2,-1, 1) * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                float raw = Mathf.Clamp(Mathf.Clamp(-forcedRotation / 2, -1, 1) * turnSpeed * Time.deltaTime * 11, -30, 30);
                 yRotation = Mathf.Lerp(yRotation, raw, 0.5f);
             }
             if (isCarGrounded)
@@ -133,10 +116,10 @@ public class CarController : MonoBehaviour
                         //motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, Input.GetAxisRaw("Horizontal"), 0.15f);
                         break;
                     case carType.MotorCycle:
-                        float raw = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                        float raw = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * turnSpeed * Time.deltaTime * 11, -30, 30);
                         motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.2f);
                         //print(motorCycleyRotation);
-                        if(!isleaning)
+                        if (!isleaning)
                         {
                             motorCycleLean = motorCycleyRotation;
                         }
@@ -144,7 +127,7 @@ public class CarController : MonoBehaviour
                         {
                             motorCycleLean = Mathf.SmoothStep(motorCycleLean, 0, 0.1f);
                         }
-                        
+
                         //motorCycleTemp = Mathf.Lerp(motorCycleTemp, raw, 0.5f);
                         //print(Mathf.Abs(motorCycleTemp - raw));
                         //if(motorCycle is turning)
@@ -167,12 +150,12 @@ public class CarController : MonoBehaviour
 
             if (levelSystem.HasFinished == false)
             {
-                float raw = inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11;
+                float raw = inputHorizontal * turnSpeed * Time.deltaTime * 11;
                 yRotation = Mathf.Lerp(yRotation, raw, 0.1f);
             }
             else
             {
-                float raw = Mathf.Clamp(Mathf.Clamp(-forcedRotation / 2, -1, 1) * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                float raw = Mathf.Clamp(Mathf.Clamp(-forcedRotation / 2, -1, 1) * turnSpeed * Time.deltaTime * 11, -30, 30);
                 yRotation = Mathf.Lerp(yRotation, raw, 0.5f);
             }
             if (isCarGrounded)
@@ -184,7 +167,7 @@ public class CarController : MonoBehaviour
                         //motorCycleyRotation = Mathf.Lerp(motorCycleyRotation, Input.GetAxisRaw("Horizontal"), 0.15f);
                         break;
                     case carType.MotorCycle:
-                        float raw = Mathf.Clamp(inputHorizontal * turnSpeed * Time.fixedDeltaTime * 11, -30, 30);
+                        float raw = Mathf.Clamp(inputHorizontal * turnSpeed * Time.deltaTime * 11, -30, 30);
                         motorCycleyRotation = Mathf.SmoothStep(motorCycleyRotation, raw, 0.2f);
                         if (!isleaning)
                         {
@@ -204,12 +187,21 @@ public class CarController : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
             motorBike.transform.localEulerAngles = Vector3.zero;
-        }          
+        }
         else
         {
             transform.eulerAngles = new Vector3(0.0f, yRotation, 0);
             motorBike.transform.localEulerAngles = new Vector3(0.0f, 0, -yRotation * 1.5f);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+        isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 0.5f, groundLayer);
+        Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.fixedDeltaTime);
+        forcedRotation = transform.position.x - TrackManager.instance.transform.position.x;
 
         if (isCarGrounded)
             sphereRB.AddForce(transform.forward * speed, ForceMode.Acceleration); // Add Movement
@@ -219,14 +211,5 @@ public class CarController : MonoBehaviour
         carRB.MoveRotation(transform.rotation);
     }
 
-    /*public IEnumerator Acceleration()
-    {
-        speedTrail.emitting = true;
-        speed = nitroSpeed;
-
-        yield return new WaitForSeconds(1.5f);
-
-        speed = startSpeed;
-        speedTrail.emitting = false;
-    }*/
+    
 }

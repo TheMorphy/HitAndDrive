@@ -100,6 +100,7 @@ public class Wall : MonoBehaviour
                 rb.isKinematic = false;
                 StartCoroutine(Explode(rb, dirToMove, 5));
                 //Destroy(g, 5f);
+                disableOverTime(g, 5);
                 g.GetComponent<PlaySoundOnTouch>().startDestructed();
                 rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, collision.transform.position, 5);
                 carCollided = true;
@@ -108,12 +109,22 @@ public class Wall : MonoBehaviour
 
     }
 
+    IEnumerator disableOverTime(GameObject obj, float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        obj.SetActive(false);
+        yield break;
+    }
+
     IEnumerator Explode(Rigidbody rb, Vector3 position, float multiplicator = 1)
     {
         yield return new WaitForSeconds(TrackManager.instance.wallExplodeDelay);
         rb.AddForce(-position * TrackManager.instance.wallDestructionForce * multiplicator, ForceMode.Force);
        // rb.AddExplosionForce(TrackManager.instance.wallDestructionForce, position, 7);
     }
+
+
 
   /*  private void OnTriggerExit(Collider collision)
     {
