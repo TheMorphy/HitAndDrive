@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2073154171}
-  m_IndirectSpecularColor: {r: 0.3587204, g: 0.4182471, b: 0.89990616, a: 1}
+  m_IndirectSpecularColor: {r: 0.3587204, g: 0.41824704, b: 0.89990616, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97547,6 +97547,7 @@ GameObject:
   - component: {fileID: 1947564229}
   - component: {fileID: 1947564233}
   - component: {fileID: 1947564232}
+  - component: {fileID: 1947564234}
   - component: {fileID: 1947564231}
   - component: {fileID: 1947564230}
   m_Layer: 8
@@ -97755,6 +97756,23 @@ MonoBehaviour:
   speedTrail: {fileID: 0}
   levelManager: {fileID: 2146749394}
   horizontalAxis: Horizontal
+--- !u!114 &1947564234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947564228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc740766a9ec624bae0606539c0ae41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gearShiftSoundName: gearShift
+  carSounds:
+  - loopedClip: {fileID: 8300000, guid: 771ce407ce807b74885ec23ebd1e6647, type: 3}
+    speedRange: {x: 10, y: 30}
+    pitchRange: {x: 1, y: 2}
 --- !u!1 &1948212961
 GameObject:
   m_ObjectHideFlags: 0
@@ -104601,6 +104619,7 @@ MonoBehaviour:
   rightPosition: {fileID: 897255193}
   levelNumber: {fileID: 1985042884}
   numberOfLevels: 3
+  is4ad: 0
   mp: 0
 --- !u!4 &2146749398
 Transform:
