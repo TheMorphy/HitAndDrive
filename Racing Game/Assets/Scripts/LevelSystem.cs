@@ -45,21 +45,21 @@ public class LevelSystem : MonoBehaviour
         carScript = FindObjectOfType<CarController>();
         moneyNumber = moneyUI.GetComponent<TextMeshProUGUI>();
         moneyNumberFinal = moneyUIFinal.GetComponent<Text>();
-        tmScript = trackManager.GetComponent<TrackManager>();
+        tmScript = FindObjectOfType<TrackManager>();
         camAnim = cam.GetComponent<Animator>();
         driverFly = FindObjectOfType<DriverFly>();
 
         moneyInOneRound = 0;
 
         money = PlayerPrefs.GetInt("Money");
-        if (levelNumber != null)
+        /*if (levelNumber != null)
         {
             LevelNumb = SceneManager.GetActiveScene().buildIndex;
 
             levelNumber.text = "Level " + (LevelNumb + 1).ToString();
 
             UpdateMoney();
-        }
+        }*/
 
 
         if (carScript.IsUsingSteeringWheel) steeringWheel.SetActive(true);
@@ -119,6 +119,7 @@ public class LevelSystem : MonoBehaviour
             moneyNumberFinal.text = "+ " + moneyInOneRound.ToString();
             SaveLevel();
         }
+        yield break;
     }
 
     #region collisions
