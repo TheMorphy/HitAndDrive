@@ -197,10 +197,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
-        isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 0.5f, groundLayer);
-        Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.fixedDeltaTime);
+        
         forcedRotation = transform.position.x - TrackManager.instance.transform.position.x;
 
         if (isCarGrounded)
@@ -209,7 +206,20 @@ public class CarController : MonoBehaviour
             sphereRB.AddForce(transform.up * -200f); // Add Gravity
 
         carRB.MoveRotation(transform.rotation);
+
+        
     }
 
-    
+    private void LateUpdate()
+    {
+        RaycastHit hit;
+        isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 0.5f, groundLayer);
+        Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, 1);
+    }
+
+
+
+
 }
