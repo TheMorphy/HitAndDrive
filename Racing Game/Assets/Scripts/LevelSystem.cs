@@ -101,9 +101,10 @@ public class LevelSystem : MonoBehaviour
         }
         #endregion
 
-        if (HasFinished == true && tmScript.currentlevel < 5 && driverFly.IsBlocked == true)
+        if (HasFinished == true && tmScript.currentlevel < 5 /*&& driverFly.IsBlocked == true*/)
         {
             StartCoroutine(waitToFinish);
+            FindObjectOfType<CarController>().enabled = false;
         }
     }
 
@@ -111,7 +112,7 @@ public class LevelSystem : MonoBehaviour
     {
         if(hasFinished == true)
         {
-            hasFinished = false;
+            //hasFinished = false;
             levelUI.SetActive(false);
             yield return new WaitForSeconds(waitTime);
             finishLevel.SetActive(true);

@@ -349,8 +349,12 @@ public class TrackManager : MonoBehaviour
                 explosionPosition = car.position;
             }
 
-            gameOverScreen.SetActive(true);
-            AudioManager.instance.Play("Fail");
+            if(levelSystem.HasFinished == false)
+            {
+                print(levelSystem.HasFinished);
+                gameOverScreen.SetActive(true);
+                AudioManager.instance.Play("Fail");
+            }
             Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
             foreach (Rigidbody r in getCurrentCarLevel().newCarModel.GetComponentsInChildren<Rigidbody>())
             {

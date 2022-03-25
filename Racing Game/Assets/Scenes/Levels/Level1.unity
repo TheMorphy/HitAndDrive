@@ -43898,6 +43898,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5487725547271418349, guid: 6f107d520546520468ff4ebf9c64e13c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5487725547282470510, guid: 6f107d520546520468ff4ebf9c64e13c, type: 3}
       propertyPath: m_Name
       value: FinalStage
