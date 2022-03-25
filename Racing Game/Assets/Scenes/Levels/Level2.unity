@@ -26323,6 +26323,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3134033483014019843, guid: 8197e4decd85f3449bbb338f93d569e2, type: 3}
+      propertyPath: levelToLose
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3291951375197411550, guid: 8197e4decd85f3449bbb338f93d569e2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -27858,6 +27862,10 @@ PrefabInstance:
     - target: {fileID: 8027613844908583606, guid: 9cf99fe8df9788147b57430c261b8d88, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238518323564684857, guid: 9cf99fe8df9788147b57430c261b8d88, type: 3}
+      propertyPath: levelToLose
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8238518323564684858, guid: 9cf99fe8df9788147b57430c261b8d88, type: 3}
       propertyPath: m_RootOrder
@@ -47368,6 +47376,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212131033680723636, guid: b7d401b0dd989ff4a96a374221c11d20, type: 3}
+      propertyPath: levelToLose
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 212131033680723637, guid: b7d401b0dd989ff4a96a374221c11d20, type: 3}
       propertyPath: m_Name
       value: Wall_Metal
@@ -56243,7 +56255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: Level 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 951fb0482ab37d24183a6a2cc0149b56, type: 2}
   m_sharedMaterial: {fileID: -6197229228144531268, guid: 951fb0482ab37d24183a6a2cc0149b56, type: 2}
@@ -78236,6 +78248,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3134033483014019843, guid: 8197e4decd85f3449bbb338f93d569e2, type: 3}
+      propertyPath: levelToLose
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3291951375197411550, guid: 8197e4decd85f3449bbb338f93d569e2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -80313,6 +80329,10 @@ PrefabInstance:
     - target: {fileID: 9002369070624008913, guid: 5e867894876f31645a305dfe259c45e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002369070624008915, guid: 5e867894876f31645a305dfe259c45e5, type: 3}
+      propertyPath: levelToLose
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9002369070624008918, guid: 5e867894876f31645a305dfe259c45e5, type: 3}
       propertyPath: m_Name
