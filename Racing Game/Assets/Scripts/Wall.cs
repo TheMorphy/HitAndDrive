@@ -46,6 +46,8 @@ public class Wall : MonoBehaviour
         {
             carCollided = true;
 
+            print("Good Job");
+
             if (multiplierText != null)
             {
                 multiplierText.enabled = false;
