@@ -58,7 +58,7 @@ public class Wall : MonoBehaviour
                     //Die
                     AudioManager.instance.PlaceSound("Stone_Car", transform.position, null, 1);
                     TrackManager.instance.PlayerDie(collision.transform.position);
-                    GameObject.Find("Motor").GetComponent<AudioSource>().mute = true;
+                    
                 }
                 else
                 TrackManager.instance.changeLevel(-levelToLose, "", true);

@@ -27,15 +27,20 @@ public class Multiplier : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (trackManager.currentlevel > 4)
+            if (trackManager.currentlevel > 9)
             {
-                mf = FindObjectOfType<movefoward>();
-                levelSystem.MultiplierL += 0.3f;
-                mf.MoveSpeed -= 2.5f;
-                //Fix Level 5 bug
-                if (trackManager.currentlevel == 5)
+                if(FindObjectOfType<movefoward>() != null)
                 {
-                    trackManager.currentlevel = 6;
+                    mf = FindObjectOfType<movefoward>();
+                    mf.MoveSpeed -= 2.5f;
+                }
+                
+                levelSystem.MultiplierL += 0.3f;
+                
+                //Fix Level 5 bug
+                if (trackManager.currentlevel == 10)
+                {
+                    trackManager.currentlevel = 11;
                 }
             }
         }

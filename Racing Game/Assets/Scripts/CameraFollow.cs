@@ -53,7 +53,7 @@ public class CameraFollow : MonoBehaviour
         if(driverFly != null)
         if (driverFly.IsSpawned)
         {
-            if (tm.currentlevel < 5)
+            if (tm.currentlevel < 10)
             {
                 target = FindObjectOfType<transformDummy>().transform;
             } else 

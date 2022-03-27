@@ -25,7 +25,7 @@ public class transformDummy : MonoBehaviour
     {
         
 
-        if(tm.currentlevel < 5 && waitAFrame == null)  
+        if(tm.currentlevel < 10 && waitAFrame == null)  
         {
             waitAFrame = StartCoroutine(WaitOneFrame());
         }
@@ -38,7 +38,7 @@ public class transformDummy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (tm.currentlevel < 5)
+        if (tm.currentlevel < 10)
         {
             foreach (Rigidbody r in limbs)
             {

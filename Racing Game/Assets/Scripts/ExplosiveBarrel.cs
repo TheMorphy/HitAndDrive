@@ -35,7 +35,7 @@ public class ExplosiveBarrel : MonoBehaviour
 
     public void Explode()
     {
-        Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         foreach (Collider c in Physics.OverlapSphere(transform.position, range))
         {
             // print(c.name);

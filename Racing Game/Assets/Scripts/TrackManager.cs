@@ -74,7 +74,8 @@ public class TrackManager : MonoBehaviour
 
     [SerializeField] CarDestroy carDestroy;
 
-    LevelSystem levelSystem;
+    [HideInInspector]
+    public LevelSystem levelSystem;
 
 
     List<TextMeshPro> tmps = new List<TextMeshPro>();
@@ -342,20 +343,45 @@ public class TrackManager : MonoBehaviour
 
     public void PlayerDie(Vector3 explosionPosition)
     {
+        print("PLAYER DIE");
+        lvlText.transform.parent.gameObject.SetActive(false);
         if (levelSystem.HasFinished == false)
         {
             if (explosionPosition == Vector3.zero)
             {
                 explosionPosition = car.position;
             }
+            car.parent.GetComponent<WheelController>().enabled = false;
 
-            if(levelSystem.HasFinished == false)
-            {
-                print(levelSystem.HasFinished);
-                gameOverScreen.SetActive(true);
+            GameObject.Find("Motor").GetComponent<AudioSource>().mute = true;
+
+            gameOverScreen.SetActive(true);
                 AudioManager.instance.Play("Fail");
+            
+            //Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
+            foreach (Rigidbody r in getCurrentCarLevel().newCarModel.GetComponentsInChildren<Rigidbody>())
+            {
+                r.isKinematic = false;
+                r.GetComponent<Collider>().isTrigger = false;
+
             }
-            Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
+            car.parent.GetComponent<CarController>().enabled = false;
+            //Destroy(car.parent.gameObject);
+            lost = true;
+        }
+        else
+        {
+            if (explosionPosition == Vector3.zero)
+            {
+                explosionPosition = car.position;
+            }
+            car.parent.GetComponent<WheelController>().enabled = false;
+            GameObject.Find("Motor").GetComponent<AudioSource>().mute = true;
+
+            //gameOverScreen.SetActive(true);
+            //AudioManager.instance.Play("Fail");
+
+            //Instantiate(explosionParticle, explosionPosition + new Vector3(0, 0.3f, 0), car.transform.rotation);
             foreach (Rigidbody r in getCurrentCarLevel().newCarModel.GetComponentsInChildren<Rigidbody>())
             {
                 r.isKinematic = false;

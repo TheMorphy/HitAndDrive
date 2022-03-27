@@ -74,6 +74,11 @@ public class Pedestrian : MonoBehaviour
 
             if (!collidedOnce)
             {
+                if(TrackManager.instance.levelSystem.HasFinished)
+                {
+                    TrackManager.instance.changeLevel(lvl, "", true, false);
+                }
+                else
                 TrackManager.instance.changeLevel(lvl);
                 FindObjectOfType<AudioManager>().Play("Hit");
                 //Apply force

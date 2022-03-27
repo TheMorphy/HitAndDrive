@@ -203,7 +203,7 @@ public class CarController : MonoBehaviour
         if (isCarGrounded)
             sphereRB.AddForce(transform.forward * speed, ForceMode.Acceleration); // Add Movement
         else
-            sphereRB.AddForce(transform.up * -200f); // Add Gravity
+            sphereRB.AddForce(transform.up * -9.81f); // Add Gravity
 
         carRB.MoveRotation(transform.rotation);
 

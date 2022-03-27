@@ -133,7 +133,7 @@ public class LevelSystem : MonoBehaviour
                 {
                     tmScript.currentlevel = 6;
                 }
-                carScript.startSpeed = ((0 + tmScript.currentlevel) * 2) + 30;
+                carScript.startSpeed = ((0 + tmScript.currentlevel) * 1) + 30;
                 steeringWheel.SetActive(false);
 
                 if (is4ad)

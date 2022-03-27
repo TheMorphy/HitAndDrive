@@ -52,7 +52,7 @@ public class CarDestroy : MonoBehaviour
         {
             if(TrackManager.instance.fever)
             {
-                Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
+                //Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
                 Destroy(collision.gameObject);
                 
                 return;
@@ -64,7 +64,7 @@ public class CarDestroy : MonoBehaviour
             }
             else
             {
-                Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
+                //Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
                 Destroy(collision.gameObject);
             }
             TrackManager.instance.changeLevel(-levelsToLose, "", true);
@@ -90,7 +90,7 @@ public class CarDestroy : MonoBehaviour
         if (collision.gameObject.layer == 14 && collision.rigidbody.velocity.magnitude < 0.5f)
         {
             Destroy(collision.gameObject);
-            Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
+            //Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
 
         }
     }
